@@ -78,7 +78,7 @@ condAlphaID$system <- NULL
 condAlphaID$display <- NULL
 names(condAlphaID) <- c("PatId", "EncId", "Diagnosetext", "AlphaID_Kode")
 
-# join conditions data
+# join condition data
 conditions <-Reduce(function(x, y) merge(x, y, all=T), list(condIcd,condOrpha, condAlphaID))
 institution_id <- unlist(strsplit(conditions$PatId,'-P-'))[ c(TRUE,FALSE) ]
 instData <- cbind( institution_id, conditions)

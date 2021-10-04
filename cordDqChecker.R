@@ -19,6 +19,8 @@ path="http://141.5.101.1:8080/fhir/"
 # CSV and XLSX file formats are supported
 #path="./Data/medData/AiroloData_KT.csv"
 #path="./Data/medData/AiroloData_KT.xlsx"
+
+medData <- NULL
 if (grepl("fhir", path))
 {
   source("./R/dqFhirInterface.R")
@@ -27,6 +29,7 @@ if (grepl("fhir", path))
       if (ext=="csv") medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1")
       if (ext=="xlsx") medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE)
 }
+if (is.null (medData)) stop("Keine Daten vorhanden")
 
 # import CORD Ref. Data
 refData1 <- read.table("./Data/refData/Hamburger-Cord_DQM-List.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
@@ -82,4 +85,3 @@ if (!is.empty(env$medData$Institut_ID)){
   msg <- paste ("Institut_ID fehlt")
   stop(msg)
   }
-
