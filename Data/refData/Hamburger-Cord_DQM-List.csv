@@ -1,4 +1,4 @@
-IcdCode,OrphaCode,Type,List
+IcdCode,OrphaCode,Type,Quelle
 H81.0,45360,1:1,Hamburger Liste
 D86.0 ,797,n:1,Hamburger Liste
 D86.1 ,797,n:1,Hamburger Liste
@@ -102,7 +102,7 @@ M09.08,85436,n:1,Hamburger Liste
 M09.09,85436,n:1,Hamburger Liste
 E70.0,716,1:1,Hamburger Liste
 L56.3,97230,1:1,Hamburger Liste
-E83.3,89936,1:1,Hamburger Liste
+E83.30,89936,1:1,Hamburger Liste
 Q78.2,53,1:1,Hamburger Liste
 G23.1,683,1:1,Hamburger Liste
 G71.2,97245,1:1,Hamburger Liste
@@ -117,7 +117,7 @@ Q77.4,429,1:1,Hamburger Liste
 Q74.3,1146,1:1,Hamburger Liste
 Q23.4,2248,1:1,Hamburger Liste
 F84.2,778,1:1,Hamburger Liste
-E83.5,280062,1:1,Hamburger Liste
+E83.50,280062,1:1,Hamburger Liste
 D82.1,567,1:1,Hamburger Liste
 Q79.2,660,1:1,Hamburger Liste
 Q22.4,1209,1:1,Hamburger Liste
