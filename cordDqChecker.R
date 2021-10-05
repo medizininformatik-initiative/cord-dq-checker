@@ -80,6 +80,7 @@ if (!is.empty(env$medData$Institut_ID)){
 ########## DQ-Report ###################
   path<- paste ("./Data/Export/Datenqualitätsreport_", studycode)
   getReport( repCol, "dq_msg", td, path)
+  print(paste("DQ-Reports wurden im folgenden Ordner erstellt:", path))
 
 }else{
   msg <- paste ("Institut_ID fehlt")
