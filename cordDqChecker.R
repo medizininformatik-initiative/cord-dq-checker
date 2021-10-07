@@ -1,9 +1,10 @@
 
-# Last Change at 13.08.2021
+# Last Change at 07.10.2021
 # Kais Tahar
 # Data quality analysis for CORD
 
 library(dqLib)
+library(openxlsx)
 
 # install R package
 setwd("./")
@@ -17,8 +18,10 @@ studycode = "FHIR_TestData"
 path="http://141.5.101.1:8080/fhir/"
 
 # CSV and XLSX file formats are supported
-#path="./Data/medData/AiroloData_KT.csv"
-#path="./Data/medData/AiroloData_KT.xlsx"
+#studycode = "dqTestData"
+#path="./Data/medData/dqTestData_KT.csv"
+#path="./Data/medData/dqTestData_KT.xlsx"
+
 
 medData <- NULL
 if (grepl("fhir", path))
@@ -32,7 +35,7 @@ if (grepl("fhir", path))
 if (is.null (medData)) stop("Keine Daten vorhanden")
 
 # import CORD Ref. Data
-refData1 <- read.table("./Data/refData/Hamburger-Cord_DQM-List.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
+refData1 <- read.table("./Data/refData/cordDqList.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 refData2 <- read.table("./Data/refData/icd10gm2020_alphaid_se_muster_edvtxt_20191004.txt", sep="|",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 names(medData)
 mdHeader <- c ("Institut_ID","PatientIdentifikator","Aufnahmenummer","DiagnoseText","ICD_Text","ICD_Primaerkode","ICD_Manifestation","Orpha_Kode","AlphaID_Kode")

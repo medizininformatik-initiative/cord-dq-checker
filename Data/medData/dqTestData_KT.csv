@@ -1,0 +1,40 @@
+"Institut_ID";"PatientIdentifikator";"Aufnahmenummer";"Diagnosetext";"ICD_Text";"ICD_Primaerkode";"ICD_Manifestation";"Orpha_Kode";"AlphaID_Kode"
+#test1 für nicht eindeutige Zuordnung 
+"1";"259294944-TestHaus";"P_20085651";"F_101641";NA;NA;"E75.0";NA;846;NA
+"2";"259294944-TestHaus";"P_20085652";"F_101642";NA;NA;"E75.0";NA;797;NA
+"3";"259294944-TestHaus";"P_20085653";"F_101643";NA;NA;"E75.0";NA;309151;NA
+"4";"259294944-TestHaus";"P_20085654";"F_101644";NA;NA;"E75.0";NA;309247;NA
+"5";"259294944-TestHaus";"P_20085751";"F_101645";NA;NA;"G70";NA;586;NA
+"6";"259294944-TestHaus";"P_20085752";"F_101646";NA;NA;"G70";NA;589;NA
+"7";"259294944-TestHaus";"P_20085753";"F_101647";NA;NA;"E84.80";NA;589;NA
+#test2 für eindeutige Zuordnung (no issues 3rd)
+"8";"259294944-TestHaus";"P_20085754";"F_101648";NA;NA;"E84.80";NA;586;NA
+"9";"259294944-TestHaus";"P_20085755";"F_101649";NA;NA;"E75.2";NA;324;NA
+"10";"259294944-TestHaus";"P_20085756";"F_101650";NA;NA;"G70.0";NA;589;NA
+#test3 missing icd-codes 0rd
+"11";"259294944-TestHaus";"P_20085757";"F_101651";NA;NA;NA;NA;586;NA
+"12";"259294944-TestHaus";"P_20085758";"F_101652";NA;NA;NA;NA;321;NA
+#test4 missing orpha-codes, kein SE
+"13";"259294944-TestHaus";"P_20085759";"F_101653";NA;NA;"J11";NA;NA;NA
+"14";"259294944-TestHaus";"P_20085760";"F_101654";NA;NA;"J11.1";NA;NA;NA
+#test5 missing icd- und orpha codes
+"15";"259294944-TestHaus";"P_20085761";"F_101655";NA;NA;NA;NA;NA;NA
+#test6 unvollständige 1-m Relation (nicht eindeutig)
+"16";"259294944-TestHaus";"P_20085762";"F_101656";NA;NA;"E66.89";NA;320;NA
+"17";"259294944-TestHaus";"P_20085763";"F_101657";NA;NA;"G35.9";NA;71529;NA
+#test7 unvollständige 1-m Relation ohne orpha codes (no issues)
+"18";"259294944-TestHaus";"P_20085764";"F_101757";NA;NA;"E66.89";NA;NA;NA
+#test8 vollständige 1-m Relation ohne orpha Kodierung (nicht eindeutig)
+"19";"259294944-TestHaus";"P_20085765";"F_101658";NA;NA;"E75.2";NA;NA;NA
+"20";"259294944-TestHaus";"P_20085766";"F_101659";NA;NA;"E75.0";NA;NA;NA
+"21";"259294944-TestHaus";"P_20085767";"F_101660";NA;NA;"E74.0";NA;NA;NA
+#test9 vollständige 1-m Relation mit orpha Kodierung (nicht eindeutig)
+"22";"259294944-TestHaus";"P_20085768";"F_101661";NA;NA;"E75.2";NA;342;NA
+"23";"259294944-TestHaus";"P_20085769";"F_101662";NA;NA;"E75.0";NA;226;NA
+#test10 vollständige 1-m Relation mit orpha Kodierung, eindeutig (no issues 2rd)
+"24";"259294944-TestHaus";"P_20085770";"F_101663";NA;NA;"E75.2";NA;324;NA
+"25";"259294944-TestHaus";"P_20085770";"F_101664";NA;NA;"E75.0";NA;796;NA
+#test11 eindeutige icd-codes ohne orpha Zuordnung (no issues 3rd)
+"26";"259294944-TestHaus";"P_20085772";"F_101665";NA;NA;"D45";NA;NA;NA
+"27";"259294944-TestHaus";"P_20085773";"F_101666";NA;NA;"E84.0";NA;NA;NA
+"28";"259294944-TestHaus";"P_20085774";"F_101667";NA;NA;"E84.1";NA;NA;NA

@@ -1,11 +1,11 @@
 IcdCode,OrphaCode,Type,Quelle
 H81.0,45360,1:1,Hamburger Liste
-D86.0 ,797,n:1,Hamburger Liste
-D86.1 ,797,n:1,Hamburger Liste
-D86.2 ,797,n:1,Hamburger Liste
-D86.3 ,797,n:1,Hamburger Liste
-D86.8 ,797,n:1,Hamburger Liste
-D86.9 ,797,n:1,Hamburger Liste
+D86.0,797,n:1,Hamburger Liste
+D86.1,797,n:1,Hamburger Liste
+D86.2,797,n:1,Hamburger Liste
+D86.3,797,n:1,Hamburger Liste
+D86.8,797,n:1,Hamburger Liste
+D86.9,797,n:1,Hamburger Liste
 D45,729,1:1,Hamburger Liste
 E03.0,442,n:1,Hamburger Liste
 E03.1,442,n:1,Hamburger Liste
@@ -51,11 +51,11 @@ G54.5,2901,1:1,Hamburger Liste
 I73.1,36258,1:1,Hamburger Liste
 Q21.3,3303,1:1,Hamburger Liste
 E25.0,181412,1:1,Hamburger Liste
-D83.0 ,1572,n:1,Hamburger Liste
-D83.1 ,1572,n:1,Hamburger Liste
-D83.2 ,1572,n:1,Hamburger Liste
-D83.8 ,1572,n:1,Hamburger Liste
-D83.9 ,1572,n:1,Hamburger Liste
+D83.0,1572,n:1,Hamburger Liste
+D83.1,1572,n:1,Hamburger Liste
+D83.2,1572,n:1,Hamburger Liste
+D83.8,1572,n:1,Hamburger Liste
+D83.9,1572,n:1,Hamburger Liste
 Q87.4,558,1:1,Hamburger Liste
 M33.2,732,1:1,Hamburger Liste
 K62.7,70475,1:1,Hamburger Liste
@@ -65,8 +65,8 @@ D18.12,2415,n:1,Hamburger Liste
 D18.13,2415,n:1,Hamburger Liste
 D18.18,2415,n:1,Hamburger Liste
 D18.19,2415,n:1,Hamburger Liste
-D57.0 ,232,n:1,Hamburger Liste
-D57.1 ,232,n:1,Hamburger Liste
+D57.0,232,n:1,Hamburger Liste
+D57.1,232,n:1,Hamburger Liste
 D57.2,232,n:1,Hamburger Liste
 M33.0,221,n:1,Hamburger Liste
 M33.1,221,n:1,Hamburger Liste
@@ -124,11 +124,11 @@ Q22.4,1209,1:1,Hamburger Liste
 I42.80,247,1:1,Hamburger Liste
 Q17.2,83463,1:1,Hamburger Liste
 E85.3,85445,1:1,Hamburger Liste
-Q71.6 ,2440,n:1,Hamburger Liste
+Q71.6,2440,n:1,Hamburger Liste
 Q72.7,2440,n:1,Hamburger Liste
-Q91.4 ,3378,n:1,Hamburger Liste
-Q91.5 ,3378,n:1,Hamburger Liste
-Q91.6 ,3378,n:1,Hamburger Liste
+Q91.4,3378,n:1,Hamburger Liste
+Q91.5,3378,n:1,Hamburger Liste
+Q91.6,3378,n:1,Hamburger Liste
 Q91.7,3378,n:1,Hamburger Liste
 Q04.2,2162,1:1,Hamburger Liste
 E71.0,511,1:1,Hamburger Liste
@@ -136,14 +136,14 @@ D58.1,288,1:1,Hamburger Liste
 Q80.1,461,1:1,Hamburger Liste
 Q97.0,3375,1:1,Hamburger Liste
 Q28.21,46724,1:1,Hamburger Liste
-Q91.0 ,3380,n:1,Hamburger Liste
-Q91.1 ,3380,n:1,Hamburger Liste
+Q91.0,3380,n:1,Hamburger Liste
+Q91.1,3380,n:1,Hamburger Liste
 Q91.2,3380,n:1,Hamburger Liste
 Q77.1,2655,1:1,Hamburger Liste
 Q00.1,63260,1:1,Hamburger Liste
-E74.0,"365, 308552",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-E75.0,"796, 845,309152,309246",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-E75.2,"324, 487, 355, 512",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-G12.1,"83419, 70, 85146, 363447",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-G71.0,"98896, 119, 62, 264",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
+E74.0,"365,308552",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
+E75.0,"796,845,309152,309246",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
+E75.2,"324,487, 355, 512",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
+G12.1,"83419,70, 85146, 363447",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
+G71.0,"98896,119, 62, 264",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
 Q75.0,"35093,1225,1531",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
