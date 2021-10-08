@@ -22,14 +22,6 @@ You can install `dqLib` from github with:
 install_github("https://github.com/KaisTahar/dqLib")
 ```
 
-## Note
-`dqlib` libery needs to be installed
-
-You can install `dqLib` from github with:
-``` r
-install_github("https://github.com/KaisTahar/dqLib")
-```
-
 ## Example
 
 Here are [examples](https://github.com/KaisTahar/cordDqChecker/tree/master/Data/Export) of generated data quality reports using the cord test dataset
