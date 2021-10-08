@@ -3,7 +3,7 @@
 
 ## Run cordDQCherker to genrate data quality reports
 
-The skript `CordDqChecker.R` reads data from FHIR server or CSV and Excel files. The path varialbe specifies which dataset should be imported.
+The skript `cordDqChecker.R` reads data from FHIR server or CSV and Excel files. The path varialbe specifies which dataset should be imported.
 For Example you can define your path as following:
 ```path="http://141.5.101.1:8080/fhir/" ```
 or
