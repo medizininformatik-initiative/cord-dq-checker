@@ -1,5 +1,5 @@
 
-# Last Change at 07.10.2021
+# Last Change at 28.01.2022
 # Kais Tahar
 # Data quality analysis for CORD
 
@@ -11,6 +11,7 @@ setwd("./")
 rm(list = ls())
 library(devtools)
 install_github("https://github.com/KaisTahar/dqLib")
+
 
 ########## data import #############
 # import CORD med data
@@ -74,11 +75,11 @@ if (!is.empty(env$medData$Institut_ID)){
     instID <- as.character (inst[i])
     out <-checkCordDQ(instID, refData1,refData2, "dq_msg")
     cdata <-out$cdata
-# statistic 
+    # statistic 
     tdata<-cbind (getDQStatis(cdata, "basicItem", "Total"),  out$tdata)
     l <- rbind (l, tdata)
-    td<-rbind(td,subset(tdata, select= c( inst_id, missing_value_rate, completness_rate, orphaCoding_completeness, uniqueness_rate,icdRd_no, rd_no,pt_no, case_no)))
-  }
+    td<-rbind(td,subset(tdata, select= c( inst_id, missing_value_rate, orphaCoding_completeness, uniqueness_rate, orphaCoding_plausibility_rate, orphaCoding_relativeFrequency, orphaCoding_absoluteFrequency,  uniqueRd_no, pt_no, case_no)))
+    }
   
 ########## DQ-Report ###################
   path<- paste ("./Data/Export/Datenqualitätsreport_", studycode)

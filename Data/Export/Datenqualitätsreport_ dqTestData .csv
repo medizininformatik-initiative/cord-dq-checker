@@ -1,2 +1,2 @@
-"inst_id","missing_value_rate","completness_rate","orphaCoding_completeness","uniqueness_rate","icdRd_no","rd_no","pt_no","case_no"
-"259294944-TestHaus",26.43,73.57,66.67,36.4,18,8,27,28
+"inst_id","missing_value_rate","orphaCoding_completeness","uniqueness_rate","orphaCoding_plausibility_rate","orphaCoding_relativeFrequency","orphaCoding_absoluteFrequency","uniqueRd_no","pt_no","case_no"
+"259294944-TestHaus",26.43,66.67,37.5,31.25,56,14,9,27,28
