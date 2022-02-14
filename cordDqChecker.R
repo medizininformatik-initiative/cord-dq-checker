@@ -25,8 +25,7 @@ path="http://141.5.101.1:8080/fhir/"
 medData <- NULL
 if (grepl("fhir", path))
 {
-  #source("./R/dqFhirInterface.R")
-  source("./R/dqFhirInterface_v2.R")
+  source("./R/dqFhirInterface.R")
   year <-2020
   medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==year, ]
 }else{ ext <-getFileExtension (path)
