@@ -33,7 +33,7 @@ if (grepl("fhir", path))
       if (ext=="xlsx") medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE)
 }
 if (is.null (medData)) stop("Keine Daten vorhanden")
-inpatientCases <- 202
+inpatientCases <- 1000
 # import CORD Ref. Data
 refData1 <- read.table("./Data/refData/cordDqList.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 refData2 <- read.table("./Data/refData/icd10gm2020_alphaid_se_muster_edvtxt_20191004.txt", sep="|",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
