@@ -7,11 +7,11 @@ The skript `cordDqChecker.R` reads data from FHIR server or CSV and Excel files.
 For Example you can define your path as following:
 ```path="http://141.5.101.1:8080/fhir/" ```
 or
-``` path="./Data/medData/dqTestData_KT.csv" ```
+``` path="./Data/medData/dqTestData.csv" ```
 or
-``` path="./Data/medData/dqTestData_KT.xlsx" ```
+``` path="./Data/medData/dqTestData.xlsx" ```
 
-Once the source data path is defined, start the skript to check the data quality of your CORD dataset. 
+Once the source data path is defined, start the skript to check the quality of your data. 
 The genrated repots are saved in folder ``` "./Data/Export" ```
 
 ## Note
