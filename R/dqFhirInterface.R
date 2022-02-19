@@ -24,15 +24,12 @@ ConditionTab <- fhir_table_description(
     code = "code/coding/code",
     system = "code/coding/system",
     recorded_date = "recordedDate"
-    
   ),
   style = fhir_style(
     sep = " / ",
     brackets = c("[", "]")
   )
-  
 )
-
 PatientTab <- fhir_table_description(
   resource = "Patient",
   cols = list(
@@ -46,7 +43,6 @@ PatientTab <- fhir_table_description(
     brackets = c("[", "]")
   )
 )
-
 EncounterTab <- fhir_table_description(
   resource = "Encounter",
   cols = list(
@@ -54,7 +50,6 @@ EncounterTab <- fhir_table_description(
     enId = "identifier/value",
     start = "period/start",
     end = "period/end"
-    
   ),
   # style = list(
   # sep = " % ",
