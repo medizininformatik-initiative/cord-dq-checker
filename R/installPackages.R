@@ -1,11 +1,10 @@
+
 # install R package
-install.packages('devtools')
+if(!require('devtools')) install.packages('devtools')
 library(devtools)
 install_github("https://github.com/KaisTahar/dqLib")
-install_github("POLAR-fhiR/fhircrackr")
-#install.packages('fhircrackr')
-install.packages('openxlsx')
-install.packages('stringi')
-install.packages('writexl')
-
-
+#if(!require('fhircrackr')) install_github("POLAR-fhiR/fhircrackr")
+if(!require('fhircrackr')) install.packages('fhircrackr')
+#if(!require('openxlsx')) install.packages('openxlsx')
+#if(!require('writexl')) install.packages('writexl')
+#if(!require('stringi')) install.packages('stringi')

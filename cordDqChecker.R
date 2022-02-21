@@ -5,16 +5,18 @@ rm(list = ls())
 setwd("./")
 source("./R/installPackages.R")
 library(dqLib)
-library(openxlsx)
-library(stringi)
-library(writexl)
+#library(openxlsx)
+#library(stringi)
+#library(writexl)
 ########## data import #############
 # import CORD med data
 studycode = "FHIRtestData"
-inpatientCases <- 1000
 reportYear <-2020
 max_FHIRbundles <- 50 # Inf
-path="http://141.5.101.1:8080/fhir/"
+Sys.setenv(INPATIENT_CASE_NO=1000)
+inpatientCases <- as.numeric(Sys.getenv("INPATIENT_CASE_NO"))
+Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
+path <- Sys.getenv("FHIR_SERVER")
 
 # CSV and XLSX file formats are supported
 #studycode = "dqTestData"
@@ -25,14 +27,15 @@ medData <- NULL
 if (grepl("fhir", path))
 {
   source("./R/dqFhirInterface.R")
-  medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
+  #medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
+  medData <- instData
 }else{ ext <-getFileExtension (path)
 if (ext=="csv") medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1")
 if (ext=="xlsx") medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE)
 }
 if (is.null (medData)) stop("Keine Daten vorhanden")
 
-# import CORD and Ref. Data
+# import Ref. Data
 refData1 <- read.table("./Data/refData/cordDqList.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 refData2 <- read.table("./Data/refData/icd10gm2020_alphaid_se_muster_edvtxt_20191004.txt", sep="|",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 headerRef1<- c ("IcdCode", "OrphaCode", "Type")
@@ -40,7 +43,9 @@ headerRef2<- c ("Gueltigkeit", "Alpha_ID", "ICD_Primaerkode1", "ICD_Manifestatio
 names(refData1)<-headerRef1
 names(refData2)<-headerRef2
 names(medData)
-########## DQ Analysis #############a
+
+########## DQ Analysis #############
+medData<- medData[format(as.Date(medData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
 cdata <- data.frame(
   basicItem=
     c ("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","ICD_Primaerkode","Orpha_Kode","AlphaID_Kode", "Total")
@@ -52,7 +57,6 @@ ddata <- data.frame(
 tdata <- data.frame(
   pt_no =NA, case_no =NA
 )
-
 repCol=c( "PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode","Orpha_Kode")
 setGlobals(medData, repCol, cdata, ddata, tdata)
 td <- NULL

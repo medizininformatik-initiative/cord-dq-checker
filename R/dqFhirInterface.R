@@ -1,5 +1,5 @@
 library(fhircrackr)
-library(lubridate)
+#library(lubridate)
 
 #define fhir search request
 searchRequest <- paste0(
@@ -112,7 +112,8 @@ conditions <-Reduce(function(x, y) merge(x, y, all=T), list(condIcd,condOrpha, c
 patRaw <- fhir_crack(bundles, design)$PatientTab
 patients <- fhir_rm_indices(patRaw, brackets = c("[", "]"))
 patients$instId<- gsub("#.*","\\1",patients$instId)
-patients$birthdate <- year(as.Date(patients$birthdate))
+#patients$birthdate <- year(as.Date(patients$birthdate))
+patients$birthdate <- as.Date(patients$birthdate)
 names(patients) <- c("Institut_ID","PatientIdentifikator", "Geburtsdatum", "Geschlecht")
 entRaw <- fhir_crack(bundles, design)$EncounterTab
 encounters <- entRaw
