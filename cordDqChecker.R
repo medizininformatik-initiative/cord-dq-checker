@@ -5,12 +5,12 @@ rm(list = ls())
 setwd("./")
 source("./R/installPackages.R")
 library(dqLib)
-#library(openxlsx)
 #library(stringi)
 #library(writexl)
+#source("../dqLib/R/cordDqLib.R")
 ########## data import #############
 # import CORD med data
-studycode = "FHIRtestData"
+exportFile = "DQ-Report_fhirTestData"
 reportYear <-2020
 max_FHIRbundles <- 50 # Inf
 Sys.setenv(INPATIENT_CASE_NO=1000)
@@ -19,7 +19,7 @@ Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
 path <- Sys.getenv("FHIR_SERVER")
 
 # CSV and XLSX file formats are supported
-#studycode = "dqTestData"
+#exportFile = "DQ-Report_dqTestData"
 #path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 
@@ -68,7 +68,7 @@ if (!is.empty(medData$Institut_ID)){
     td <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqInd, "dq_msg", "basicItem", "Total")
   }
   ########## DQ-Report ###################
-  path<- paste ("./Data/Export/Datenqualitätsreport_", studycode)
+  path<- paste ("./Data/Export/", exportFile , "_", reportYear)
   getReport( repCol, "dq_msg", td, path)
   print(paste("DQ-Reports wurden im folgenden Ordner erstellt:", path))
 }else{
