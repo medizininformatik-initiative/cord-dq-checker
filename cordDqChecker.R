@@ -5,9 +5,6 @@ rm(list = ls())
 setwd("./")
 source("./R/installPackages.R")
 library(dqLib)
-#library(stringi)
-#library(writexl)
-#source("../dqLib/R/cordDqLib.R")
 ########## data import #############
 # import CORD med data
 exportFile = "DQ-Report_fhirTestData"
@@ -27,7 +24,6 @@ medData <- NULL
 if (grepl("fhir", path))
 {
   source("./R/dqFhirInterface.R")
-  #medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
   medData <- instData
 }else{ ext <-getFileExtension (path)
 if (ext=="csv") medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1")
