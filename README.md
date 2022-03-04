@@ -15,12 +15,8 @@ Once the source data path is defined, start the skript to check the quality of y
 The genrated repots are saved in folder ``` "./Data/Export" ```
 
 ## Note
-`dqlib` libery needs to be installed
 
-You can install `dqLib` from github with:
-``` r
-install_github("https://github.com/KaisTahar/dqLib")
-```
+Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/KaisTahar/cordDqChecker/blob/master/R/installPackages.R )
 
 ## Example
 

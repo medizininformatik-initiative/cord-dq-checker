@@ -29,8 +29,8 @@ inpatientCases <- as.numeric(Sys.getenv("INPATIENT_CASE_NO"))
 path <- Sys.getenv("FHIR_SERVER")
 
 # CSV and XLSX file formats are supported
-exportFile = "DQ-Report_dqTestData"
-path="./Data/medData/dqTestData.csv"
+#exportFile = "DQ-Report_dqTestData"
+#path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 
 medData <- NULL
