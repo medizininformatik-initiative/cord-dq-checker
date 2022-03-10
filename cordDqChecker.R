@@ -7,9 +7,11 @@ setwd("./")
 # installall required packages
 #source("./R/installPackages.R")
 library(dqLib)
-#library(stringi)
+library(openxlsx)
 #library(writexl)
+#library(stringi)
 options(warn=-1)# to suppress warnings
+
 cat("####################################***CordDqChecker***########################################### \n \n")
 # check missing packages
 pack <- unique(as.data.frame( (installed.packages())[,c(1,3)]))
@@ -21,7 +23,6 @@ if (!is.empty(diff)) paste ("The following packages are missing:", toString (dif
   print(depPkg, quote = TRUE, row.names = FALSE)
 }
 cat ("\n ####################################### Data Import ########################################## \n")
-
 #------------------------------------------------------------------------------------------------------
 # Setting path and variables
 #------------------------------------------------------------------------------------------------------
@@ -39,10 +40,9 @@ max_FHIRbundles <- 50 # Inf
 
 # CSV and XLSX file formats are supported
 #exportFile = "DQ-Report_dqTestData"
-path="./Data/medData/dqTestData.csv"
+#path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 
-# Setting mandatory data items
 bItemCl <-"basicItem"
 totalRow <-"Total"
 cdata <- data.frame(
@@ -103,10 +103,11 @@ if (!is.empty(medData$Institut_ID)){
     instID <- as.character (inst[i]) 
     # select meta data for DQ report
     repMeta= c("inst_id", "report_year")
-#------------------------------------------------------------------------------------------------------
-# Setting DQ dimensions , indicators and key numbers
-#------------------------------------------------------------------------------------------------------
-    ############## DQ dimensions and indicators #########
+    
+    #------------------------------------------------------------------------------------------------------
+    # Setting DQ dimensions , indicators and key numbers
+    #------------------------------------------------------------------------------------------------------
+    ############## Selection of DQ dimensions and indicators #########
     # select DQ indicators for completeness dimension
     compInd= c(
                "missing_item_rate", 
@@ -128,7 +129,7 @@ if (!is.empty(medData$Institut_ID)){
                "orphaCoding_relativeFrequency"
                )
     
-    ############ DQ key numbers ########################
+    ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
     dqKeyNo= c("orphaCoding_no",  
                "unique_rdCase_no", 
