@@ -30,8 +30,8 @@ The following indicatos and key numbers are configured by default data quality r
 | ------------- | ------------- |
 | patient number  |   patient_no|
 | case number  |  case_no|
-| case number  |   unique_no|
-| unique rare disease number  |   orphaCoding_no|
+| orpha code number  |  orphaCoding_no |
+| unique RD case number  | unique_rdCase_no  |
 
 ## Note
 
