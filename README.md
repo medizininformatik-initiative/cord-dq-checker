@@ -18,7 +18,7 @@ The genrated repots are saved in folder ``` "./Data/Export" ```
 
 The following indicatos and key numbers are configured by default data quality report:
 
-| Dimension  | Indicator name |
+| Dimension  | Indicator Name|
 | ------------- | ------------- |
 | completeness  | missing_item_rate, missing_value_rate, orphaCoding_completeness_rate  |
 | plausibility  | outlier_rate, orphaCoding_plausibility_rate |
@@ -26,7 +26,7 @@ The following indicatos and key numbers are configured by default data quality r
 | concordance | orphaCoding_relativeFrequency, unique_rdCase_relativeFrequency|
 
 
-| Key number  | name |
+| Key number  | Name |
 | ------------- | ------------- |
 | patient number  |   patient_no|
 | case number  |  case_no|
