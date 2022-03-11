@@ -11,6 +11,7 @@ or
 or
 - ``` path="./Data/medData/dqTestData.xlsx" ```
 
+The FHIR server ```http://141.5.101.1:8080/fhir/``` is configured by default.
 Once the source data path is defined, start the skript to check the quality of your data.
 The genrated repots are saved in folder ``` "./Data/Export" ```
 
