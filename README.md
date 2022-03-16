@@ -16,7 +16,7 @@ Once the source data path is defined, start the skript to check the quality of y
 The genrated repots are saved in folder ``` "./Data/Export" ```
 
 ## Data Quality Metrics
-- The following indicatos and key numbers are configured by default data quality reports:
+- The following indicators and key numbers are configured by default data quality reports:
 
   | Dimension  | Indicator Name|
   | ------------- | ------------- |
@@ -35,7 +35,7 @@ The genrated repots are saved in folder ``` "./Data/Export" ```
   | unique RD case number  | unique_rdCase_no  |
 
 
-- The following references are currently used to assess the quality of orphacoding and can be updated easily:
+- The following references are currently used to assess the quality of orphacoding and can be easily updated with new codes or versions:
   - Alpha-ID-SE list [1]
   - Hamburger list [2] extended with 1-m relationships of ICD-10 to Orpha codes such as E75.2-(324, 487, 355, 512)
 
@@ -45,11 +45,11 @@ The genrated repots are saved in folder ``` "./Data/Export" ```
   
 ## Example
 
-Here are [examples](https://github.com/KaisTahar/cordDqChecker/tree/master/Data/Export) of generated data quality reports using sythetic data
+Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Data/Export) of generated data quality reports using sythetic data
 
 ## Note
 
-Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/KaisTahar/cordDqChecker/blob/master/R/installPackages.R )
+Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/blob/master/R/installPackages.R )
 
 See also: [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
 
