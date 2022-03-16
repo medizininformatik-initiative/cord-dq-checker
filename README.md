@@ -30,26 +30,26 @@ The genrated repots are saved in folder ``` "./Data/Export" ```
   | ------------- | ------------- |
   | patient number  |   patient_no|
   | case number  |  case_no|
+  | RD case number  | rdCase_no  |
   | orpha code number  |  orphaCoding_no |
   | unique RD case number  | unique_rdCase_no  |
 
-- The following references are used to assess the quality of orphacoding:
+
+- The following references are currently used to assess the quality of orphacoding and can be updated easily:
   - Alpha-ID-SE list [1]
   - Hamburger list [2] extended with 1-m relationships of ICD-10 to Orpha codes such as E75.2-(324, 487, 355, 512)
 
   [1] DIMDI/Alpha-ID-SE list: www.dimdi.de
 
   [2] Schulz M et alt:. Prävalenz seltener Erkrankungen in der ambulanten Versorgung in Deutschland im Zeitraum 2008 bis 2011, Versorgungsatlas-Bericht. 2015;15/13
+  
+## Example
 
-
+Here are [examples](https://github.com/KaisTahar/cordDqChecker/tree/master/Data/Export) of generated data quality reports using sythetic data
 
 ## Note
 
 Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/KaisTahar/cordDqChecker/blob/master/R/installPackages.R )
-
-## Example
-
-Here are [examples](https://github.com/KaisTahar/cordDqChecker/tree/master/Data/Export) of generated data quality reports using the cord test dataset
 
 See also: [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
 

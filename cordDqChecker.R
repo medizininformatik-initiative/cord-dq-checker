@@ -75,8 +75,7 @@ if (is.null(path) | path=="")  stop("No path to data") else {
   if (grepl("fhir", path))
   {
     source("./R/dqFhirInterface.R")
-    #medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
-    medData <- instData
+    medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
   }else{ ext <-getFileExtension (path)
   if (ext=="csv") medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1")
   if (ext=="xlsx") medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE)
