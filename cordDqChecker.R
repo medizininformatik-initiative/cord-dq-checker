@@ -46,12 +46,10 @@ max_FHIRbundles <- 50 # Inf
 bItemCl <-"basicItem"
 totalRow <-"Total"
 cdata <- data.frame(
-  basicItem=
-    c ("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","ICD_Primaerkode","Orpha_Kode", "Total")
+  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","ICD_Primaerkode","Orpha_Kode", "Total")
 )
 ddata <- data.frame(
-  basicItem=
-    c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total")
+  basicItem= c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total")
 )
 oItem = c("Orpha_Kode")
 tdata <- data.frame(
@@ -131,10 +129,12 @@ if (!is.empty(medData$Institut_ID)){
     
     ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
-    dqKeyNo= c("orphaCoding_no",  
+    dqKeyNo= c(
+               "orphaCoding_no",  
                "unique_rdCase_no", 
-               "patient_no", 
+               "rdCase_no",
                "case_no", 
+               "patient_no", 
                "inpatientCases_no"
                )
     dqRepCol <- c(repMeta, compInd, plausInd, uniqInd, concInd, dqKeyNo)
@@ -153,7 +153,8 @@ if (!is.empty(medData$Institut_ID)){
                 "\n Inpatient cases:", dqRep$inpatientCases_no,
                 "\n Analyzed cases:", dqRep$case_no,
                 "\n Analyzed patients:", dqRep$patient_no,
-                "\n unique rdCases:", dqRep$unique_rdCase_no,
+                "\n Coded rdCases:", dqRep$rdCase_no,
+                "\n Unique rdCases:", dqRep$unique_rdCase_no,
                 "\n Missing item rate:", dqRep$missing_item_rate,
                 "\n Missing value rate:", dqRep$missing_value_rate,
                 "\n OrphaCoding completeness rate:", dqRep$orphaCoding_completeness_rate,
