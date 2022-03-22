@@ -1,6 +1,7 @@
 #######################################################################################################
-# Kais Tahar
-# Data quality analysis and reporting for CORD
+#' @description Data quality analysis and reporting for CORD-MI
+#' @author Kais Tahar, University Medical Center Göttingen
+#' Project CORD-MI, grant number FKZ-01ZZ1911R
 #######################################################################################################
 rm(list = ls())
 setwd("./")

@@ -1,7 +1,8 @@
 # cordDqChecker
-`CordDqChecker` is a Tool for data quality assessment and reporting in CORD
+`CordDqChecker` is a Tool for data quality assessment and reporting in [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
 
-## Run cordDQCherker to genrate data quality reports
+## Local Execution
+To analyse your data quality locally go to folder `./Local` and run `cordDqChecker.R` to genrate data quality reports.
 
 The skript `cordDqChecker.R` reads data from FHIR server or CSV and Excel files. The path varialbe specifies which dataset should be imported.
 For Example you can define your path as following:
@@ -13,7 +14,10 @@ or
 
 The FHIR server ```http://141.5.101.1:8080/fhir/``` is configured by default.
 Once the source data path is defined, start the skript to check the quality of your data.
-The genrated repots are saved in folder ``` "./Data/Export" ```
+The genrated repots are saved in folder ``` "./Local/Data/Export" ```
+
+## Distributed Execution
+`cordDqChecker` was successfully tested using [Personal Health Train (PHT)](https://websites.fraunhofer.de/PersonalHealthTrain/) and applied on synthetic data stored in multiple FHIR servers. The aggregated results are stored in folder `./PHT/Data/Export`. To create a PHT image run `./Dockerfile`.
 
 ## Data Quality Metrics
 - The following indicators and key numbers are configured by default data quality reports:
@@ -43,13 +47,13 @@ The genrated repots are saved in folder ``` "./Data/Export" ```
 
   [2] Schulz M et alt:. Prävalenz seltener Erkrankungen in der ambulanten Versorgung in Deutschland im Zeitraum 2008 bis 2011, Versorgungsatlas-Bericht. 2015;15/13
   
-## Example
+## Examples of local data quality reports
 
-Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Data/Export) of generated data quality reports using sythetic data
+Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data
 
 ## Note
 
-Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/blob/master/R/installPackages.R )
+Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/blob/master/Local/R/installPackages.R )
 
 See also: [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
 
