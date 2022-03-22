@@ -120,9 +120,8 @@ if (!is.empty(medData$Institut_ID)){
   
   ################################################### DQ Reports ########################################################
   path<- paste ("./Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
-  #getReport( dqRep, path)
-  #path <- paste(path,".xlsx",sep = "")
-  write.xlsx(dqRep, sheetName ="DQ Key Number", paste (path,".xlsx"))
+  write.csv(dqRep, paste (path,".csv",sep = ""))
+  write.xlsx(dqRep, sheetName ="DQ Key Number", paste (path,".xlsx",sep = ""))
   mItem <- setdiff  (union(env$cdata[, bItemCl], env$ddata[, bItemCl]),union (totalRow ,dItem))
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
