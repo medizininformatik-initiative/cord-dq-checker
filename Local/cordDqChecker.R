@@ -46,12 +46,14 @@ max_FHIRbundles <- 50 # Inf
 
 bItemCl <-"basicItem"
 totalRow <-"Total"
+#defining mandatory and optional items
 cdata <- data.frame(
-  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","ICD_Primaerkode","Orpha_Kode", "Total")
+  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt-Klasse", "Fall-Status", "Aufnahmeanlass", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
 )
 ddata <- data.frame(
   basicItem= c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total")
 )
+# optional items
 oItem = c("Orpha_Kode")
 tdata <- data.frame(
   pt_no =NA, case_no =NA
@@ -84,6 +86,7 @@ if (is.null(path) | path=="")  stop("No path to data") else {
   if (is.null (medData)) stop("No data available")
 }
 #filter for report year
+medData<- medData[!sapply(medData, function(x) all( is.empty(x) | is.na(x)))]
 medData<- medData[format(as.Date(medData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
 if (is.empty(medData)) stop("No data available for reporting year:", reportYear)
 dItem <-names(medData)
@@ -108,35 +111,35 @@ if (!is.empty(medData$Institut_ID)){
     ############## Selection of DQ dimensions and indicators #########
     # select DQ indicators for completeness dimension
     compInd= c(
-               "missing_item_rate", 
-               "missing_value_rate", 
-               "orphaCoding_completeness_rate"
-               )
+      "missing_item_rate", 
+      "missing_value_rate", 
+      "orphaCoding_completeness_rate"
+    )
     # select DQ indicators for plausibility dimension
     plausInd= c( 
-                "outlier_rate", 
-                 "orphaCoding_plausibility_rate"
-               )
+      "outlier_rate", 
+      "orphaCoding_plausibility_rate"
+    )
     # select DQ indicators for uniqueness dimension
     uniqInd= c(
-               "rdCase_uniqueness_rate"
-              )
+      "rdCase_uniqueness_rate"
+    )
     # select DQ indicators for concordance
     concInd= c(
-                "unique_rdCase_relativeFrequency", 
-               "orphaCoding_relativeFrequency"
-               )
+      "unique_rdCase_relativeFrequency", 
+      "orphaCoding_relativeFrequency"
+    )
     
     ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
     dqKeyNo= c(
-               "orphaCoding_no",  
-               "unique_rdCase_no", 
-               "rdCase_no",
-               "case_no", 
-               "patient_no", 
-               "inpatientCases_no"
-               )
+      "orphaCoding_no",  
+      "unique_rdCase_no", 
+      "rdCase_no",
+      "case_no", 
+      "patient_no", 
+      "inpatientCases_no"
+    )
     dqRepCol <- c(repMeta, compInd, plausInd, uniqInd, concInd, dqKeyNo)
     # DQ report
     dqRep <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
