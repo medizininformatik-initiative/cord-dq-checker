@@ -1,3 +1,13 @@
+#######################################################################################################
+#' @description FHIR interface for data quality assessment in CORD-MI
+#' @author Kais Tahar, University Medical Center Göttingen
+#' Project CORD-MI, grant number FKZ-01ZZ1911R
+#######################################################################################################
+
+path <- "http://141.5.101.1:8080/fhir/"
+#path <- "https://mii-agiop-cord.life.uni-leipzig.de/fhir/"
+max_FHIRbundles <- 10 # Inf
+
 library(fhircrackr)
 #library(lubridate)
 
@@ -36,7 +46,11 @@ PatientTab <- fhir_table_description(
     instId="meta/source",
     patId= "id",
     birthdate = "birthDate",
-    gender = "gender"
+    gender = "gender",
+    postalCode = "address/postalCode",
+    country = "address/country",
+    city = "address/city",
+    type = "address/type"
   ),
   style = fhir_style(
     sep = " % ",
@@ -49,7 +63,11 @@ EncounterTab <- fhir_table_description(
     patId= "subject/reference",
     enId = "identifier/value",
     start = "period/start",
-    end = "period/end"
+    end = "period/end",
+    class = "class/code",
+    status ="status",
+    admitCode ="hospitalization/admitSource/coding/code",  # Aufnahmeanlass
+    diagnosisUse ="diagnosis/use" # admission, billing or discharge
   ),
   # style = list(
   # sep = " % ",
@@ -114,14 +132,13 @@ patients <- fhir_rm_indices(patRaw, brackets = c("[", "]"))
 patients$instId<- gsub("#.*","\\1",patients$instId)
 #patients$birthdate <- year(as.Date(patients$birthdate))
 patients$birthdate <- as.Date(patients$birthdate)
-names(patients) <- c("Institut_ID","PatientIdentifikator", "Geburtsdatum", "Geschlecht")
+names(patients) <- c("Institut_ID","PatientIdentifikator", "Geburtsdatum", "Geschlecht", "PLZ", "Land", "Wohnort", "Adressentyp")
 entRaw <- fhir_crack(bundles, design)$EncounterTab
 encounters <- entRaw
 encounters$patId <- sub("Patient/", "", entRaw$patId)
 encounters$start <- as.Date(encounters$start)
 encounters$end <- as.Date(encounters$end)
-names(encounters) <- c("PatientIdentifikator","Aufnahmenummer","Aufnahmedatum", "Entlassungsdatum")
+names(encounters) <- c("PatientIdentifikator","Aufnahmenummer","Aufnahmedatum", "Entlassungsdatum", "Kontakt-Klasse", "Fall-Status", "Aufnahmeanlass", "DiagnoseRolle")
 instData<-Reduce(function(x, y) merge(x, y, all=T), list(patients,encounters,conditions))
-headers <- c ("PatientIdentifikator","Aufnahmenummer", "Institut_ID", "Geburtsdatum", "Geschlecht", "Aufnahmedatum", "Entlassungsdatum" , "DiagnoseText","ICD_Text", "Diagnosedatum", "ICD_Primaerkode","ICD_Manifestation","Orpha_Kode","AlphaID_Kode")
 
 
