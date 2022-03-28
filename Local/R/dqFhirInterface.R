@@ -3,14 +3,7 @@
 #' @author Kais Tahar, University Medical Center Göttingen
 #' Project CORD-MI, grant number FKZ-01ZZ1911R
 #######################################################################################################
-
-path <- "http://141.5.101.1:8080/fhir/"
-#path <- "https://mii-agiop-cord.life.uni-leipzig.de/fhir/"
-max_FHIRbundles <- 10 # Inf
-
 library(fhircrackr)
-#library(lubridate)
-
 #define fhir search request
 searchRequest <- paste0(
   path,
