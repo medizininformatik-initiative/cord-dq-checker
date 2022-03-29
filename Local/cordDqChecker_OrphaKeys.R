@@ -115,20 +115,21 @@ if (!is.empty(medData$Institut_ID)){
     )
     dqRepCol <- c(repMeta, dqKeyNo)
     # DQ report
-    dqRep <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
+    out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
+    dqRep <-out$metric
+    mItem <-out$mItem
   }
   
   ################################################### DQ Reports ########################################################
   path<- paste ("./Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
   write.csv(dqRep, paste (path,".csv",sep = ""))
   write.xlsx(dqRep, sheetName ="DQ Key Number", paste (path,".xlsx",sep = ""))
-  mItem <- setdiff  (union(env$cdata[, bItemCl], env$ddata[, bItemCl]),union (totalRow ,dItem))
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
                 "\n Inpatient cases:", dqRep$inpatientCases_no,
-                "\n Analyzed cases:", dqRep$case_no,
-                "\n Analyzed patients:", dqRep$patient_no,
+                "\n Case number:", dqRep$case_no,
+                "\n Patient number:", dqRep$patient_no,
                 "\n Coded rdCases:", dqRep$rdCase_no,
                 "\n Unique rdCases:", dqRep$unique_rdCase_no
   )
