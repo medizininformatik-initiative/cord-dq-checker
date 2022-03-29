@@ -86,7 +86,6 @@ if (is.null(path) | path=="")  stop("No path to data") else {
   if (is.null (medData)) stop("No data available")
 }
 #filter for report year
-medData<- medData[!sapply(medData, function(x) all( is.empty(x) | is.na(x)))]
 medData<- medData[format(as.Date(medData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
 if (is.empty(medData)) stop("No data available for reporting year:", reportYear)
 dItem <-names(medData)
@@ -151,7 +150,6 @@ if (!is.empty(medData$Institut_ID)){
   ################################################### DQ Reports ########################################################
   path<- paste ("./Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
   getReport( repCol, "dq_msg", dqRep, path)
-  path <- paste(path,".xlsx",sep = "")
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
