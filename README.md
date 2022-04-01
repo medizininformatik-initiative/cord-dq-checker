@@ -14,8 +14,8 @@ For Example you can define your path as following:
   - ``` path="./Data/medData/dqTestData.xlsx" ```
 
 - The default values of local variables are set as follows:
-  - ``` reportYear =2020 ```
-  - ``` max_FHIRbundles =50 ```
+  - ``` reportYear=2020 ```
+  - ``` max_FHIRbundles=50 ```
   - ``` INPATIENT_CASE_NO=10000 ```
   - ```path="http://141.5.101.1:8080/fhir/``` 
 
