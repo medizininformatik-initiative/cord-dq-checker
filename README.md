@@ -5,16 +5,21 @@ Acknowledgement: This work was done within the “Collaboration on Rare Diseases
 ## Local Execution
 To analyse your data quality locally go to folder `./Local` and run `cordDqChecker.R` to genrate data quality reports.
 
-The script `cordDqChecker.R` reads data from FHIR server or from supported file formats such as CSV and Excel. The path varialbe specifies which dataset should be imported.
+- The script `cordDqChecker.R` reads data from FHIR server or from supported file formats such as CSV and Excel. The path varialbe specifies which dataset should be imported.
 For Example you can define your path as following:
-- ```path="http://141.5.101.1:8080/fhir/" ```
-or
-- ``` path="./Data/medData/dqTestData.csv" ```
-or
-- ``` path="./Data/medData/dqTestData.xlsx" ```
+  - ```path="http://141.5.101.1:8080/fhir/" ```
+  or
+  - ``` path="./Data/medData/dqTestData.csv" ```
+  or
+  - ``` path="./Data/medData/dqTestData.xlsx" ```
 
-The FHIR server ```http://141.5.101.1:8080/fhir/``` is configured by default.
-Once the source data path is defined, start the script to check the quality of your data.
+- The default values of local variables are set as follows:
+  - ``` reportYear =2020 ```
+  - ``` max_FHIRbundles =50 ```
+  - ``` INPATIENT_CASE_NO=10000 ```
+  - ```path="http://141.5.101.1:8080/fhir/``` 
+
+Once the source data path and local variables are defined, start the script to check the quality of your data.
 The genrated repots are saved in folder ``` "./Local/Data/Export" ```
 
 ## Distributed Execution
