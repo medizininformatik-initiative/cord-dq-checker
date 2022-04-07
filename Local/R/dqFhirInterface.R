@@ -118,7 +118,8 @@ names(condAlphaID) <- c("PatientIdentifikator","Aufnahmenummer", "Diagnosetext",
 
 # join condition data
 conditions <-Reduce(function(x, y) merge(x, y, all=T), list(condIcd,condOrpha, condAlphaID))
-
+# if you have more than one merge package installed then comment the above line and uncomment the below line
+#conditions <-Reduce(function(x, y) base::merge(x, y, all=T), list(condIcd,condOrpha, condAlphaID))
 # convert and save fhir bundles to a data frame patRaw
 patRaw <- fhir_crack(bundles, design)$PatientTab
 patients <- fhir_rm_indices(patRaw, brackets = c("[", "]"))
@@ -133,5 +134,6 @@ encounters$start <- as.Date(encounters$start)
 encounters$end <- as.Date(encounters$end)
 names(encounters) <- c("PatientIdentifikator","Aufnahmenummer","Aufnahmedatum", "Entlassungsdatum", "Kontakt-Klasse", "Fall-Status", "Aufnahmeanlass", "DiagnoseRolle")
 instData<-Reduce(function(x, y) merge(x, y, all=T), list(patients,encounters,conditions))
-
+# if you have more than one merge package installed then comment the above line and uncomment the below line
+#instData<-Reduce(function(x, y) base::merge(x, y, all=T), list(patients,encounters,conditions))
 
