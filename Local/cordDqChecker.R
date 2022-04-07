@@ -7,7 +7,7 @@ rm(list = ls())
 setwd("./")
 # installall required packages
 #source("./R/installPackages.R")
-source(paste(getwd(),"/Local/R/installPackages.R",sep=""), force=TRUE)
+#source(paste(getwd(),"/Local/R/installPackages.R",sep=""), force=TRUE)
 library(dqLib)
 library(openxlsx)
 #library(writexl)
