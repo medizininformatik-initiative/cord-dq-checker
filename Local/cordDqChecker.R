@@ -151,7 +151,6 @@ if (!is.empty(medData$Institut_ID)){
   
   ################################################### DQ Reports ########################################################
   path<- paste ("./Local/Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
-  path <- paste(path,".xlsx",sep = "")# file extension included
   getReport( repCol, "dq_msg", dqRep, path)
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
