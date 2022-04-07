@@ -6,7 +6,7 @@
 rm(list = ls())
 setwd("./")
 # installall required packages
-#source("./R/installPackages.R")
+#source("./Local/R/installPackages.R")
 #source(paste(getwd(),"/Local/R/installPackages.R",sep=""), force=TRUE)
 library(dqLib)
 library(openxlsx)
@@ -65,9 +65,7 @@ repCol=c( "PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode","Orpha_Kod
 # Import ref. Data
 #------------------------------------------------------------------------------------------------------
 refData1 <- read.table("./Local/Data/refData/cordDqList.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
-#refData1 <- read.table(paste(getwd(),"/Local/Data/refData/cordDqList.csv",sep=""), sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 refData2 <- read.table("./Local/Data/refData/icd10gm2020_alphaid_se_muster_edvtxt_20191004.txt", sep="|",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
-#refData2 <- read.table(paste(getwd(),"/Local/Data/refData/icd10gm2020_alphaid_se_muster_edvtxt_20191004.txt",sep=""), sep="|",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
 headerRef1<- c ("IcdCode", "OrphaCode", "Type")
 headerRef2<- c ("Gueltigkeit", "Alpha_ID", "ICD_Primaerkode1", "ICD_Manifestation", "ICD_Zusatz","ICD_Primaerkode2", "Orpha_Kode", "Label")
 names(refData1)<-headerRef1
@@ -80,8 +78,7 @@ medData <- NULL
 if (is.null(path) | path=="")  stop("No path to data") else {
   if (grepl("fhir", path))
   {
-    #source("./R/dqFhirInterface.R")
-    source(paste(getwd(),"/Local/R/dqFhirInterface.R",sep=""))
+    source("./Local/R/dqFhirInterface.R")
     medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
   }else{ ext <-getFileExtension (path)
   if (ext=="csv") medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1")
@@ -153,9 +150,8 @@ if (!is.empty(medData$Institut_ID)){
   }
   
   ################################################### DQ Reports ########################################################
-  #path<- paste ("./Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
-  path<- paste(getwd(),"/Local/Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
-  path <- paste(path,".xlsx",sep = "")
+  path<- paste ("./Local/Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
+  path <- paste(path,".xlsx",sep = "")# file extension included
   getReport( repCol, "dq_msg", dqRep, path)
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
