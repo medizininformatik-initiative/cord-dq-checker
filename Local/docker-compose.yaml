@@ -1,0 +1,9 @@
+version: '3'
+services:
+  dq-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cordDqChecker
+    volumes:
+      - ./Data/Export:/usr/local/src/myScripts/Data/Export 
