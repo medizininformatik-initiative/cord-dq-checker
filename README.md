@@ -59,16 +59,18 @@ Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-chec
 
 ## Note
 
-Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/blob/master/Local/R/installPackages.R )
+- Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/blob/master/Local/R/installPackages.R )
 
-To cite `cordDqChecker`, please use the following **BibTeX** entry: 
-```
-@software{Tahar_cordDqChecker,
-author = {Tahar, Kais},title = {{cordDqChecker}},
-url = {https://github.com/medizininformatik-initiative/cord-dq-checker},
-year = {2021}
-}
+- To avoid local dependency issues go to folder `./Local` and just run the command `sudo docker-compose up` to get `cordDqChecker` running.
 
-```
+- To cite `cordDqChecker`, please use the following **BibTeX** entry: 
+  ```
+  @software{Tahar_cordDqChecker,
+  author = {Tahar, Kais},title = {{cordDqChecker}},
+  url = {https://github.com/medizininformatik-initiative/cord-dq-checker},
+  year = {2021}
+  }
+
+  ```
 See also: [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
 
