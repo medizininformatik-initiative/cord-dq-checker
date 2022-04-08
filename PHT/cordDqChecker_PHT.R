@@ -31,7 +31,7 @@ reportYear <-2020
 # inpatient case number
 Sys.setenv(INPATIENT_CASE_NO=10000)
 # path to fhir server
-#Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
+Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
 inpatientCases <- as.numeric(Sys.getenv("INPATIENT_CASE_NO"))
 path <- Sys.getenv("FHIR_SERVER")
 max_FHIRbundles <- 50 # Inf
@@ -130,7 +130,9 @@ if (!is.empty(medData$Institut_ID)){
                )
     dqRepCol <- c(repMeta, compInd, plausInd, uniqInd, concInd, dqKeyNo)
     # DQ report
-    dqRep <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
+    out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
+    dqRep <-out$metric
+    mItem <-out$mItem
   }
   
   ################################################### DQ Reports ########################################################
@@ -146,7 +148,6 @@ if (!is.empty(medData$Institut_ID)){
     cat("previous file not exists.")
   }
   write.csv(dqRep, path, row.names = FALSE)
-  mItem <- setdiff  (union(env$cdata[, bItemCl], env$ddata[, bItemCl]),union (totalRow ,dItem))
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
