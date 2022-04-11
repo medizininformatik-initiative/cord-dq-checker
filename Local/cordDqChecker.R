@@ -6,11 +6,9 @@
 rm(list = ls())
 setwd("./")
 # installall required packages
-#source("./R/installPackages.R")
+source("./R/installPackages.R")
 library(dqLib)
 library(openxlsx)
-#library(writexl)
-#library(stringi)
 options(warn=-1)# to suppress warnings
 
 cat("####################################***CordDqChecker***########################################### \n \n")
@@ -121,7 +119,8 @@ if (!is.empty(medData$Institut_ID)){
     )
     # select DQ indicators for uniqueness dimension
     uniqInd= c(
-      "rdCase_uniqueness_rate"
+      "rdCase_uniqueness_rate",
+      "duplication_rate"
     )
     # select DQ indicators for concordance
     concInd= c(
