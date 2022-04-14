@@ -46,7 +46,7 @@ bItemCl <-"basicItem"
 totalRow <-"Total"
 #defining mandatory and optional items
 cdata <- data.frame(
-  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt-Klasse", "Fall-Status", "Aufnahmeanlass", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
+  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt-Klasse", "Fall-Status", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
 )
 ddata <- data.frame(
   basicItem= c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total")
