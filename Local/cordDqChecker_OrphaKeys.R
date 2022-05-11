@@ -6,7 +6,7 @@
 rm(list = ls())
 setwd("./")
 # installall required packages
-#source("./R/installPackages.R")
+source("./R/installPackages.R")
 library(dqLib)
 library(openxlsx)
 #library(writexl)
@@ -106,7 +106,8 @@ if (!is.empty(medData$Institut_ID)){
     ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
     dqKeyNo= c(
-      "orphaCoding_no",  
+      "orphaCoding_no",
+      "orphaCase_no",
       "unique_rdCase_no", 
       "rdCase_no",
       "case_no", 
@@ -127,11 +128,13 @@ if (!is.empty(medData$Institut_ID)){
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
-                "\n Inpatient cases:", dqRep$inpatientCases_no,
                 "\n Case number:", dqRep$case_no,
                 "\n Patient number:", dqRep$patient_no,
+                "\n Inpatient cases:", dqRep$inpatientCases_no,
+                "\n Orpha number:", dqRep$orphaCoding_no,
                 "\n Coded rdCases:", dqRep$rdCase_no,
-                "\n Unique rdCases:", dqRep$unique_rdCase_no
+                "\n Unique rdCases:", dqRep$unique_rdCase_no,
+                "\n OrphaCoded Cases:", dqRep$orphaCase_no
   )
   
   if (!is.empty(mItem))   msg <- paste (msg, "\n Following items are missing:", toString(mItem))

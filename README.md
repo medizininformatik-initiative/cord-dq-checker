@@ -32,18 +32,18 @@ The genrated repots are saved in folder ``` "./Local/Data/Export" ```
   | ------------- | ------------- |
   | completeness  | missing_item_rate, missing_value_rate, orphaCoding_completeness_rate  |
   | plausibility  | outlier_rate, orphaCoding_plausibility_rate |
-  | uniqueness | rdCase_uniqueness_rate|
+  | uniqueness | rdCase_uniqueness_rate, duplication_rate|
   | concordance | orphaCoding_relativeFrequency, unique_rdCase_relativeFrequency|
 
 
   | Key number  | Name |
   | ------------- | ------------- |
-  | patient number  |   patient_no|
   | case number  |  case_no|
+  | patient number  |   patient_no|
   | RD case number  | rdCase_no  |
   | orpha code number  |  orphaCoding_no |
-  | unique RD case number  | unique_rdCase_no  |
-
+  | unique-RD case number  | unique_rdCase_no  |
+  | Orpha-coded case number| orphaCase_no  |
 
 - The following references are currently used to assess the quality of orphacoding and can be easily updated with new codes or versions:
   - Alpha-ID-SE list [1]

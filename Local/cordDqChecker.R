@@ -132,6 +132,7 @@ if (!is.empty(medData$Institut_ID)){
     # select  key numbers for DQ report
     dqKeyNo= c(
       "orphaCoding_no",  
+      "orphaCase_no",
       "unique_rdCase_no", 
       "rdCase_no",
       "case_no", 
@@ -143,7 +144,6 @@ if (!is.empty(medData$Institut_ID)){
     out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
     dqRep <-out$metric
     mItem <-out$mItem
-    
   }
   
   ################################################### DQ Reports ########################################################
@@ -152,16 +152,18 @@ if (!is.empty(medData$Institut_ID)){
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
-                "\n Inpatient cases:", dqRep$inpatientCases_no,
                 "\n Case number:", dqRep$case_no,
                 "\n Patient number:", dqRep$patient_no,
+                "\n Inpatient cases:", dqRep$inpatientCases_no,
+                "\n Orpha number:", dqRep$orphaCoding_no,
                 "\n Coded rdCases:", dqRep$rdCase_no,
                 "\n Unique rdCases:", dqRep$unique_rdCase_no,
+                "\n OrphaCoded rdCases:", dqRep$orphaCase_no,
                 "\n Missing item rate:", dqRep$missing_item_rate,
                 "\n Missing value rate:", dqRep$missing_value_rate,
+                "\n RdCase uniqueness rate:", dqRep$rdCase_uniqueness_rate,
                 "\n OrphaCoding completeness rate:", dqRep$orphaCoding_completeness_rate,
-                "\n OrphaCoding plausibility rate:", dqRep$orphaCoding_plausibility_rate,
-                "\n RdCase uniqueness rate:", dqRep$rdCase_uniqueness_rate)
+                "\n OrphaCoding plausibility rate:", dqRep$orphaCoding_plausibility_rate)
   if (dqRep$missing_item_rate >0)   msg <- paste (msg, "\n Following items are missing:", toString(mItem))
   msg <- paste(msg, 
                "\n \n ########################################## Export ################################################")
