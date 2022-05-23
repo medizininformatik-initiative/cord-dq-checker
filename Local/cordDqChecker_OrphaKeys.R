@@ -59,9 +59,9 @@ repCol=c( "PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode","Orpha_Kod
 #------------------------------------------------------------------------------------------------------
 # Import ref. Data
 #------------------------------------------------------------------------------------------------------
-refData1 <- read.table("./Data/refData/cordDqList.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
+refData1 <- read.table("./Data/refData/Tracerdiagnosen_AlphaID-SE-2022.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)
 refData2 <- read.table("./Data/refData/icd10gm2020_alphaid_se_muster_edvtxt_20191004.txt", sep="|",  dec=",", na.strings=c("","NA"), encoding = "UTF-8")
-headerRef1<- c ("IcdCode", "OrphaCode", "Type")
+headerRef1<- c ("IcdCode", "Complete_SE", "Unique_SE")
 headerRef2<- c ("Gueltigkeit", "Alpha_ID", "ICD_Primaerkode1", "ICD_Manifestation", "ICD_Zusatz","ICD_Primaerkode2", "Orpha_Kode", "Label")
 names(refData1)<-headerRef1
 names(refData2)<-headerRef2
