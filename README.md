@@ -45,13 +45,13 @@ The genrated repots are saved in folder ``` "./Local/Data/Export" ```
   | unique-RD case number  | unique_rdCase_no  |
   | Orpha-coded case number| orphaCase_no  |
 
-- The following references are currently used to assess the quality of orphacoding and can be easily updated with new codes or versions:
-  - Alpha-ID-SE list [1]
-  - Hamburger list [2] extended with 1-m relationships of ICD-10 to Orpha codes such as E75.2-(324, 487, 355, 512)
-
-  [1] DIMDI/Alpha-ID-SE list: www.dimdi.de
-
-  [2] Schulz M et alt:. Prävalenz seltener Erkrankungen in der ambulanten Versorgung in Deutschland im Zeitraum 2008 bis 2011, Versorgungsatlas-Bericht. 2015;15/13
+- The following references are required to assess the quality of orphacoding and can be easily updated with new versions:
+  - The standard Alpha-ID-SE terminology [1]
+  - A reference for tracer diagnoses such as the list provided in [2].
+  
+    [1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html 
+    
+    [2]   List of Tracer Diagnoses Extracted from Alpha-ID-SE Terminology [Internet]. 2022 [cited 2022May 24]. Available from: https://doi.org/21.11101/21.11101/0000-0007-F6DE-A
   
 ## Examples of local data quality reports
 
