@@ -2,6 +2,34 @@
 `CordDqChecker` is a Tool for data quality assessment and reporting in [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD).
 
 Acknowledgement: This work was done within the “Collaboration on Rare Diseases” of the Medical Informatics Initiative (CORD-MI) funded by the German Federal Ministry of Education and Research (BMBF), under grant number: FKZ-01ZZ1911R.
+## Data Quality Metrics
+- The following indicators and key numbers are configured by default data quality reports:
+
+  | Dimension  | Indicator Name|
+  | ------------- | ------------- |
+  | completeness  | missing_item_rate, missing_value_rate, orphaCoding_completeness_rate  |
+  | plausibility  | outlier_rate, orphaCoding_plausibility_rate |
+  | uniqueness | rdCase_uniqueness_rate, duplication_rate|
+  | concordance | orphaCoding_relativeFrequency, unique_rdCase_relativeFrequency|
+
+
+  | Key number  | Name |
+  | ------------- | ------------- |
+  | case number  |  case_no|
+  | patient number  |   patient_no|
+  | RD case number  | rdCase_no  |
+  | orpha code number  |  orphaCoding_no |
+  | unique-RD case number  | unique_rdCase_no  |
+  | Orpha-coded case number| orphaCase_no  |
+- The data quality framework [`dqLib`](https://github.com/medizininformatik-initiative/dqLib) is used as an R package for generating specific reports on data quality related issues and metrics.
+- The following references are required to assess the quality of orphacoding and can be easily updated with new versions:
+  - The standard Alpha-ID-SE terminology [1]
+  - A reference for tracer diagnoses such as the list provided in [2].
+  
+    [1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html 
+    
+    [2]   List of Tracer Diagnoses Extracted from Alpha-ID-SE Terminology [Internet]. 2022 [cited 2022May 24]. Available from: https://doi.org/21.11101/0000-0007-F6DF-9 
+  
 ## Local Execution
 To analyse your data quality locally go to folder `./Local` and run `cordDqChecker.R` to genrate data quality reports.
 
@@ -22,40 +50,13 @@ For Example you can define your path as following:
 Once the source data path and local variables are defined, start the script to check the quality of your data.
 The genrated repots are saved in folder ``` "./Local/Data/Export" ```
 
+## Local data quality reports
+Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data
+
 ## Distributed Execution
 `cordDqChecker` was successfully tested using [Personal Health Train (PHT)](https://websites.fraunhofer.de/PersonalHealthTrain/) and applied on synthetic data stored in multiple FHIR servers. The aggregated results are stored in folder `./PHT/Data/Export`. To create a PHT image run `./Dockerfile`.
-
-## Data Quality Metrics
-- The following indicators and key numbers are configured by default data quality reports:
-
-  | Dimension  | Indicator Name|
-  | ------------- | ------------- |
-  | completeness  | missing_item_rate, missing_value_rate, orphaCoding_completeness_rate  |
-  | plausibility  | outlier_rate, orphaCoding_plausibility_rate |
-  | uniqueness | rdCase_uniqueness_rate, duplication_rate|
-  | concordance | orphaCoding_relativeFrequency, unique_rdCase_relativeFrequency|
-
-
-  | Key number  | Name |
-  | ------------- | ------------- |
-  | case number  |  case_no|
-  | patient number  |   patient_no|
-  | RD case number  | rdCase_no  |
-  | orpha code number  |  orphaCoding_no |
-  | unique-RD case number  | unique_rdCase_no  |
-  | Orpha-coded case number| orphaCase_no  |
-
-- The following references are required to assess the quality of orphacoding and can be easily updated with new versions:
-  - The standard Alpha-ID-SE terminology [1]
-  - A reference for tracer diagnoses such as the list provided in [2].
-  
-    [1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html 
-    
-    [2]   List of Tracer Diagnoses Extracted from Alpha-ID-SE Terminology [Internet]. 2022 [cited 2022May 24]. Available from: https://doi.org/21.11101/0000-0007-F6DF-9 
-  
-## Examples of local data quality reports
-
-Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data
+## Examples of cross-site reports
+Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/PHT/Data/Export) of cross-site reports on data quality generated using sythetic data.
 
 ## Note
 
@@ -73,5 +74,5 @@ Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-chec
   }
 
   ```
-See also: [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
+See also:  [`dqLib`](https://github.com/medizininformatik-initiative/dqLib)  [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)
 
