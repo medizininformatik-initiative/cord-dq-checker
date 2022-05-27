@@ -55,8 +55,8 @@ For Example you can define your path as following:
 Once the source data path and local variables are defined, start the script to check the quality of your data.
 The genrated repots are saved in folder ``` "./Local/Data/Export" ```
 
-## Local data quality reports
-Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data.
+## Local Reports
+Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of data quality reports generated locally using sythetic data.
 
 ## Note
 
