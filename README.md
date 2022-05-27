@@ -29,6 +29,11 @@ Acknowledgement: This work was done within the “Collaboration on Rare Diseases
     [1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html 
     
     [2]   List of Tracer Diagnoses Extracted from Alpha-ID-SE Terminology [Internet]. 2022 [cited 2022May 24]. Available from: https://doi.org/21.11101/0000-0007-F6DF-9 
+
+## Distributed Execution
+`cordDqChecker` was successfully tested using [Personal Health Train (PHT)](https://websites.fraunhofer.de/PersonalHealthTrain/) and applied on synthetic data stored in multiple FHIR servers. The aggregated results are stored in folder `./PHT/Data/Export`. To create a PHT image run `./Dockerfile`.
+## Cross-site Reports
+Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/PHT/Data/Export) of cross-site reports on data quality generated using sythetic data.
   
 ## Local Execution
 To analyse your data quality locally go to folder `./Local` and run `cordDqChecker.R` to genrate data quality reports.
@@ -52,11 +57,6 @@ The genrated repots are saved in folder ``` "./Local/Data/Export" ```
 
 ## Local data quality reports
 Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data.
-
-## Distributed Execution
-`cordDqChecker` was successfully tested using [Personal Health Train (PHT)](https://websites.fraunhofer.de/PersonalHealthTrain/) and applied on synthetic data stored in multiple FHIR servers. The aggregated results are stored in folder `./PHT/Data/Export`. To create a PHT image run `./Dockerfile`.
-## Examples of cross-site reports
-Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/PHT/Data/Export) of cross-site reports on data quality generated using sythetic data.
 
 ## Note
 
