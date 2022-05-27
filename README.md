@@ -21,7 +21,7 @@ Acknowledgement: This work was done within the “Collaboration on Rare Diseases
   | orpha code number  |  orphaCoding_no |
   | unique-RD case number  | unique_rdCase_no  |
   | Orpha-coded case number| orphaCase_no  |
-- The data quality framework [`dqLib`](https://github.com/medizininformatik-initiative/dqLib) is used as an R package for generating specific reports on data quality related issues and metrics.
+- The data quality framework [`dqLib`](https://github.com/medizininformatik-initiative/dqLib) has been used as an R package for generating specific reports on data quality related issues and metrics.
 - The following references are required to assess the quality of orphacoding and can be easily updated with new versions:
   - The standard Alpha-ID-SE terminology [1]
   - A reference for tracer diagnoses such as the list provided in [2].
@@ -51,7 +51,7 @@ Once the source data path and local variables are defined, start the script to c
 The genrated repots are saved in folder ``` "./Local/Data/Export" ```
 
 ## Local data quality reports
-Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data
+Here are [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of generated data quality reports using sythetic data.
 
 ## Distributed Execution
 `cordDqChecker` was successfully tested using [Personal Health Train (PHT)](https://websites.fraunhofer.de/PersonalHealthTrain/) and applied on synthetic data stored in multiple FHIR servers. The aggregated results are stored in folder `./PHT/Data/Export`. To create a PHT image run `./Dockerfile`.
