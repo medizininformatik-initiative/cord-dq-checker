@@ -7,11 +7,10 @@ library(fhircrackr)
 #define fhir search request
 searchRequest <- paste0(
   path,
-  'Condition?',
-  '&_include=Condition:subject:Patient',
-  "&_include=Condition:encounter"
+  'Patient?',
+  '&_revinclude=Encounter:patient',
+  "&_revinclude=Condition:patient"
 )
-
 # get fhir bundles
 bundles <- fhir_search(searchRequest, max_bundles =max_FHIRbundles) 
 
@@ -131,7 +130,7 @@ encounters <- entRaw
 encounters$patId <- sub("Patient/", "", entRaw$patId)
 encounters$start <- as.Date(encounters$start)
 encounters$end <- as.Date(encounters$end)
-names(encounters) <- c("PatientIdentifikator","Aufnahmenummer","Aufnahmedatum", "Entlassungsdatum", "Kontakt-Klasse", "Fall-Status", "Aufnahmeanlass", "DiagnoseRolle")
+names(encounters) <- c("PatientIdentifikator","Aufnahmenummer","Aufnahmedatum", "Entlassungsdatum", "Kontakt_Klasse", "Fall_Status", "Aufnahmeanlass", "DiagnoseRolle")
 instData<-Reduce(function(x, y) merge(x, y, all=T), list(patients,encounters,conditions))
 
 

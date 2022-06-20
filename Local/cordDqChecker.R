@@ -46,7 +46,7 @@ bItemCl <-"basicItem"
 totalRow <-"Total"
 #defining mandatory and optional items
 cdata <- data.frame(
-  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt-Klasse", "Fall-Status", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
+  basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt_Klasse", "Fall_Status", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
 )
 ddata <- data.frame(
   basicItem= c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total")
@@ -119,29 +119,30 @@ if (!is.empty(medData$Institut_ID)){
     )
     # select DQ indicators for uniqueness dimension
     uniqInd= c(
-      "rdCase_uniqueness_rate",
+      "rdCase_unambiguity_rate",
       "duplication_rate"
     )
-    # select DQ indicators for concordance
+   # select DQ indicators for concordance
     concInd= c(
-      "unique_rdCase_relativeFrequency", 
-      "orphaCoding_relativeFrequency"
+      "tracerCase_rel_py_ipat",
+      "unambigous_rdCase_rel_py_ipat",
+      "orphaCase_rel_py_ipat"
     )
-    
+
     ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
     dqKeyNo= c(
-      "orphaCoding_no",  
-      "orphaCase_no",
-      "unique_rdCase_no", 
-      "rdCase_no",
-      "case_no", 
-      "patient_no", 
-      "inpatientCases_no"
+      "orphaCoding_no_py",
+      "orphaCase_no_py",
+      "unambigous_rdCase_no_py",
+      "rdCase_no_py",
+      "case_no_py",
+      "patient_no_py",
+      "case_no_py_ipat"
     )
-    dqRepCol <- c(repMeta, compInd, plausInd, uniqInd, concInd, dqKeyNo)
+    dqRepCol <- c(repMeta, compInd, plausInd, uniqInd,concInd, dqKeyNo)
     # DQ report
-    out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
+    out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, repCol, "dq_msg", "basicItem", "Total", oItem)
     dqRep <-out$metric
     mItem <-out$mItem
   }
@@ -152,16 +153,16 @@ if (!is.empty(medData$Institut_ID)){
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
-                "\n Case number:", dqRep$case_no,
-                "\n Patient number:", dqRep$patient_no,
-                "\n Inpatient cases:", dqRep$inpatientCases_no,
-                "\n Orpha number:", dqRep$orphaCoding_no,
-                "\n Coded rdCases:", dqRep$rdCase_no,
-                "\n Unique rdCases:", dqRep$unique_rdCase_no,
-                "\n OrphaCoded rdCases:", dqRep$orphaCase_no,
+                "\n Case number:", dqRep$case_no_py,
+                "\n Patient number:", dqRep$patient_no_py,
+                "\n Inpatient cases:", dqRep$case_no_py_ipat,
+                "\n Orpha number:", dqRep$orphaCoding_no_py,
+                "\n Coded rdCases:", dqRep$rdCase_no_py,
+                "\n unambiguity rdCases:", dqRep$unambigous_rdCase_no_py,
+                "\n OrphaCoded rdCases:", dqRep$orphaCase_no_py,
                 "\n Missing item rate:", dqRep$missing_item_rate,
                 "\n Missing value rate:", dqRep$missing_value_rate,
-                "\n RdCase uniqueness rate:", dqRep$rdCase_uniqueness_rate,
+                "\n RdCase unambiguity rate:", dqRep$rdCase_unambiguity_rate,
                 "\n OrphaCoding completeness rate:", dqRep$orphaCoding_completeness_rate,
                 "\n OrphaCoding plausibility rate:", dqRep$orphaCoding_plausibility_rate)
   if (dqRep$missing_item_rate >0)   msg <- paste (msg, "\n Following items are missing:", toString(mItem))

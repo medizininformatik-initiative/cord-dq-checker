@@ -1,2 +1,2 @@
-"inst_id","report_year","missing_item_rate","missing_value_rate","orphaCoding_completeness_rate","outlier_rate","orphaCoding_plausibility_rate","rdCase_uniqueness_rate","duplication_rate","unique_rdCase_relativeFrequency","orphaCoding_relativeFrequency","orphaCoding_no","orphaCase_no","unique_rdCase_no","rdCase_no","case_no","patient_no","inpatientCases_no"
-"260123451-Airolo",2020,14.29,0,100,0,90.32,90.32,0.2,1.12,1.24,124,124,112,124,1000,962,10000
+"inst_id","report_year","missing_item_rate","missing_value_rate","orphaCoding_completeness_rate","outlier_rate","orphaCoding_plausibility_rate","rdCase_unambiguity_rate","duplication_rate","tracerCase_rel_py_ipat","unambigous_rdCase_rel_py_ipat","orphaCase_rel_py_ipat","orphaCoding_no_py","orphaCase_no_py","unambigous_rdCase_no_py","rdCase_no_py","case_no_py","patient_no_py","case_no_py_ipat"
+"260123451-Airolo",2020,14.29,3.46,47.37,0.17,82.8,80.81,0.32,0.18,0.8,0.9,92,90,80,99,997,950,10000
