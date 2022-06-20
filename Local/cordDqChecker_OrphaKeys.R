@@ -40,7 +40,7 @@ path <- Sys.getenv("FHIR_SERVER")
 max_FHIRbundles <- 50 # Inf
 
 # CSV and XLSX file formats are supported
-#exportFile = "DQ-Report_dqTestData"
+#exportFile = "KeyNum-Report_dqTestData"
 #path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 
@@ -106,17 +106,17 @@ if (!is.empty(medData$Institut_ID)){
     ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
     dqKeyNo= c(
-      "orphaCoding_no",
-      "orphaCase_no",
-      "unique_rdCase_no", 
-      "rdCase_no",
-      "case_no", 
-      "patient_no", 
-      "inpatientCases_no"
+      "orphaCoding_no_py",
+      "orphaCase_no_py",
+      "unambigous_rdCase_no_py",
+      "rdCase_no_py",
+      "case_no_py", 
+      "patient_no_py", 
+      "case_no_py_ipat"
     )
     dqRepCol <- c(repMeta, dqKeyNo)
     # DQ report
-    out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol, "dq_msg", "basicItem", "Total", oItem)
+    out <-checkCordDQ(instID, reportYear, inpatientCases, refData1, refData2, dqRepCol,repCol, "dq_msg", "basicItem", "Total", oItem)
     dqRep <-out$metric
     mItem <-out$mItem
   }
@@ -128,13 +128,13 @@ if (!is.empty(medData$Institut_ID)){
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
-                "\n Case number:", dqRep$case_no,
-                "\n Patient number:", dqRep$patient_no,
-                "\n Inpatient cases:", dqRep$inpatientCases_no,
-                "\n Orpha number:", dqRep$orphaCoding_no,
-                "\n Coded rdCases:", dqRep$rdCase_no,
-                "\n Unique rdCases:", dqRep$unique_rdCase_no,
-                "\n OrphaCoded Cases:", dqRep$orphaCase_no
+                "\n Case number:", dqRep$case_no_py,
+                "\n Patient number:", dqRep$patient_no_py,
+                "\n Inpatient cases:", dqRep$case_no_py_ipat,
+                "\n Orpha number:", dqRep$orphaCoding_no_py,
+                "\n Coded rdCases:", dqRep$rdCase_no_py,
+                "\n Unambiguity rdCases:", dqRep$unique_rdCase_no_py,
+                "\n OrphaCoded Cases:", dqRep$orphaCase_no_py
   )
   
   if (!is.empty(mItem))   msg <- paste (msg, "\n Following items are missing:", toString(mItem))
