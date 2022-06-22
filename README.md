@@ -9,18 +9,19 @@ Acknowledgement: This work was done within the “Collaboration on Rare Diseases
   | ------------- | ------------- |
   | completeness  | missing_item_rate, missing_value_rate, orphaCoding_completeness_rate  |
   | plausibility  | outlier_rate, orphaCoding_plausibility_rate |
-  | uniqueness | rdCase_uniqueness_rate, duplication_rate|
-  | concordance | orphaCoding_relativeFrequency, unique_rdCase_relativeFrequency|
+  | uniqueness | rdCase_unambiguity_rate, duplication_rate|
+  | concordance | orphaCoding_rel_py_ipt, unambigous_rdCase_rel_py_ipat, tracerCase_rel_py_ipat|
 
 
   | Key number  | Name |
   | ------------- | ------------- |
-  | case number  |  case_no|
-  | patient number  |   patient_no|
-  | RD case number  | rdCase_no  |
-  | orpha code number  |  orphaCoding_no |
-  | unique-RD case number  | unique_rdCase_no  |
-  | Orpha-coded case number| orphaCase_no  |
+  | inpatient case number per year  |   case_no_p_ipat|
+  | case number per year |  case_no_py|
+  | patient number per year  |   patient_no_py|
+  | orpha code number per year  |  orphaCoding_no_py |
+  | RD case number per year  | rdCase_no_py  |
+  | Orpha-coded case number per year| orphaCase_no_py |
+  | unambigous-RD case number per year | unambigous_rdCase_no_py  |
 - The data quality framework [`dqLib`](https://github.com/medizininformatik-initiative/dqLib) has been used as an R package for generating specific reports on data quality related issues and metrics.
 - The following references are required to assess the quality of orphacoding and can be easily updated with new versions:
   - The standard Alpha-ID-SE terminology [1]
