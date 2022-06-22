@@ -38,8 +38,8 @@ path <- Sys.getenv("FHIR_SERVER")
 max_FHIRbundles <- Inf # Inf
 
 # CSV and XLSX file formats are supported
-#exportFile = "DQ-Report_dqTestData"
-#path="./Data/medData/dqTestData.csv"
+exportFile = "DQ-Report_dqTestData"
+path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 
 bItemCl <-"basicItem"
@@ -132,13 +132,14 @@ if (!is.empty(medData$Institut_ID)){
     ############ Selection of DQ key numbers ########################
     # select  key numbers for DQ report
     dqKeyNo= c(
+      "case_no_py_ipat",
+      "case_no_py", 
+      "patient_no_py", 
       "orphaCoding_no_py",
-      "orphaCase_no_py",
-      "unambigous_rdCase_no_py",
       "rdCase_no_py",
-      "case_no_py",
-      "patient_no_py",
-      "case_no_py_ipat"
+      "orphaCase_no_py",
+      "unambigous_rdCase_no_py", 
+      "tracerCase_no_py"
     )
     dqRepCol <- c(repMeta, compInd, plausInd, uniqInd,concInd, dqKeyNo)
     # DQ report
@@ -153,13 +154,14 @@ if (!is.empty(medData$Institut_ID)){
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
+                "\n Inpatient cases:", dqRep$case_no_py_ipat,
                 "\n Case number:", dqRep$case_no_py,
                 "\n Patient number:", dqRep$patient_no_py,
-                "\n Inpatient cases:", dqRep$case_no_py_ipat,
-                "\n Orpha number:", dqRep$orphaCoding_no_py,
                 "\n Coded rdCases:", dqRep$rdCase_no_py,
-                "\n unambiguity rdCases:", dqRep$unambigous_rdCase_no_py,
+                "\n Orpha number:", dqRep$orphaCoding_no_py,
                 "\n OrphaCoded rdCases:", dqRep$orphaCase_no_py,
+                "\n unambiguity rdCases:", dqRep$unambigous_rdCase_no_py,
+                "\n tracer rdCases:", dqRep$tracerCase_no_py,
                 "\n Missing item rate:", dqRep$missing_item_rate,
                 "\n Missing value rate:", dqRep$missing_value_rate,
                 "\n RdCase unambiguity rate:", dqRep$rdCase_unambiguity_rate,
