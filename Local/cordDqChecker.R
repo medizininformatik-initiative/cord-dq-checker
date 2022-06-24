@@ -49,7 +49,8 @@ cdata <- data.frame(
   basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt_Klasse", "Fall_Status", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
 )
 ddata <- data.frame(
-  basicItem= c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total")
+  basicItem= c ( "Geburtsdatum",  "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum", "Total"),
+  engLabel = c("birthdate", "admission date" , "discharge date", "diagnosis date", NA)
 )
 # optional items
 oItem = c("Orpha_Kode")
@@ -125,7 +126,7 @@ if (!is.empty(medData$Institut_ID)){
    # select DQ indicators for concordance
     concInd= c(
       "tracerCase_rel_py_ipat",
-      "unambigous_rdCase_rel_py_ipat",
+      "unambiguous_rdCase_rel_py_ipat",
       "orphaCase_rel_py_ipat"
     )
 
@@ -138,7 +139,7 @@ if (!is.empty(medData$Institut_ID)){
       "orphaCoding_no_py",
       "rdCase_no_py",
       "orphaCase_no_py",
-      "unambigous_rdCase_no_py", 
+      "unambiguous_rdCase_no_py", 
       "tracerCase_no_py"
     )
     dqRepCol <- c(repMeta, compInd, plausInd, uniqInd,concInd, dqKeyNo)
@@ -160,7 +161,7 @@ if (!is.empty(medData$Institut_ID)){
                 "\n Coded rdCases:", dqRep$rdCase_no_py,
                 "\n Orpha number:", dqRep$orphaCoding_no_py,
                 "\n OrphaCoded rdCases:", dqRep$orphaCase_no_py,
-                "\n unambiguity rdCases:", dqRep$unambigous_rdCase_no_py,
+                "\n unambiguous rdCases:", dqRep$unambiguous_rdCase_no_py,
                 "\n tracer rdCases:", dqRep$tracerCase_no_py,
                 "\n Missing item rate:", dqRep$missing_item_rate,
                 "\n Missing value rate:", dqRep$missing_value_rate,
