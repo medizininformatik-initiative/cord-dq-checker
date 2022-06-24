@@ -1,2 +1,0 @@
-"inst_id","report_year","missing_item_rate","missing_value_rate","orphaCoding_completeness_rate","outlier_rate","orphaCoding_plausibility_rate","rdCase_uniqueness_rate","duplication_rate","unique_rdCase_relativeFrequency","orphaCoding_relativeFrequency","orphaCoding_no","unique_rdCase_no","rdCase_no","case_no","patient_no","inpatientCases_no"
-"259294944-TestHaus",2020,46.67,3.31,72.22,3.57,31.25,33.33,0,0.08,0.17,17,8,24,28,27,10000

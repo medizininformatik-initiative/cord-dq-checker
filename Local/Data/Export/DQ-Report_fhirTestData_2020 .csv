@@ -1,2 +1,0 @@
-"inst_id","report_year","missing_item_rate","missing_value_rate","orphaCoding_completeness_rate","outlier_rate","orphaCoding_plausibility_rate","rdCase_uniqueness_rate","duplication_rate","unique_rdCase_relativeFrequency","orphaCoding_relativeFrequency","orphaCoding_no","unique_rdCase_no","rdCase_no","case_no","patient_no","inpatientCases_no"
-"260123451-Airolo",2020,13.33,0,100,0,90.32,90.32,0.2,1.12,1.24,124,112,124,1000,962,10000
