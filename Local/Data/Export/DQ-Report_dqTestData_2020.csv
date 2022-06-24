@@ -1,2 +1,0 @@
-"inst_id","report_year","missing_item_rate","missing_value_rate","orphaCoding_completeness_rate","outlier_rate","orphaCoding_plausibility_rate","rdCase_unambiguity_rate","duplication_rate","tracerCase_rel_py_ipat","unambigous_rdCase_rel_py_ipat","orphaCase_rel_py_ipat","case_no_py_ipat","case_no_py","patient_no_py","orphaCoding_no_py","rdCase_no_py","orphaCase_no_py","unambigous_rdCase_no_py","tracerCase_no_py"
-"259294944-TestHaus",2020,0,40.49,50,6.25,33.33,41.18,3.7,0.04,0.07,0.15,10000,26,25,15,17,15,7,4
