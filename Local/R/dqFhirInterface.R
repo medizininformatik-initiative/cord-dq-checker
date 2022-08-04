@@ -9,6 +9,7 @@ library(fhircrackr)
 searchRequest_x <- paste0(
   path,
   'Patient?',
+  '_has:Condition:patient:recorded-date=', reportYear,
   '&_revinclude=Encounter:patient',
   "&_revinclude=Condition:patient"
 )
@@ -16,7 +17,7 @@ searchRequest_x <- paste0(
 searchRequest <- paste0(
   path,
   'Patient?',
-  '_has:Condition:patient:recorded-date=ge2020-01-01',
+  '_has:Condition:patient:recorded-date=', reportYear,
   '&_revinclude=Encounter:patient',
   "&_revinclude=Condition:patient",
   '&_has:Condition:patient:code=A48.3, D18.10, D18.11, D18.12, D18.13, D18.18, D18.19, D45, D47.3, D57.0, D57.1, D57.2, D58.1, D76.1, D76.2, D76.3, D76.4, D82.1, D83.0, D83.1,',

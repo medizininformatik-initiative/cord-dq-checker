@@ -1,149 +1,135 @@
-IcdCode,OrphaCode,Type,Quelle
-H81.0,45360,1:1,Hamburger Liste
-D86.0,797,n:1,Hamburger Liste
-D86.1,797,n:1,Hamburger Liste
-D86.2,797,n:1,Hamburger Liste
-D86.3,797,n:1,Hamburger Liste
-D86.8,797,n:1,Hamburger Liste
-D86.9,797,n:1,Hamburger Liste
-D45,729,1:1,Hamburger Liste
-E03.0,442,n:1,Hamburger Liste
-E03.1,442,n:1,Hamburger Liste
-D46,52688,1:1,Hamburger Liste
-M93.2,2764,1:1,Hamburger Liste
-D47.3,3318,1:1,Hamburger Liste
-M34.0,801,n:1,Hamburger Liste
-M34.9,801,n:1,Hamburger Liste
-M34.8,801,n:1,Hamburger Liste
-D68.0,903,1:1,Hamburger Liste
-G70.0,589,1:1,Hamburger Liste
-K74.3,186,1:1,Hamburger Liste
-D66,448,n:1,Hamburger Liste
-D67,448,n:1,Hamburger Liste
-M35.1,809,1:1,Hamburger Liste
-G61.0,2103,1:1,Hamburger Liste
-G90.3,102,1:1,Hamburger Liste
-L63.0,700,1:1,Hamburger Liste
-E84.0,586,n:1,Hamburger Liste
-E84.1,586,n:1,Hamburger Liste
-E84.80,586,n:1,Hamburger Liste
-E84.87,586,n:1,Hamburger Liste
-E84.88,586,n:1,Hamburger Liste
-E84.9,586,n:1,Hamburger Liste
-M31.1,900,1:1,Hamburger Liste
-M34.1,90290,1:1,Hamburger Liste
-Q82.2,98292,1:1,Hamburger Liste
-H35.1,90050,1:1,Hamburger Liste
-Q96.0,881,n:1,Hamburger Liste
-Q96.1,881,n:1,Hamburger Liste
-Q96.2,881,n:1,Hamburger Liste
-Q96.3,881,n:1,Hamburger Liste
-Q96.4,881,n:1,Hamburger Liste
-Q96.5,881,n:1,Hamburger Liste
-D96.6,881,n:1,Hamburger Liste
-D96.7,881,n:1,Hamburger Liste
-Q96.8,881,n:1,Hamburger Liste
-Q96.9,881,n:1,Hamburger Liste
-L13.0,1656,1:1,Hamburger Liste
-G10,399,1:1,Hamburger Liste
-I78.0,774,1:1,Hamburger Liste
-G54.5,2901,1:1,Hamburger Liste
-I73.1,36258,1:1,Hamburger Liste
-Q21.3,3303,1:1,Hamburger Liste
-E25.0,181412,1:1,Hamburger Liste
-D83.0,1572,n:1,Hamburger Liste
-D83.1,1572,n:1,Hamburger Liste
-D83.2,1572,n:1,Hamburger Liste
-D83.8,1572,n:1,Hamburger Liste
-D83.9,1572,n:1,Hamburger Liste
-Q87.4,558,1:1,Hamburger Liste
-M33.2,732,1:1,Hamburger Liste
-K62.7,70475,1:1,Hamburger Liste
-D18.10,2415,n:1,Hamburger Liste
-D18.11,2415,n:1,Hamburger Liste
-D18.12,2415,n:1,Hamburger Liste
-D18.13,2415,n:1,Hamburger Liste
-D18.18,2415,n:1,Hamburger Liste
-D18.19,2415,n:1,Hamburger Liste
-D57.0,232,n:1,Hamburger Liste
-D57.1,232,n:1,Hamburger Liste
-D57.2,232,n:1,Hamburger Liste
-M33.0,221,n:1,Hamburger Liste
-M33.1,221,n:1,Hamburger Liste
-L63.1,701,1:1,Hamburger Liste
-G21.0,94093,1:1,Hamburger Liste
-M35.2,117,1:1,Hamburger Liste
-M08.3,85408,1:1,Hamburger Liste
-Q20.3,216675,1:1,Hamburger Liste
-L93.1,535,1:1,Hamburger Liste
-L10.0,704,1:1,Hamburger Liste
-M30.0,767,1:1,Hamburger Liste
-Q78.0,666,1:1,Hamburger Liste
-Q43.1,388,1:1,Hamburger Liste
-E24.0,96253,1:1,Hamburger Liste
-Q85.1,805,1:1,Hamburger Liste
-E83.0,905,1:1,Hamburger Liste
-P27.1,70589,1:1,Hamburger Liste
-Q05.5,823,n:1,Hamburger Liste
-Q05.6,823,n:1,Hamburger Liste
-Q05.7,823,n:1,Hamburger Liste
-Q05.8,823,n:1,Hamburger Liste
-M08.2,85414,1:1,Hamburger Liste
-E80.1,101330,1:1,Hamburger Liste
-M09.00,85436,n:1,Hamburger Liste
-M09.01,85436,n:1,Hamburger Liste
-M09.02,85436,n:1,Hamburger Liste
-M09.03,85436,n:1,Hamburger Liste
-M09.04,85436,n:1,Hamburger Liste
-M09.05,85436,n:1,Hamburger Liste
-M09.06,85436,n:1,Hamburger Liste
-M09.07,85436,n:1,Hamburger Liste
-M09.08,85436,n:1,Hamburger Liste
-M09.09,85436,n:1,Hamburger Liste
-E70.0,716,1:1,Hamburger Liste
-L56.3,97230,1:1,Hamburger Liste
-E83.30,89936,1:1,Hamburger Liste
-Q78.2,53,1:1,Hamburger Liste
-G23.1,683,1:1,Hamburger Liste
-G71.2,97245,1:1,Hamburger Liste
-Q79.6,285,1:1,Hamburger Liste
-I82.0,890,n:1,Hamburger Liste
-K76.5,890,n:1,Hamburger Liste
-G11.4,685,1:1,Hamburger Liste
-Q79.0,2140,1:1,Hamburger Liste
-Q30.0,137914,1:1,Hamburger Liste
-Q22.5,1880,1:1,Hamburger Liste
-Q77.4,429,1:1,Hamburger Liste
-Q74.3,1146,1:1,Hamburger Liste
-Q23.4,2248,1:1,Hamburger Liste
-F84.2,778,1:1,Hamburger Liste
-E83.50,280062,1:1,Hamburger Liste
-D82.1,567,1:1,Hamburger Liste
-Q79.2,660,1:1,Hamburger Liste
-Q22.4,1209,1:1,Hamburger Liste
-I42.80,247,1:1,Hamburger Liste
-Q17.2,83463,1:1,Hamburger Liste
-E85.3,85445,1:1,Hamburger Liste
-Q71.6,2440,n:1,Hamburger Liste
-Q72.7,2440,n:1,Hamburger Liste
-Q91.4,3378,n:1,Hamburger Liste
-Q91.5,3378,n:1,Hamburger Liste
-Q91.6,3378,n:1,Hamburger Liste
-Q91.7,3378,n:1,Hamburger Liste
-Q04.2,2162,1:1,Hamburger Liste
-E71.0,511,1:1,Hamburger Liste
-D58.1,288,1:1,Hamburger Liste
-Q80.1,461,1:1,Hamburger Liste
-Q97.0,3375,1:1,Hamburger Liste
-Q28.21,46724,1:1,Hamburger Liste
-Q91.0,3380,n:1,Hamburger Liste
-Q91.1,3380,n:1,Hamburger Liste
-Q91.2,3380,n:1,Hamburger Liste
-Q77.1,2655,1:1,Hamburger Liste
-Q00.1,63260,1:1,Hamburger Liste
-E74.0,"365,308552",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-E75.0,"796,845,309152,309246",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-E75.2,"324,487, 355, 512",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-G12.1,"83419,70, 85146, 363447",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-G71.0,"98896,119, 62, 264",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
-Q75.0,"35093,1225,1531",1:m,"Cord List, Vorbereitende DQM-Vollständigkeitstracer"
+IcdCode,Type,Complete_RD,Unique_RD,Quelle
+A48.3,1-1,yes,yes,"CORD-MI List, Alpha-ID-SE"
+D89.8,n-m,yes,no,"CORD-MI List, Alpha-ID-SE"
+E74.0,n-m,no,no,"CORD-MI List, Vorbereitende DQM-Vollständigkeitstracer"
+E75.0,n-m,no,no,"CORD-MI List, Vorbereitende DQM-Vollständigkeitstracer"
+E75.2,n-m,no,no,"CORD-MI List, Vorbereitende DQM-Vollständigkeitstracer"
+G12.1,n-m,no,no,"CORD-MI List, Vorbereitende DQM-Vollständigkeitstracer"
+G71.0,n-m,no,no,"CORD-MI List, Vorbereitende DQM-Vollständigkeitstracer"
+Q75.0,n-m,no,no,"CORD-MI List, Vorbereitende DQM-Vollständigkeitstracer"
+D86.1,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+D86.2,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+E84.0,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+E84.1,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+E84.80,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+E84.87,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+E84.9,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+F84.2,1-n,yes,no,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+K62.7,1-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+M34.1,1-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+Q28.21,1-n,yes,no,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+Q80.1,1-n,yes,no,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+Q96.8,n-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+E83.50,1-1,yes,yes,"CORD-MI Liste, Alpha-ID-SE, Hamburger Liste"
+D18.10,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D18.11,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D18.12,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D18.13,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D18.18,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D18.19,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D45,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D47.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D57.0,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D57.1,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D57.2,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D58.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D82.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D83.0,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D83.1,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D83.2,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D83.8,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D83.9,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D86.0,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D86.3,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D86.8,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+D86.9,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E03.0,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E03.1,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E24.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E70.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E71.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E80.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E83.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E83.30,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E84.88,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+E85.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G10,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G11.4,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G21.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G23.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G54.5,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G61.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G70.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+G71.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+H35.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+I42.80,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+I73.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+I78.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+K74.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+K76.5,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+L10.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+L13.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+L56.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+L63.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+L63.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+L93.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M08.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.00,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.01,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.02,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.03,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.04,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.05,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.06,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.07,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.08,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M09.09,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M30.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M33.0,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M33.1,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M33.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M35.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+M93.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+P27.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q00.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q04.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q05.5,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q05.6,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q05.7,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q05.8,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q17.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q20.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q21.3,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q22.4,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q22.5,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q23.4,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q30.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q43.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q71.6,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q72.7,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q77.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q77.4,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q78.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q78.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q79.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q79.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q79.6,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q82.2,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q85.1,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q87.4,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.0,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.1,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.2,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.4,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.5,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.6,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q91.7,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.1,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.2,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.3,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.4,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.5,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.6,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.7,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q96.9,n-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
+Q97.0,1-1,yes,yes,"CORD-MI Liste, Hamburger Liste"
