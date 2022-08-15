@@ -122,7 +122,8 @@ if (!is.empty(medData$Institut_ID)){
     # select DQ indicators for uniqueness dimension
     uniqInd= c(
       "rdCase_unambiguity_rate",
-      "duplication_rate"
+      "duplication_rate",
+      "duplicated_rdCase_rate"
     )
     # select DQ indicators for concordance
     concInd= c(
