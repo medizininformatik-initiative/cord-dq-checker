@@ -90,7 +90,9 @@ if (is.null(path) | path=="")  stop("No path to data") else {
     if (length (tracer) >n )
     {
       while ( length(tracer) >n) {
-        cordTracer <- paste0(tail(tracer, n), collapse=", ")
+        cordTracer.vec <- tail(tracer, n)
+        cordTracer <- paste0(cordTracer.vec, collapse=", ")
+        print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
         source("./R/dqFhirInterface.R")
         instData <- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
         medData <- base::rbind(medData, instData)
@@ -98,7 +100,9 @@ if (is.null(path) | path=="")  stop("No path to data") else {
       }
       if ( length(tracer) <=n)
       { 
-        cordTracer <- paste0(tracer, collapse=", ")
+        cordTracer.vec <- tracer
+        cordTracer <- paste0(cordTracer.vec, collapse=", ")
+        print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
         source("./R/dqFhirInterface.R")
         instData <- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
         medData <- base::rbind(medData, instData)
@@ -108,6 +112,7 @@ if (is.null(path) | path=="")  stop("No path to data") else {
     } 
     else { 
       cordTracer <- paste0(tracer, collapse=", ")
+      print(paste ("cordTracer:",    cordTracer, "NO:", length(tracer)))
       source("./R/dqFhirInterface.R")
       medData<- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
     }
