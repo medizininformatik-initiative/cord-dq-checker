@@ -86,6 +86,8 @@ EncounterTab <- fhir_table_description(
 design <- fhir_design(ConditionTab, PatientTab, EncounterTab)
 fhirRaw<- fhir_crack(bundles, design)
 condRaw <- fhirRaw$ConditionTab
+if (!is.empty (condRaw))
+{
 #sort out codes
 condTmp1 <- fhir_melt(condRaw,
                       columns = c("code", "system", "display"),
@@ -152,5 +154,5 @@ encounters$start <- as.Date(encounters$start)
 encounters$end <- as.Date(encounters$end)
 names(encounters) <- c("PatientIdentifikator","Aufnahmenummer","Aufnahmedatum", "Entlassungsdatum", "Kontakt_Klasse", "Fall_Status", "Aufnahmeanlass", "DiagnoseRolle")
 instData<-Reduce(function(x, y) base::merge(x, y, all=T), list(patients,encounters,conditions))
-
+} else instData<-NULL
 
