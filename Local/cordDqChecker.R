@@ -25,6 +25,8 @@ cat ("\n ####################################### Data Import ###################
 #------------------------------------------------------------------------------------------------------
 # Setting path and variables
 #------------------------------------------------------------------------------------------------------
+# Execution time
+startTime <- base::Sys.time()
 # Export file name
 exportFile = "DQ-Report_fhirTestData"
 # report year
@@ -44,6 +46,8 @@ cordTracer <- c ('A48.3','D18.10','D18.11','D18.12','D18.13','D18.18','D18.19','
                  'M09.07','M09.08','M09.09','M30.0','M30.3','M31.3','M33.0','M33.1','M33.2','M34.1','M35.2','M908.2','M93.2','P27.1','Q00.1','Q04.2','Q05.5','Q05.6','Q05.7','Q05.8','Q17.2','Q20.3','Q21.3','Q22.4','Q22.5','Q23.4',
                  'Q28.21','Q30.0','Q43.1','Q68.8','Q71.6','Q72.7','Q75.0','Q77.1','Q77.4','Q78.0','Q78.2','Q79.0','Q79.2','Q79.6','Q80.1','Q82.2','Q85.1','Q87.4','Q91.0','Q91.1','Q91.2','Q91.4','Q91.5','Q91.6','Q91.7','Q96.1','Q96.2',
                  'Q96.3','Q96.4','Q96.5','Q96.6','Q96.7','Q96.8','Q96.9','Q97.0','R57.8','R65.0','R65.1','R65.2','R65.9','U07.1!','U07.2!','U07.3','U07.4!','U07.5', 'U08.9','U09.9','U10.9')
+# number of tracer codes per thread
+tracerNo=15
 
 # CSV and XLSX file formats are supported
 #exportFile = "DQ-Report_dqTestData"
@@ -85,20 +89,19 @@ medData <- NULL
 if (is.null(path) | path=="")  stop("No path to data") else {
   if (grepl("fhir", path))
   {
-    n=25
     tracer <- cordTracer
-    if (length (tracer) >n )
+    if (length (tracer) > tracerNo )
     {
-      while ( length(tracer) >n) {
-        cordTracer.vec <- tail(tracer, n)
+      while ( length(tracer) > tracerNo) {
+        cordTracer.vec <- tail(tracer, tracerNo)
         cordTracer <- paste0(cordTracer.vec, collapse=", ")
         print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
         source("./R/dqFhirInterface.R")
         instData <- instData[ format(as.Date(instData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
         medData <- base::rbind(medData, instData)
-        tracer <- head(tracer, - n)
+        tracer <- head(tracer, - tracerNo)
       }
-      if ( length(tracer) <=n)
+      if ( length(tracer) <= tracerNo)
       { 
         cordTracer.vec <- tracer
         cordTracer <- paste0(cordTracer.vec, collapse=", ")
@@ -188,13 +191,16 @@ if (!is.empty(medData$Institut_ID)){
     dqRep <-out$metric
     mItem <-out$mItem
   }
-  
+  endTime <- base::Sys.time()
+  timeTaken <-  round (as.numeric (endTime - startTime, units = "mins"), 2)
+  dqRep$executionTime_inMin <-timeTaken
   ################################################### DQ Reports ########################################################
   path<- paste ("./Data/Export/", exportFile, "_", dqRep$report_year,  sep = "")
   getReport( repCol, "dq_msg", dqRep, path)
   top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
   msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
                 "\n Report year:", dqRep$report_year,
+                "\n Time taken in min:", timeTaken,
                 "\n Inpatient cases:", dqRep$case_no_py_ipat,
                 "\n Case number:", dqRep$case_no_py,
                 "\n Patient number:", dqRep$patient_no_py,
