@@ -15,15 +15,15 @@ if (!exists("cordTracer"))
     '&_revinclude=Encounter:patient',
     "&_revinclude=Condition:patient"
   )
-  
+
 }else {
   searchRequest <- paste0(
     path,
-    'Patient?',
-    '_has:Condition:patient:recorded-date=', reportYear,
-    '&_revinclude=Encounter:patient',
-    '&_revinclude=Condition:patient',
-    '&_has:Condition:patient:code=', cordTracer
+    'Condition?',
+    'code=', cordTracer,
+    '&recorded-date=',reportYear,
+    "&_include=Condition:encounter",
+    '&_include=Condition:subject:Patient'
   )
 }
 
