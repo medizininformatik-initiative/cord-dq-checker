@@ -40,10 +40,10 @@ path <- Sys.getenv("FHIR_SERVER")
 max_FHIRbundles <- Inf # Inf
 # import CORD tracer diagnoses
 # CordTracerList version 2.0
-cordTracer <- read.table("./Data/refData/CordTracerList_v2.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
+tracerPath <-"./Data/refData/CordTracerList_v2.csv"
 # cord tracer version 1.0
-# cordTracer <- read.table("./Data/refData/CordTracerList_v1.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
-
+#tracerPath <-"./Data/refData/CordTracerList_v1.csv"
+cordTracer <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 # number of tracer codes per thread
 tracerNo=1
 
