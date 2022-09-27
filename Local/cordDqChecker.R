@@ -38,8 +38,11 @@ Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
 inpatientCases <- as.numeric(Sys.getenv("INPATIENT_CASE_NO"))
 path <- Sys.getenv("FHIR_SERVER")
 max_FHIRbundles <- Inf # Inf
+#import CORD tracer diagnoses
+#CordTracerList version 2.0
+cordTracer <- read.table("./Data/refData/CordTracerList_v2.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 # cord tracer version 1.0
-cordTracer <- read.table("./Data/refData/CordTracerList_v1.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
+#cordTracer <- read.table("./Data/refData/CordTracerList_v1.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 
 # number of tracer codes per thread
 tracerNo=1
