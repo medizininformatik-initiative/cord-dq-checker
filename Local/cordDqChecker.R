@@ -38,11 +38,11 @@ Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
 inpatientCases <- as.numeric(Sys.getenv("INPATIENT_CASE_NO"))
 path <- Sys.getenv("FHIR_SERVER")
 max_FHIRbundles <- Inf # Inf
-#import CORD tracer diagnoses
-#CordTracerList version 2.0
+# import CORD tracer diagnoses
+# CordTracerList version 2.0
 cordTracer <- read.table("./Data/refData/CordTracerList_v2.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 # cord tracer version 1.0
-#cordTracer <- read.table("./Data/refData/CordTracerList_v1.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
+# cordTracer <- read.table("./Data/refData/CordTracerList_v1.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 
 # number of tracer codes per thread
 tracerNo=1
@@ -54,7 +54,7 @@ tracerNo=1
 
 bItemCl <-"basicItem"
 totalRow <-"Total"
-#defining mandatory and optional items
+# defining mandatory and optional items
 cdata <- data.frame(
   basicItem= c("PatientIdentifikator","Aufnahmenummer", "Institut_ID",  "Geschlecht","PLZ", "Land","Kontakt_Klasse", "Fall_Status", "DiagnoseRolle", "ICD_Primaerkode","Orpha_Kode", "Total")
 )
@@ -123,7 +123,7 @@ if (is.null(path) | path=="")  stop("No path to data") else {
   }
   if (is.null (medData)) stop("No data available")
 }
-#filter for report year
+# filter for report year
 medData<- medData[format(as.Date(medData$Entlassungsdatum, format="%Y-%m-%d"),"%Y")==reportYear, ]
 if (is.empty(medData)) stop("No data available for reporting year:", reportYear)
 dItem <-names(medData)
