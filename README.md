@@ -50,11 +50,13 @@ For Example you can define your path as following:
 
 - The default values of local variables are set as follows:
   - ``` institut_ID <- "meDIC_Standort ```
-  - ```path="http://141.5.101.1:8080/fhir/"``` 
+  - ``` path="http://141.5.101.1:8080/fhir/"``` 
   - ``` INPATIENT_CASE_NO=997 ```
   - ``` exportFile = "DQ-Report_StandortName```
   - ``` reportYearStart=2015```
   - ``` reportYearEnd=2022 ```
+  - ``` dateRef = “Entlassungsdatum” ```
+  - ``` dateRefFormat="%Y-%m-%d" ```
   - ``` max_FHIRbundles=Inf ```
   - ```tracerPath="./Data/refData/CordTracerList_v2.csv"``` 
 

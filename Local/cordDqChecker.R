@@ -40,8 +40,8 @@ path <- Sys.getenv("FHIR_SERVER")
 #path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 # report year
-reportYearStart <-2019
-reportYearEnd <-2020
+reportYearStart <-2015
+reportYearEnd <-2022
 # date format
 dateRef ="Entlassungsdatum"
 dateFormat="%Y-%m-%d"
@@ -57,7 +57,7 @@ tracerPath <-"./Data/refData/CordTracerList_v2.csv"
 # cord tracer version 1.0
 #tracerPath <-"./Data/refData/CordTracerList_v1.csv"
 cordTracer <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
-cordTracer <-""
+#cordTracer <-""
 # number of tracer codes per thread
 tracerNo=50
 
@@ -149,14 +149,35 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
         medData$Entlassungsdatum <- as.Date(medData$Entlassungsdatum,  origin="2020-10-24", format=dateFormat)
       }
     }
-    if (is.null (medData)) { 
-      warning("No data available")
+    if (is.null (medData) | all(is.na(medData))) { 
+      endTime <- base::Sys.time()
+      timeTaken <-  round (as.numeric (endTime - startTime, units = "mins"), 2)
+      dqRep$executionTime_inMin <-timeTaken
+      dqRep$dataFormat <- dataFormat
+      dqRep$report_year <- reportYear
+      dqRep$inst_id <- institut_ID 
+      top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
+      noDataMsg<- paste("\n Empty data set for reporting year:", reportYear)
+      dqRep$msg <- noDataMsg
+      msg <- paste ("\n Data quality analysis for location:", dqRep$inst_id,
+                    "\n Report year:", dqRep$report_year,
+                    "\n Time taken in min:", timeTaken)
+      warning("No data available for reporting year:", reportYear)
+      
+      pathExp<- paste ("./Data/Export/", exportFile, "_", dataFormat, "_",  reportYear,  sep = "")
+      msg <- paste(msg, noDataMsg,
+                   "\n \n ########################################## Export ################################################")
+      write.csv(dqRep, paste (pathExp,".csv", sep =""), row.names = FALSE)
+      msg <- paste ( msg , "\n \n See the generated report \n >>> in the file path:", pathExp)
+      
+      bottom <- paste ("\n ####################################***CordDqChecker***###########################################")
+      cat(paste (top,msg, bottom, sep="\n"))
       next
     }
+  
   # filter for report year
-  #medData<- NULL
   medData<- medData[format(as.Date(medData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
-  if (is.null(medData) | (dim(medData)[1]==0)) { 
+  if (dim(medData)[1]==0 | all(is.na(medData))) { 
     endTime <- base::Sys.time()
     timeTaken <-  round (as.numeric (endTime - startTime, units = "mins"), 2)
     dqRep$executionTime_inMin <-timeTaken

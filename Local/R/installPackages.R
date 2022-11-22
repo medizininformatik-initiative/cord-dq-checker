@@ -1,2 +1,2 @@
-if(!require('fhircrackr')) install.packages('fhircrackr')
-if(!require('openxlsx')) install.packages('openxlsx')
+install.packages('fhircrackr')
+install.packages('openxlsx')
