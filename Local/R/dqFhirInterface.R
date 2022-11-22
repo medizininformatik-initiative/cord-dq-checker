@@ -29,7 +29,6 @@ if (!exists("cordTracer"))
 
 # get fhir bundles
 bundles <- fhir_search(searchRequest, max_bundles =max_FHIRbundles) 
-
 #define the table_description
 ConditionTab <- fhir_table_description(
   resource = "Condition",
@@ -43,10 +42,10 @@ ConditionTab <- fhir_table_description(
     system = "code/coding/system",
     recorded_date = "recordedDate"
   ),
-  style = fhir_style(
-    sep = " / ",
-    brackets = c("[", "]")
-  )
+  sep           = " / ",
+  brackets      = c("[", "]"),
+  rm_empty_cols = FALSE,
+  format        = "compact"
 )
 PatientTab <- fhir_table_description(
   resource = "Patient",
@@ -60,10 +59,8 @@ PatientTab <- fhir_table_description(
     city = "address/city",
     type = "address/type"
   ),
-  style = fhir_style(
-    sep = " % ",
-    brackets = c("[", "]")
-  )
+  rm_empty_cols = FALSE,
+  format        = "compact"
 )
 EncounterTab <- fhir_table_description(
   resource = "Encounter",
@@ -78,10 +75,8 @@ EncounterTab <- fhir_table_description(
     admitCode ="hospitalization/admitSource/coding/code",  # Aufnahmeanlass
     diagnosisUse ="diagnosis/use" # admission, billing or discharge
   ),
-  # style = list(
-  # sep = " % ",
-  #brackets = c("[", "]")
-  # )
+  rm_empty_cols = FALSE,
+  format        = "compact"
 )
 design <- fhir_design(ConditionTab, PatientTab, EncounterTab)
 fhirRaw<- fhir_crack(bundles, design)
@@ -142,9 +137,7 @@ if (!(is.null(condIcd)|is.null (condOrpha)|is.null(condAlphaID))) conditions <-R
 patRaw <- fhirRaw$PatientTab
 patients <- fhir_rm_indices(patRaw, brackets = c("[", "]"))
 patients$instId<- gsub("#.*","\\1",patients$instId)
-#patients$birthdate <- as.Date(patients$birthdate)
-if (isDate(patients$birthdate)) patients$birthdate <-as.Date(patients$birthdate) else
-  if (!is.na(as.Date(patients$birthdate,origin ="2021", tryFormats = c("%Y")))) patients$birthdate <-as.Date(ISOdate(patients$birthdate, 06, 30))
+ifelse (isDate(patients$birthdate), as.Date(patients$birthdate), as.Date(ISOdate(patients$birthdate, 06, 30)))
 
 names(patients) <- c("Institut_ID","PatientIdentifikator", "Geburtsdatum", "Geschlecht", "PLZ", "Land", "Wohnort", "Adressentyp")
 entRaw <- fhirRaw$EncounterTab
