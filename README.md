@@ -3,35 +3,40 @@
 
 Acknowledgement: This work was done within the “Collaboration on Rare Diseases” of the Medical Informatics Initiative (CORD-MI) funded by the German Federal Ministry of Education and Research (BMBF), under grant number: FKZ-01ZZ1911R.
 ## Data Quality Metrics
-- The following indicators and key numbers are configured by default data quality reports:
-
-  | Dimension  | Indicator Name|
+- The data quality framework [`dqLib`](https://github.com/KaisTahar/dqLib) has been used as an R package for generating specific reports on DQ related issues and metrics.
+- The following DQ indicators and parameters are configured by default reports:
+  | Dimension  | DQ Indicator | 
   | ------------- | ------------- |
-  | completeness  | missing_item_rate, missing_value_rate, orphaCoding_completeness_rate  |
-  | plausibility  | outlier_rate, orphaCoding_plausibility_rate |
-  | uniqueness | rdCase_unambiguity_rate, duplication_rate|
-  | concordance | orphaCoding_rel_py_ipt, unambiguous_rdCase_rel_py_ipat, tracerCase_rel_py_ipat|
-
-
-  | Key number  | Name |
-  | ------------- | ------------- |
-  | inpatient case number per year  |   case_no_p_ipat|
-  | case number per year |  case_no_py|
-  | patient number per year  |   patient_no_py|
-  | orpha code number per year  |  orphaCoding_no_py |
-  | RD case number per year  | rdCase_no_py  |
-  | Orpha-coded case number per year| orphaCase_no_py |
-  | unambiguous-RD case number per year | unambiguous_rdCase_no_py  |
-- The data quality framework [`dqLib`](https://github.com/medizininformatik-initiative/dqLib) has been used as an R package for generating specific reports on data quality related issues and metrics.
-- The following references are required to assess the quality of orphacoding and can be easily updated with new versions:
-  - The standard Alpha-ID-SE terminology [1]
-  - A reference for tracer diagnoses such as the list provided in [2].
+  | completeness  | item completeness rate, value completeness rate, subject completeness rate, case completeness rate, orphaCoding completeness rate  | 
+  | plausibility  | orphaCoding plausibility rate, range plausibility rate | 
+  | uniqueness | RD case unambiguity rate, RD case dissimilarity rate |
+  | concordance |concordance with reference values| 
   
-    [1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html 
-    
-    [2]   List of Tracer Diagnoses Extracted from Alpha-ID-SE Terminology [Internet]. 2022 [cited 2022May 24]. Available from: https://doi.org/21.11101/0000-0007-F6DF-9 
-
-
+  |DQ Parameter | Description |
+  |-------------------------- | ------------|
+  | inpatient cases |  number of inpatient cases per year |
+  | inpatients |  number of inpatient per year |
+  | RD cases | number of RD cases per year |
+  | Orpha cases |  number of Orpha cases per year |
+  | tracer cases |  number of tracer RD cases per year |
+  | RD cases rel. frequency| relative frequency of inpatient RD cases per year per 100.000 cases|
+  | Orpha cases rel. frequency| relative frequency of inpatient Orpha cases per year per 100.000 cases|
+  | tracer cases rel. frequency| relative frequency of inpatient tracer RD cases per year per 100.000 cases|
+  | missing mandatory data items |  number of missing data items per year |
+  | missing mandatory data values| number of missing data values per year |
+  | incomplete subjects |  number of incomplete inpatient records per year |
+  | missing orphacodes |  number of missing Orphacodes per year |
+  | outliers | number of detected outliers per year |
+  | implausible links | number of implausible code links per year |
+  | ambiguous RD cases | number of ambiguous RD cases per year |
+  | duplicated RD cases |  number of duplicated RD cases per year |
+  
+- The following references are required to assess the quality of orphacoding and can be easily updated with new versions: (1) The standard Alpha-ID-SE terminology [1], and (2) a reference for tracer diagnoses such as the list provided in [2].
+  
+	[1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: [BfArM](https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html) 
+	
+	[2]   Tahar K, Martin T, Mou Y, et al. Distributed Data Quality Assessment Across CORD-MI Consortia. [doi:10.3205/22gmds116](https://www.egms.de/static/en/meetings/gmds2022/22gmds116.shtml)
+	
 ## Local Execution
 To analyse your data quality locally go to folder `./Local` and run `cordDqChecker.R` to genrate data quality reports.
 
@@ -44,12 +49,14 @@ For Example you can define your path as following:
   - ``` path="./Data/medData/dqTestData.xlsx" ```
 
 - The default values of local variables are set as follows:
-  - ``` reportYear=2020 ```
-  - ``` max_FHIRbundles=50 ```
-  - ``` INPATIENT_CASE_NO=10000 ```
+  - ``` institut_ID <- "meDIC_Standort ```
   - ```path="http://141.5.101.1:8080/fhir/"``` 
+  - ``` INPATIENT_CASE_NO=997 ```
+  - ``` exportFile = "DQ-Report_StandortName```
+  - ``` reportYearStart=2015```
+  - ``` reportYearEnd=2022 ```
+  - ``` max_FHIRbundles=Inf ```
   - ```tracerPath="./Data/refData/CordTracerList_v2.csv"``` 
-
 
 We use the CSV file `"./Local/Data/refData/CordTracerList_v2.csv"` as default reference for tracer diagnoses. We also provide the CORD-MI list of tracer diagnoses version 1.0 in the folder for reference data `"./Local/Data/refData/Export"`. Once the source data path and local variables are defined, start the script to check the quality of your data. The genrated repots are saved in folder `"./Local/Data/Export"`. 
 
