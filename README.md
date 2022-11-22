@@ -61,7 +61,7 @@ For Example you can define your path as following:
 We use the CSV file `"./Local/Data/refData/CordTracerList_v2.csv"` as default reference for tracer diagnoses. We also provide the CORD-MI list of tracer diagnoses version 1.0 in the folder for reference data `"./Local/Data/refData/Export"`. Once the source data path and local variables are defined, start the script to check the quality of your data. The genrated repots are saved in folder `"./Local/Data/Export"`. 
 
 ## Local Reports
-Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/master/Local/Data/Export) of data quality reports generated locally using sythetic data.
+Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/Data/Export) of data quality reports generated locally using sythetic data.
 
 ## Note
 
