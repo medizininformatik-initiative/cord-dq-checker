@@ -1,4 +1,0 @@
-inst_id,report_year,missing_item_rate,missing_value_rate,orphaCoding_completeness_rate,outlier_rate,orphaCoding_plausibility_rate,rdCase_uniqueness_rate,unique_rdCase_relativeFrequency,orphaCoding_relativeFrequency,orphaCoding_no,unique_rdCase_no,patient_no,case_no,inpatientCases_no
-260123451-Airolo,2020,0,0.02,100,0,90.32,90.32,1.11,1.23,124,112,962,1000,10100
-260123452-Bapu,2020,0,19.36,100,0,78.57,78.57,0.11,0.14,14,11,928,980,10200
-260123453-Cynthia,2020,0,0.39,56.82,0,62.96,51,0.5,0.8,81,51,948,1000,10153
