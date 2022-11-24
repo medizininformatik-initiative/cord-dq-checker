@@ -51,13 +51,11 @@ For Example you can define your path as following:
 - The default values of local variables are set as follows:
   - ``` institut_ID <- "meDIC_Standort ```
   - ``` path="http://141.5.101.1:8080/fhir/"``` 
-  - ``` INPATIENT_CASE_NO=997 ```
-  - ``` exportFile = "DQ-Report_StandortName```
+  - ``` ipatCasesList=list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000)```
   - ``` reportYearStart=2015```
   - ``` reportYearEnd=2022 ```
   - ``` dateRef = “Entlassungsdatum” ```
   - ``` dateRefFormat="%Y-%m-%d" ```
-  - ``` max_FHIRbundles=Inf ```
   - ```tracerPath="./Data/refData/CordTracerList_v2.csv"``` 
 
 We use the CSV file `"./Local/Data/refData/CordTracerList_v2.csv"` as default reference for tracer diagnoses. We also provide the CORD-MI list of tracer diagnoses version 1.0 in the folder for reference data `"./Local/Data/refData/Export"`. Once the source data path and local variables are defined, start the script to check the quality of your data. The genrated repots are saved in folder `"./Local/Data/Export"`. 
@@ -67,7 +65,7 @@ Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq
 
 ## Note
 
-- Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/blob/master/Local/R/installPackages.R )
+- Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/R/installPackages.R )
 
 - To avoid local dependency issues go to folder `./Local` and just run the command `sudo docker-compose up` to get `cordDqChecker` running.
 - The missing item rate will be calculated based on FHIR [implementation guidlines of the MII core data set](https://www.medizininformatik-initiative.de/en/basic-modules-mii-core-data-set). Hence, mandatory items of the basic modules Person, Case and Diagnosis are required.

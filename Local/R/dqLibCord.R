@@ -823,9 +823,13 @@ addD4<- function (tdata,orpha,orphaCase, uRd, inPtCase) {
 #' @description This function evaluates the concordance of tracer cases with reference values from the literature of national references
 #'
 getConcWithRefValues <- function(tracerCase_rel_py_ipat, concRef){
-  conc =0
-  if (concRef[["min"]] <= tracerCase_rel_py_ipat && tracerCase_rel_py_ipat<=concRef[["max"]] ) conc=1
-  else conc =0
+  conc =NA
+  if (is.integer(tracerCase_rel_py_ipat))
+  {
+    if (concRef[["min"]] <= tracerCase_rel_py_ipat && tracerCase_rel_py_ipat<=concRef[["max"]] ) conc=1
+    else conc =0
+  }
+ 
   #env$tdata$conc_with_refValues =conc
   conc
 }

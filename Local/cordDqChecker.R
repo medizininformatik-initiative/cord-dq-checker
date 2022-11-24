@@ -31,35 +31,34 @@ cat ("\n ####################################### Data Import ###################
 #------------------------------------------------------------------------------------------------------
 # Execution time
 startTime <- base::Sys.time()
-#Institut ID
-institut_ID = "meDIC_Test"
-# path to fhir server
-Sys.setenv(FHIR_SERVER="http://141.5.101.1:8080/fhir/")
-path <- Sys.getenv("FHIR_SERVER")
+# v1) Institute ID
+institut_ID = "meDIC_StandortName"
+# v2) Path to input data such as fhir server or CSV files
+path ="http://141.5.101.1:8080/fhir/"
+max_FHIRbundles <- Inf
 # CSV and XLSX file formats are supported
 #path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
-# report year
-reportYearStart <-2015
-reportYearEnd <-2022
-# date format
+# v3) Inpatient case number each year
+ipatCasesList=list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000)
+# v4) Start of the reporting period
+reportYearStart = 2015
+# v5) End of the reporting period
+reportYearEnd = 2022
+# v6) Ref. date
 dateRef ="Entlassungsdatum"
+# v7) Date format
 dateFormat="%Y-%m-%d"
-# inpatient case number
-Sys.setenv(INPATIENT_CASE_NO=997)
-inpatientCases <- as.numeric(Sys.getenv("INPATIENT_CASE_NO"))
-max_FHIRbundles <- Inf # Inf
-# Export file name
-exportFile = "DQ-Report_StandortName"
-# import CORD tracer diagnoses
+# v8) import CORD tracer diagnoses
 # CordTracerList version 2.0
 tracerPath <-"./Data/refData/CordTracerList_v2.csv"
 # cord tracer version 1.0
 #tracerPath <-"./Data/refData/CordTracerList_v1.csv"
-cordTracer <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 #cordTracer <-""
 # number of tracer codes per thread
-tracerNo=50
+tracerNo=25
+# Export file name
+exportFile = "DQ-Report"
 
 #------------------------------------------------------------------------------------------------------
 # Setting ref. Data
@@ -88,7 +87,7 @@ headerRef1<- c ("IcdCode", "Complete_SE", "Unique_SE")
 headerRef2<- c ("Gueltigkeit", "Alpha_ID", "ICD_Primaerkode1", "ICD_Manifestation", "ICD_Zusatz","ICD_Primaerkode2", "Orpha_Kode", "Label")
 names(refData1)<-headerRef1
 names(refData2)<-headerRef2
-
+cordTracer <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 #------------------------------------------------------------------------------------------------------
 # Import CORD data
 #------------------------------------------------------------------------------------------------------
@@ -104,6 +103,8 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
     msg <- NULL
     dataFormat =""
     dqRep <-NULL
+    inpatientCases = 0
+    if (toString(reportYear)  %in%  names(ipatCasesList))inpatientCases = ipatCasesList[[toString(reportYear)]]
     if (grepl("fhir", path))
     {
       dataFormat = "FHIR"
@@ -142,11 +143,13 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       if (ext=="csv") { 
         dataFormat = "CSV"
         medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1") 
+        meData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
       }
       if (ext=="xlsx") { 
         dataFormat = "Excel"
-        medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE)
-        medData$Entlassungsdatum <- as.Date(medData$Entlassungsdatum,  origin="2020-10-24", format=dateFormat)
+        medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE, detectDates = TRUE)
+        meData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
+        #medData$Entlassungsdatum <- as.Date(medData$Entlassungsdatum,  origin="2020-10-24", format=dateFormat)
       }
     }
     if (is.null (medData) | all(is.na(medData))) { 
@@ -164,7 +167,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
                     "\n Time taken in min:", timeTaken)
       warning("No data available for reporting year:", reportYear)
       
-      pathExp<- paste ("./Data/Export/", exportFile, "_", dataFormat, "_",  reportYear,  sep = "")
+      pathExp<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat, "_",  reportYear,  sep = "")
       msg <- paste(msg, noDataMsg,
                    "\n \n ########################################## Export ################################################")
       write.csv(dqRep, paste (pathExp,".csv", sep =""), row.names = FALSE)
@@ -192,7 +195,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
                   "\n Time taken in min:", timeTaken)
     warning("No data available for reporting year:", reportYear)
 
-    pathExp<- paste ("./Data/Export/", exportFile, "_", dataFormat, "_",  reportYear,  sep = "")
+    pathExp<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat, "_",  reportYear,  sep = "")
     msg <- paste(msg, noDataMsg,
                  "\n \n ########################################## Export ################################################")
     write.csv(dqRep, paste (pathExp,".csv", sep =""), row.names = FALSE)
@@ -278,7 +281,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
     }
     
     ################################################### DQ Reports ########################################################
-    expPath<- paste ("./Data/Export/", exportFile, "_", dataFormat,"_", dqRep$report_year,  sep = "")
+    expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_", dqRep$report_year,  sep = "")
     getReport( repCol, "dq_msg", dqRep, expPath)
     
     top <- paste ("\n \n ####################################***CordDqChecker***###########################################")
