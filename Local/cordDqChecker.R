@@ -256,6 +256,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       # select  key numbers for DQ report
       dqKeyNo= c(
         "case_no_py_ipat",
+        "case_no_py",
         "patient_no_py", 
         "rdCase_no_py",
         "orphaCase_no_py",
