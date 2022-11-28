@@ -35,15 +35,18 @@ startTime <- base::Sys.time()
 institut_ID = "meDIC_StandortName"
 # v2) Path to input data such as fhir server or CSV files
 path ="http://141.5.101.1:8080/fhir/"
+#max_FHIRbundles <- 10
 max_FHIRbundles <- Inf
 # CSV and XLSX file formats are supported
 #path="./Data/medData/dqTestData.csv"
 #path="./Data/medData/dqTestData.xlsx"
 # v3) Inpatient case number each year
 ipatCasesList=list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000)
-# v4) Start of the reporting period
+# v4) encounter class value
+#encounterClass = IMP
+encounterClass = NULL
+# v5) Start and End of the reporting period
 reportYearStart = 2015
-# v5) End of the reporting period
 reportYearEnd = 2022
 # v6) Ref. date
 dateRef ="Entlassungsdatum"
@@ -143,12 +146,12 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       if (ext=="csv") { 
         dataFormat = "CSV"
         medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1") 
-        meData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
+        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
       }
       if (ext=="xlsx") { 
         dataFormat = "Excel"
         medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE, detectDates = TRUE)
-        meData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
+        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
         #medData$Entlassungsdatum <- as.Date(medData$Entlassungsdatum,  origin="2020-10-24", format=dateFormat)
       }
     }
@@ -178,8 +181,11 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       next
     }
   
-  # filter for report year
-  medData<- medData[format(as.Date(medData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
+  # filter for report year and inpatient cases
+  if (dateRef %in% names(medData)){
+    if (!all(is.na(medData[[dateRef]]))) medData<- medData[format(as.Date(medData[[dateRef]], format=dateFormat),"%Y")==reportYear, ] else stop("No date values available for data selection")
+  }else stop("Reference date item is not available")
+  if (!is.null(encounterClass)) medData<- medData[medData[["Kontakt_Klasse"]]==encounterClass, ]
   if (dim(medData)[1]==0 | all(is.na(medData))) { 
     endTime <- base::Sys.time()
     timeTaken <-  round (as.numeric (endTime - startTime, units = "mins"), 2)

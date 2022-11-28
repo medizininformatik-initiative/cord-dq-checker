@@ -824,7 +824,7 @@ addD4<- function (tdata,orpha,orphaCase, uRd, inPtCase) {
 #'
 getConcWithRefValues <- function(tracerCase_rel_py_ipat, concRef){
   conc =NA
-  if (is.integer(tracerCase_rel_py_ipat))
+  if (is.integer(tracerCase_rel_py_ipat) | is.double(tracerCase_rel_py_ipat))
   {
     if (concRef[["min"]] <= tracerCase_rel_py_ipat && tracerCase_rel_py_ipat<=concRef[["max"]] ) conc=1
     else conc =0
