@@ -14,8 +14,9 @@ We would like to note that the developed tool supports HL7 FHIR as well as file 
 	  - v1) ``` institut_ID = "meDIC_Standort ```
 	  - v2) ``` path="http://141.5.101.1:8080/fhir/"``` 
 	  - v3) ``` ipatCasesList=list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000)```
-	  - v4) ``` reportYearStart=2015```
-	  - v5) ``` reportYearEnd=2022 ```
+	  - v4) ```  encounterClass = NULL```
+	  - v5) ``` reportYearStart=2015
+	  	    reportYearEnd=2022 ```
 	  - v6) ``` dateRef = “Entlassungsdatum” ```
 	  - v7) ``` dateRefFormat="%Y-%m-%d" ```
 	  - v8) ```tracerPath="./Data/refData/CordTracerList_v2.csv"``` 

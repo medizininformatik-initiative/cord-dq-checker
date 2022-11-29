@@ -40,25 +40,32 @@ checkCordDQ <- function ( instID, reportYear, inpatientCases, refData1, refData2
   inputData <-env$medData
   row_no = nrow(inputData)
   eList <-refData1[which(refData1$Unique_SE=="yes"),]
-  if(!is.empty(env$medData$PatientIdentifikator)) env$tdata$patient_no = length (unique(env$medData$PatientIdentifikator))
-  if(!is.empty(env$medData$Aufnahmenummer)) env$tdata$case_no = length (env$medData$Aufnahmenummer[which(!duplicated(env$medData$Aufnahmenummer)& ! is.na(env$medData$Aufnahmenummer))])
   if(!is.empty(env$medData$PatientIdentifikator) & !is.empty(env$medData$Aufnahmenummer) & !is.empty(env$medData$ICD_Primaerkode) & !is.empty(env$medData$Orpha_Kode))
   {
     env$medData<-env$medData[!duplicated(env$medData[c("PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode","Orpha_Kode")]),]
     env$dq <- subset(env$medData, select = repCol)
     env$dq[cl]<-""
     dup <-inputData[duplicated(inputData[c("PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode","Orpha_Kode")],fromLast=TRUE),]
-    icdList <-which(!( dup$ICD_Primaerkode =="" | is.na(dup$ICD_Primaerkode) | is.empty(dup$ICD_Primaerkode)))
-    for(i in icdList){
-      iCode <- stri_trim(as.character(dup$ICD_Primaerkode[i]))
-      oCode <- stri_trim(as.character(dup$Orpha_Kode[i]))
-      if (is.element(iCode, stri_trim(as.character(eList$IcdCode))))
-      {
-        rdDup_no =rdDup_no+1
-      }else if (!is.na(as.numeric(oCode))) {
-        rdDup_no =rdDup_no+1
+    if (!dim(dup)[1]==0)
+    { 
+      dup$dupRdCase <-NA
+      icdList <-which(!( dup$ICD_Primaerkode =="" | is.na(dup$ICD_Primaerkode) | is.empty(dup$ICD_Primaerkode)))
+      for(i in icdList){
+        iCode <- stri_trim(as.character(dup$ICD_Primaerkode[i]))
+        oCode <- stri_trim(as.character(dup$Orpha_Kode[i]))
+        if (is.element(iCode, stri_trim(as.character(eList$IcdCode))))
+        {
+          dup$dupRdCase[i] = "yes"
+        }
+        else if (!is.na(as.numeric(oCode))) {
+          dup$dupRdCase[i] = "yes"
+        }
       }
-    }
+      dupRd <-dup[which(dup$dupRdCase=="yes"),]
+      rdDup_no <- length (unique(dupRd$Aufnahmenummer))
+      env$dup <-dup
+      
+    } else   rdDup_no =0
 
   }
   else if(!is.empty(env$medData$PatientIdentifikator) & !is.empty(env$medData$Aufnahmenummer) & !is.empty(env$medData$ICD_Primaerkode))
@@ -68,15 +75,24 @@ checkCordDQ <- function ( instID, reportYear, inpatientCases, refData1, refData2
     env$dq[cl]<-""
     #dup <-which(duplicated(medData[c("PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode")], fromLast=TRUE))
     dup <-inputData[duplicated(inputData[c("PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode")], fromLast=TRUE),]
-    icdList <-which(!( dup$ICD_Primaerkode =="" | is.na(dup$ICD_Primaerkode) | is.empty(dup$ICD_Primaerkode)))
-    for(i in icdList){
-      iCode <- stri_trim(as.character(dup$ICD_Primaerkode[i]))
-      if (is.element(iCode, stri_trim(as.character(eList$IcdCode))))
-      {
-        rdDup_no =rdDup_no+1
+    if (!dim(dup)[1]==0)
+    { 
+      dup$dupRdCase <-NA
+      icdList <-which(!( dup$ICD_Primaerkode =="" | is.na(dup$ICD_Primaerkode) | is.empty(dup$ICD_Primaerkode)))
+      for(i in icdList){
+        iCode <- stri_trim(as.character(dup$ICD_Primaerkode[i]))
+        if (is.element(iCode, stri_trim(as.character(eList$IcdCode))))
+        {
+          dup$dupRdCase[i] = "yes"
+        }
       }
-    }
+      dupRd <-dup[which(dup$dupRdCase=="yes"),]
+      rdDup_no <- length (unique(dupRd$Aufnahmenummer))
+      env$dup <-base::rbind(env$dup, dup)
+    }else   rdDup_no =0
   }
+  if(!is.empty(env$medData$PatientIdentifikator)) env$tdata$patient_no = length (unique(env$medData$PatientIdentifikator))
+  if(!is.empty(env$medData$Aufnahmenummer)) env$tdata$case_no = length (env$medData$Aufnahmenummer[which(!duplicated(env$medData$Aufnahmenummer)& ! is.na(env$medData$Aufnahmenummer))])
 
   #D1 completeness
   keyD1 <- checkD1( refData1, cl, basicItem, bItemCl)

@@ -90,7 +90,7 @@ headerRef1<- c ("IcdCode", "Complete_SE", "Unique_SE")
 headerRef2<- c ("Gueltigkeit", "Alpha_ID", "ICD_Primaerkode1", "ICD_Manifestation", "ICD_Zusatz","ICD_Primaerkode2", "Orpha_Kode", "Label")
 names(refData1)<-headerRef1
 names(refData2)<-headerRef2
-cordTracer <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
+cordTracerList <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 #------------------------------------------------------------------------------------------------------
 # Import CORD data
 #------------------------------------------------------------------------------------------------------
@@ -102,16 +102,18 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
     startTime <- base::Sys.time()
     yearMsg <-paste (" \n \n >>> New reporting year:" , reportYear, "\n \n " )
     cat(yearMsg, sep="\n")
+    instData <- NULL
     medData <- NULL
     msg <- NULL
     dataFormat =""
     dqRep <-NULL
     inpatientCases = 0
+    tracer <- cordTracerList
     if (toString(reportYear)  %in%  names(ipatCasesList))inpatientCases = ipatCasesList[[toString(reportYear)]]
     if (grepl("fhir", path))
     {
       dataFormat = "FHIR"
-      tracer <- cordTracer
+      #tracer <- cordTracer
       if (length (tracer) > tracerNo )
       {
         while ( length(tracer) > tracerNo) {
@@ -137,8 +139,9 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       } 
       else { 
         cordTracer <- paste0(tracer, collapse=", ")
-        print(paste ("cordTracer:",    cordTracer, "NO:", length(tracer)))
+        print(paste ("cordTracer:",    cordTracerList, "NO:", length(tracer)))
         source("./R/dqFhirInterface.R")
+        medData<-instData
         medData<- instData[ format(as.Date(instData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
       }
     }else{ 
@@ -146,12 +149,12 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       if (ext=="csv") { 
         dataFormat = "CSV"
         medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1") 
-        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
+        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracerList)
       }
       if (ext=="xlsx") { 
         dataFormat = "Excel"
         medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE, detectDates = TRUE)
-        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracer)
+        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracerList)
         #medData$Entlassungsdatum <- as.Date(medData$Entlassungsdatum,  origin="2020-10-24", format=dateFormat)
       }
     }
