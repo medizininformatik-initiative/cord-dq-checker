@@ -6,7 +6,7 @@
 library(fhircrackr)
 
 #define fhir search request
-if (!exists("cordTracer"))
+if (is.null(cordTracer))
 {
   searchRequest <- paste0(
     path,
@@ -40,7 +40,7 @@ ConditionTab <- fhir_table_description(
     display = "code/coding/display",
     code = "code/coding/code",
     system = "code/coding/system",
-    recorded_date = "recordedDate"
+    recorded_date = diagnosisDate_item
   ),
   sep           = " / ",
   brackets      = c("[", "]"),
@@ -70,7 +70,7 @@ EncounterTab <- fhir_table_description(
     #enId = "identifier/value",
     start = "period/start",
     end = "period/end",
-    class = "class/code",
+    class = encounterClass_item,
     status ="status",
     admitCode ="hospitalization/admitSource/coding/code",  # Aufnahmeanlass
     diagnosisUse ="diagnosis/use" # admission, billing or discharge
@@ -109,9 +109,8 @@ condTmp3$resource_identifier <- NULL
 condTmp3<- unique(condTmp3)
 
 # filter conditions by code system
-condIcd <- condTmp3[condTmp3$system=="http://fhir.de/CodeSystem/dimdi/icd-10-gm",]
-condOrpha <- condTmp3[condTmp3$system=="http://www.orpha.net",]
-condAlphaID <- condTmp3[condTmp3$system=="http://fhir.de/CodeSystem/dimdi/alpha-id",]
+condIcd <- condTmp3[condTmp3$system==icdSystem,]
+condOrpha <- condTmp3[condTmp3$system==orphaSystem,]
 
 # split icd code in pri and sec code
 condIcd$pri_code <- ifelse(nchar(condIcd$code)>6,sapply(strsplit(condIcd$code,' '), function(x) x[1]),condIcd$code)
@@ -120,18 +119,13 @@ condIcd$sec_code <- ifelse(nchar(condIcd$code)>6,sapply(strsplit(condIcd$code,' 
 condIcd$system <- NULL
 condIcd$code <- NULL
 names(condIcd) <- c("PatientIdentifikator","Aufnahmenummer", "Diagnosetext", "ICD_Text", "Diagnosedatum", "ICD_Primaerkode", "ICD_Manifestation")
-
-# OrphaI and AlphaID data
+# Orpha
 condOrpha$system <- NULL
 condOrpha$display <- NULL
 names(condOrpha) <- c("PatientIdentifikator","Aufnahmenummer", "Diagnosetext", "Orpha_Kode", "Diagnosedatum")
-condAlphaID$system <- NULL
-condAlphaID$display <- NULL
-names(condAlphaID) <- c("PatientIdentifikator","Aufnahmenummer", "Diagnosetext", "AlphaID_Kode", "Diagnosedatum")
 
 # join condition data
-if (!(is.null(condIcd)|is.null (condOrpha)|is.null(condAlphaID))) conditions <-Reduce(function(x, y) base::merge(x, y, all=T), list(condIcd,condOrpha, condAlphaID)) else
-  if (!(is.null(condIcd)|is.null (condOrpha))) conditions <-Reduce(function(x, y) base::merge(x, y, all=T), list(condIcd,condOrpha)) else conditions <- condIcd
+if (!(is.null(condIcd)|is.null (condOrpha))) conditions <-Reduce(function(x, y) base::merge(x, y, all=T), list(condIcd,condOrpha)) else conditions <- condIcd
 
 # convert and save fhir bundles to a data frame patRaw
 patRaw <- fhirRaw$PatientTab

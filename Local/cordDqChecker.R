@@ -43,16 +43,22 @@ max_FHIRbundles <- Inf
 # v3) Inpatient case number each year
 ipatCasesList=list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000)
 # v4) encounter class value
-#encounterClass = IMP
 encounterClass = NULL
+#encounterClass = "IMP"
 # v5) Start and End of the reporting period
 reportYearStart = 2015
 reportYearEnd = 2022
 # v6) Ref. date
-dateRef ="Entlassungsdatum"
+dateRef = "Diagnosedatum"
 # v7) Date format
 dateFormat="%Y-%m-%d"
-# v8) import CORD tracer diagnoses
+# v8) fhir path to the data items encounter class and diagnosis date
+encounterClass_item=  "class/code"
+diagnosisDate_item= "recordedDate"
+# v9) custom parameters of used conding system in the condition resouces on the fhir server
+icdSystem= "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+orphaSystem = "http://www.orpha.net"
+# v10) import CORD tracer diagnoses
 # CordTracerList version 2.0
 tracerPath <-"./Data/refData/CordTracerList_v2.csv"
 # cord tracer version 1.0
@@ -121,7 +127,6 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
           cordTracer <- paste0(cordTracer.vec, collapse=", ")
           print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
           source("./R/dqFhirInterface.R")
-          instData <- instData[ format(as.Date(instData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
           medData <- base::rbind(medData, instData)
           tracer <- head(tracer, - tracerNo)
         }
@@ -131,32 +136,38 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
           cordTracer <- paste0(cordTracer.vec, collapse=", ")
           print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
           source("./R/dqFhirInterface.R")
-          instData <- instData[ format(as.Date(instData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
           medData <- base::rbind(medData, instData)
         }
         medData <-base::unique(medData)
         
       } 
       else { 
-        cordTracer <- paste0(tracer, collapse=", ")
+        if(is.null (cordTracerList)) cordTracer =NULL else cordTracer <- paste0(tracer, collapse=", ")
         print(paste ("cordTracer:",    cordTracerList, "NO:", length(tracer)))
         source("./R/dqFhirInterface.R")
         medData<-instData
-        medData<- instData[ format(as.Date(instData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
+        #medData<- instData[ format(as.Date(instData[[dateRef]], format=dateFormat),"%Y")==reportYear, ]
       }
+      if (!is.null(encounterClass)) medData<- medData[medData[["Kontakt_Klasse"]]==encounterClass, ]
+      
     }else{ 
       ext <-getFileExtension(path)
       if (ext=="csv") { 
         dataFormat = "CSV"
         medData <- read.table(path, sep=";", dec=",",  header=T, na.strings=c("","NA"), encoding = "latin1") 
-        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracerList)
       }
-      if (ext=="xlsx") { 
+      else if (ext=="xlsx") { 
         dataFormat = "Excel"
         medData <- read.xlsx(path, sheet=1,skipEmptyRows = TRUE, detectDates = TRUE)
-        medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracerList)
-        #medData$Entlassungsdatum <- as.Date(medData$Entlassungsdatum,  origin="2020-10-24", format=dateFormat)
       }
+      # filter for tracer diagnoses
+      medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracerList)
+      # filter for report year and inpatient cases
+      if (dateRef %in% names(medData)){
+        if (!all(is.na(medData[[dateRef]]))) medData<- medData[format(as.Date(medData[[dateRef]], format=dateFormat),"%Y")==reportYear, ] else stop("No date values available for data selection")
+      }else stop("Reference date item is not available")
+      if (!is.null(encounterClass)) medData<- medData[medData[["Kontakt_Klasse"]]==encounterClass, ]
+      
     }
     if (is.null (medData) | all(is.na(medData))) { 
       endTime <- base::Sys.time()
@@ -182,14 +193,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       bottom <- paste ("\n ####################################***CordDqChecker***###########################################")
       cat(paste (top,msg, bottom, sep="\n"))
       next
-    }
-  
-  # filter for report year and inpatient cases
-  if (dateRef %in% names(medData)){
-    if (!all(is.na(medData[[dateRef]]))) medData<- medData[format(as.Date(medData[[dateRef]], format=dateFormat),"%Y")==reportYear, ] else stop("No date values available for data selection")
-  }else stop("Reference date item is not available")
-  if (!is.null(encounterClass)) medData<- medData[medData[["Kontakt_Klasse"]]==encounterClass, ]
-  if (dim(medData)[1]==0 | all(is.na(medData))) { 
+  } else if (dim(medData)[1]==0 | all(is.na(medData))) { 
     endTime <- base::Sys.time()
     timeTaken <-  round (as.numeric (endTime - startTime, units = "mins"), 2)
     dqRep$executionTime_inMin <-timeTaken

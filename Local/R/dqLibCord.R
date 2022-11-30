@@ -87,13 +87,13 @@ checkCordDQ <- function ( instID, reportYear, inpatientCases, refData1, refData2
         }
       }
       dupRd <-dup[which(dup$dupRdCase=="yes"),]
-      rdDup_no <- length (unique(dupRd$Aufnahmenummer))
+      rdDup_no <- rdDup_no +length (unique(dupRd$Aufnahmenummer))
       env$dup <-base::rbind(env$dup, dup)
     }else   rdDup_no =0
   }
   if(!is.empty(env$medData$PatientIdentifikator)) env$tdata$patient_no = length (unique(env$medData$PatientIdentifikator))
   if(!is.empty(env$medData$Aufnahmenummer)) env$tdata$case_no = length (env$medData$Aufnahmenummer[which(!duplicated(env$medData$Aufnahmenummer)& ! is.na(env$medData$Aufnahmenummer))])
-
+  
   #D1 completeness
   keyD1 <- checkD1( refData1, cl, basicItem, bItemCl)
   env$mItem <- keyD1$mItem
