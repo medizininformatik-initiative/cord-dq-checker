@@ -40,6 +40,7 @@ checkCordDQ <- function ( instID, reportYear, inpatientCases, refData1, refData2
   inputData <-env$medData
   row_no = nrow(inputData)
   eList <-refData1[which(refData1$Unique_SE=="yes"),]
+  
   if(!is.empty(env$medData$PatientIdentifikator) & !is.empty(env$medData$Aufnahmenummer) & !is.empty(env$medData$ICD_Primaerkode) & !is.empty(env$medData$Orpha_Kode))
   {
     env$medData<-env$medData[!duplicated(env$medData[c("PatientIdentifikator", "Aufnahmenummer", "ICD_Primaerkode","Orpha_Kode")]),]
@@ -123,6 +124,12 @@ checkCordDQ <- function ( instID, reportYear, inpatientCases, refData1, refData2
   if(!is.empty(vars) & length(vars)>=2) concRef <- vars[[2]]
   else concRef <- NULL
   if(!is.null(concRef)) env$tdata$conc_with_refValues<-getConcWithRefValues(env$tdata$tracerCase_rel_py_ipat, concRef)
+  
+  orphaCases <- env$dq[which(env$dq$orphaCase=="yes"),]
+  rdCases <- env$dq[which (env$dq$CheckedRdCase=="yes"),]
+  env$tdata$orphaPatient_no_py = length(unique(orphaCases$PatientIdentifikator))
+  env$tdata$rdPatient_no_py = length(unique(rdCases$PatientIdentifikator))
+  
   td<-getUserSelectedMetrics(dqInd, env$tdata)
   out <- list()
   out[["metric"]] <-td
@@ -159,6 +166,7 @@ getSubjCompleteness <-function(rep, subj, itemVec, medData) {
   if (all(itemVec %in%  colnames(medData)==TRUE))
   {
     basicData <-subset(medData, select= itemVec)
+    basicData[basicData==""] <-NA
     subj_no <-length(unique(basicData[[subj]]))
     completeData <- na.omit(basicData)
     complete_subj_no_py <-length(unique(completeData[[subj]]))
@@ -549,20 +557,20 @@ checkUniqueIcdOrphaCoding <- function (refData1, refData2, cl){
   k3_rd_counter=0
 
   if(!is.empty(env$medData$ICD_Primaerkode)){
-    cq <- which(env$medData$ICD_Primaerkode=="" | is.na(env$medData$ICD_Primaerkode))
+    cq <- which(env$medData$ICD_Primaerkode=="" | is.na(env$medData$ICD_Primaerkode) | is.empty(env$medData$ICD_Primaerkode))
     #env$cdata <- addMissing("ICD_Primaerkode", env$cdata, length (cq), length(env$medData$ICD_Primaerkode))
     if (!is.empty (cq)) for(i in cq) {
       env$dq[,cl][i]<- paste("Missing ICD-Code. ", env$dq[,cl][i])
       code <- env$medData$Orpha_Kode[i]
       if (! (is.na(code) || is.null(code) || is.empty(code))){
-        k3_check_counter =k3_check_counter+1
-        env$dq$CheckedRdCase[i] <- "yes"
         oCode <-as.numeric(as.character(env$medData$Orpha_Kode[i]))
         #SE-Fälle
         if (!is.na(oCode)) {
           k3_rd_counter=k3_rd_counter+1
           env$dq$rdCase[i] <- "yes"
           env$dq$unambiguous_rdCase [i] = "yes"
+          k3_check_counter =k3_check_counter+1
+          env$dq$CheckedRdCase[i] <- "yes"
         }
         else{
           env$dq[,cl][i] <- paste("Ambiguous Case.",env$dq[,cl][i] )
@@ -573,79 +581,92 @@ checkUniqueIcdOrphaCoding <- function (refData1, refData2, cl){
     iList <-which(env$medData$ICD_Primaerkode !="" & !is.na(env$medData$ICD_Primaerkode)  & !is.empty(env$medData$ICD_Primaerkode))
     for(i in iList){
       iCode <- stri_trim(as.character(env$medData$ICD_Primaerkode[i]))
-      oCode <-env$medData$Orpha_Kode[i]
-      numCode <-as.numeric(as.character(env$medData$Orpha_Kode[i]))
-      if (!(is.null(oCode) |is.na(oCode) | is.empty(oCode))){
-        if ( is.na(numCode))
-        {
-          # nicht valid
-          msg<- paste("Ambiguous Coding.",  env$dq[,cl][i])
-          env$dq[,cl][i] <- msg
-
-        }
+      numIcd <-as.numeric(iCode)
+      if (!(is.null(iCode) |is.na(iCode) | is.empty(iCode))){
+         if ( !is.na(numIcd))
+          {
+             # nicht valid
+             msg<- paste("Invalid ICD code.",  numIcd, env$dq[,cl][i])
+             env$dq[,cl][i] <- msg
+         }
         else {
-
-          iRefList<- which(stri_trim(as.character(refData2$ICD_Primaerkode1))==iCode)
-          if (!is.empty (iRefList)){
-            oRefList <- ""
-            k3_check_counter =k3_check_counter+1
-            env$dq$CheckedRdCase[i] <- "yes"
-
-            for (j in iRefList){
-              oRefCode <-as.integer(refData2$Orpha_Kode[j])
-              oRefList <- append( oRefList,oRefCode)
-            }
-            if ( !is.element(numCode, oRefList))
+          oCode <-env$medData$Orpha_Kode[i]
+          numCode <-as.numeric(as.character(env$medData$Orpha_Kode[i]))
+          if (!(is.null(oCode) |is.na(oCode) | is.empty(oCode))){
+            if ( is.na(numCode))
             {
-              msg<- paste("Ambiguous Coding.",  env$dq[,cl][i])
-              # msg<- paste("Kodierung ist nicht eindeutig. Relation",iCode,"-", oCode , "ist im BfArM nicht vorhanden. ",  env$dq[,cl][i])
+              # nicht valid
+              msg<- paste("Ambiguous Orphacoding.",  env$dq[,cl][i])
               env$dq[,cl][i] <- msg
+              
             }
-            else { k3_rd_counter=k3_rd_counter+1
-            env$dq$rdCase[i] <- "yes"
-            env$dq$unambiguous_rdCase [i] = "yes"
+            else {
+              
+              iRefList<- which(stri_trim(as.character(refData2$ICD_Primaerkode1))==iCode)
+              if (!is.empty (iRefList)){
+                oRefList <- ""
+                k3_check_counter =k3_check_counter+1
+                env$dq$CheckedRdCase[i] <- "yes"
+                
+                for (j in iRefList){
+                  oRefCode <-as.integer(refData2$Orpha_Kode[j])
+                  oRefList <- append( oRefList,oRefCode)
+                }
+                if ( !is.element(numCode, oRefList))
+                {
+                  msg<- paste("Ambiguous Orphacoding.",  env$dq[,cl][i])
+                  # msg<- paste("Kodierung ist nicht eindeutig. Relation",iCode,"-", oCode , "ist im BfArM nicht vorhanden. ",  env$dq[,cl][i])
+                  env$dq[,cl][i] <- msg
+                }
+                else { k3_rd_counter=k3_rd_counter+1
+                env$dq$rdCase[i] <- "yes"
+                env$dq$unambiguous_rdCase [i] = "yes"
+                }
+              }
+              else{
+                if (!(is.null(iCode) |is.na(iCode) | is.empty(iCode))){
+                  k3_check_counter =k3_check_counter+1
+                  env$dq$CheckedRdCase[i] <- "yes"
+                  oRef<- which(as.numeric(as.character(refData2$Orpha_Kode))==numCode)
+                  if (!is.empty ( oRef)){
+                    msg<- paste("Ambiguous Coding.",  env$dq[,cl][i])
+                    #msg<- paste("Kodierung ist nicht eindeutig. ICD10 Code",iCode , "ist im BfArM Mapping nicht enthalten. ",  env$dq[,cl][i])
+                    env$dq[,cl][i] <- msg
+                  }
+                }
+              }
+              
             }
+            
           }
           else{
-            if (!(is.null(iCode) |is.na(iCode) | is.empty(iCode))){
+            eList <-refData1[(which(refData1$Unique_SE=="yes")),]
+            if (is.element(iCode, stri_trim(as.character(eList$IcdCode))))
+            {
+              k3_rd_counter=k3_rd_counter+1
               k3_check_counter =k3_check_counter+1
               env$dq$CheckedRdCase[i] <- "yes"
-              oRef<- which(as.numeric(as.character(refData2$Orpha_Kode))==numCode)
-              if (!is.empty ( oRef)){
-                msg<- paste("Ambiguous Coding.",  env$dq[,cl][i])
-                #msg<- paste("Kodierung ist nicht eindeutig. ICD10 Code",iCode , "ist im BfArM Mapping nicht enthalten. ",  env$dq[,cl][i])
+              env$dq$rdCase[i] = "yes"
+              env$dq$unambiguous_rdCase [i] = "yes"
+            }
+            else {
+              mList <-refData1[(which(refData1$Unique_SE=="no")),]
+              iRefList<- which(stri_trim(as.character (mList$IcdCode))==iCode)
+              if (!is.empty (iRefList)){
+                env$dq$rdCase[i] = "yes"
+                k3_check_counter =k3_check_counter+1
+                env$dq$CheckedRdCase[i] <- "yes"
+                env$dq$ambiguous_tracer[i] <-"yes"
+                # msg<- paste("ICD10 Kodierung",iCode, "ist nicht eindeutig. ICD10-Orpha Relation ist gemäß Tracer-Diagnosenliste vom Typ 1-m. ",  env$dq[,cl][i])
+                msg<- paste("Ambiguous ICD10 Code",iCode, ".",  env$dq[,cl][i])
                 env$dq[,cl][i] <- msg
               }
             }
           }
-
-        }
-
-      }
-      else{
-        eList <-refData1[(which(refData1$Unique_SE=="yes")),]
-        if (is.element(iCode, stri_trim(as.character(eList$IcdCode))))
-        {
-          k3_rd_counter=k3_rd_counter+1
-          k3_check_counter =k3_check_counter+1
-          env$dq$CheckedRdCase[i] <- "yes"
-          env$dq$rdCase[i] = "yes"
-          env$dq$unambiguous_rdCase [i] = "yes"
-        }
-        else {
-          mList <-refData1[(which(refData1$Unique_SE=="no")),]
-          iRefList<- which(stri_trim(as.character (mList$IcdCode))==iCode)
-          if (!is.empty (iRefList)){
-            env$dq$rdCase[i] = "yes"
-            k3_check_counter =k3_check_counter+1
-            env$dq$CheckedRdCase[i] <- "yes"
-            env$dq$ambiguous_tracer[i] <-"yes"
-           # msg<- paste("ICD10 Kodierung",iCode, "ist nicht eindeutig. ICD10-Orpha Relation ist gemäß Tracer-Diagnosenliste vom Typ 1-m. ",  env$dq[,cl][i])
-            msg<- paste("Ambiguous ICD10 Code",iCode, ".",  env$dq[,cl][i])
-            env$dq[,cl][i] <- msg
-          }
+          
         }
       }
+  
     }
   }
 
