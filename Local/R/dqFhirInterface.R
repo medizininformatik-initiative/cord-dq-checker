@@ -4,7 +4,6 @@
 #' Project CORD-MI, grant number FKZ-01ZZ1911R
 #######################################################################################################
 library(fhircrackr)
-
 #define fhir search request
 if (is.null(cordTracer))
 {
@@ -28,7 +27,7 @@ if (is.null(cordTracer))
 }
 
 # get fhir bundles
-bundles <- fhir_search(searchRequest, max_bundles =max_FHIRbundles) 
+bundles <- fhir_search(request =searchRequest, username = username, password = password, verbose = 2, max_bundles =max_FHIRbundles) 
 #define the table_description
 ConditionTab <- fhir_table_description(
   resource = "Condition",
@@ -42,10 +41,11 @@ ConditionTab <- fhir_table_description(
     system = "code/coding/system",
     recorded_date = diagnosisDate_item
   ),
-  sep           = " / ",
-  brackets      = c("[", "]"),
-  rm_empty_cols = FALSE,
-  format        = "compact"
+  style = fhir_style(
+    sep           = " / ",
+    brackets      = c("[", "]"),
+    rm_empty_cols = FALSE
+  )
 )
 PatientTab <- fhir_table_description(
   resource = "Patient",
@@ -59,8 +59,9 @@ PatientTab <- fhir_table_description(
     city = "address/city",
     type = "address/type"
   ),
-  rm_empty_cols = FALSE,
-  format        = "compact"
+  style = fhir_style(
+    rm_empty_cols = FALSE
+  )
 )
 EncounterTab <- fhir_table_description(
   resource = "Encounter",
@@ -75,10 +76,11 @@ EncounterTab <- fhir_table_description(
     admitCode ="hospitalization/admitSource/coding/code",  # Aufnahmeanlass
     diagnosisUse ="diagnosis/use" # admission, billing or discharge
   ),
-  rm_empty_cols = FALSE,
-  format        = "compact"
+  style = fhir_style(
+    rm_empty_cols = FALSE
+  )
 )
-design <- fhir_design(ConditionTab, PatientTab, EncounterTab)
+design <- fhir_design(ConditionTab, PatientTab, EncounterTab )
 fhirRaw<- fhir_crack(bundles, design)
 condRaw <- fhirRaw$ConditionTab
 if (!is.empty (condRaw))
