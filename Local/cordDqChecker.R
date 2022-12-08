@@ -207,7 +207,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       write.csv(dqRep, paste (pathExp,".csv", sep =""), row.names = FALSE)
       msg <- paste ( msg , "\n \n See the generated report \n >>> in the file path:", pathExp)
       
-      bottom <- paste ("\n ####################################***CordDqChecker***###########################################")
+      bottom <- paste ("\n ####################################***CordDqChecker***###########################################\n")
       cat(paste (top,msg, bottom, sep="\n"))
       if (iterator ==length(range) & !is.null(allData) ){
         if (dim(allData)[1] > dim(medData)[1])
@@ -240,7 +240,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
     write.csv(dqRep, paste (pathExp,".csv", sep =""), row.names = FALSE)
     msg <- paste ( msg , "\n \n See the generated report \n >>> in the file path:", pathExp)
     
-    bottom <- paste ("\n ####################################***CordDqChecker***###########################################")
+    bottom <- paste ("\n ####################################***CordDqChecker***###########################################\n")
     cat(paste (top,msg, bottom, sep="\n"))
     if (iterator ==length(range) & !is.null(allData) ){
       if (dim(allData)[1] > dim(medData)[1])
