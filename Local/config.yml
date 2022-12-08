@@ -28,8 +28,8 @@ default:
   # Please change the variables v5 - v8 only if technical or legal restrictions otherwise prevent successful execution!
   #--------------------------------------------------------------------------------------------------------------------
   # v5) set the start and end of the reporting period
-  startYear: 2019
-  endYear: 2020
+  startYear: 2015
+  endYear: 2022
   
   # v6) set the date format and the data item for diagnosis recorded date
   # set the date format
