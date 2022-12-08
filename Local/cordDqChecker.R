@@ -17,7 +17,7 @@ options(warn=-1)# to suppress warnings
 cat("####################################***CordDqChecker***########################################### \n \n")
 # check missing packages
 pack <- unique(as.data.frame( (installed.packages())[,c(1,3)]))
-dep <- c("openxlsx", "fhircrackr",  "stringi")
+dep <- c("openxlsx", "fhircrackr",  "stringi", "config")
 depPkg <-subset(pack, pack$Package %in% dep)
 diff <-setdiff(dep, depPkg$Package)
 if (!is.empty(diff)) paste ("The following packages are missing:", toString (diff)) else{ 

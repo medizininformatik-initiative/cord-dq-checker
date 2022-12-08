@@ -11,6 +11,7 @@ RUN apt-get update -qq && apt-get install -y libxml2-dev libcurl4-openssl-dev li
 RUN R -e "install.packages('fhircrackr')"
 RUN R -e "install.packages('openxlsx')"
 RUN R -e "install.packages('stringi')"
+RUN R -e "install.packages('config')"
 
 # copy files
 COPY . .
