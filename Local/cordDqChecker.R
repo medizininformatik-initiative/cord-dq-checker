@@ -191,7 +191,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       }else stop("Reference date item is not available")
       if (!is.null(encounterClass_value)) medData<- medData[medData[["Kontakt_Klasse"]]==encounterClass_value, ]
     }
-    if (is.null (medData)) { 
+    if (is.null(medData)) { 
       dqRep$dataFormat <- dataFormat
       dqRep$report_year <- reportYear
       dqRep$inst_id <- institut_ID 
@@ -210,14 +210,14 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       bottom <- paste ("\n ####################################***CordDqChecker***###########################################\n")
       cat(paste (top,msg, bottom, sep="\n"))
       if (iterator ==length(range) & !is.null(allData) ){
-        if (dim(allData)[1] > dim(medData)[1])
+        if (dim(allData)[1] > 0)
         {
           setGlobals(allData, repCol, cdata, ddata, tdata)
           out <-checkCordDQ(instID, reportYear , inpatientCases, refData1, refData2, dqRepCol,repCol, "dq_msg", "basicItem", "Total", oItem, caseItems)
           dqRep <-out$metric
           dqRep$report_year <-  paste (reportYearStart,"-",  reportYearEnd,  sep = "")
           dqRep$dataFormat <- dataFormat
-          expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData",  sep = "")
+          expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData.csv",  sep = "")
           write.csv(dqRep, expPath, row.names = FALSE)
         }
         
@@ -250,7 +250,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
         dqRep <-out$metric
         dqRep$report_year <-  paste (reportYearStart,"-",  reportYearEnd,  sep = "")
         dqRep$dataFormat <- dataFormat
-        expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData",  sep = "")
+        expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData.csv",  sep = "")
         write.csv(dqRep, expPath, row.names = FALSE)
       }
       
@@ -333,8 +333,9 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       endTime <- base::Sys.time()
       timeTaken <-  round (as.numeric (endTime - executionTime, units = "mins"), 2)
       dqRep$executionTime_inMin <-timeTaken
-      expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData",  sep = "")
+      expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData.csv",  sep = "")
       write.csv(dqRep, expPath, row.names = FALSE)
+      
     }
    
   }
