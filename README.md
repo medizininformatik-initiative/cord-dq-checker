@@ -39,25 +39,24 @@ Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq
   
   |DQ Parameter | Description |
   |-------------------------- | ------------|
-  | inpatient cases |  number of inpatient cases per year |
-  | inpatients |  number of inpatient per year |
-  | RD inpatients |  number of RD inpatient per year |
-  | Orpha inpatients |  number of Orpha inpatient per year |
-  | RD cases | number of RD cases per year |
-  | Orpha cases |  number of Orpha cases per year |
-  | tracer cases |  number of tracer RD cases per year |
+  | inpatient cases |  number of inpatient cases per year in a given hospital |
+  | RD inpatients |  number of RD inpatient per year in a given data set |
+  | Orpha inpatients |  number of Orpha inpatient per year in a given data set |
+  | RD cases | number of RD cases per year in a given data set |
+  | Orpha cases |  number of Orpha cases per year in a given data set |
+  | tracer cases |  number of tracer RD cases per year in a given data set |
   | RD cases rel. frequency| relative frequency of inpatient RD cases per year per 100.000 cases|
   | Orpha cases rel. frequency| relative frequency of inpatient Orpha cases per year per 100.000 cases|
   | tracer cases rel. frequency| relative frequency of inpatient tracer RD cases per year per 100.000 cases|
-  | missing mandatory data items |  number of missing data items per year |
-  | missing mandatory data values| number of missing data values per year |
-  | incomplete subjects |  number of incomplete inpatient records per year |
-  | orphacodes |  number of Orphacodes per year |
-  | missing orphacodes |  number of missing Orphacodes per year |
-  | outliers | number of detected outliers per year |
-  | implausible links | number of implausible code links per year |
-  | ambiguous RD cases | number of ambiguous RD cases per year |
-  | duplicated RD cases |  number of duplicated RD cases per year |
+  | missing mandatory data items |  number of missing data items per year in a given data set |
+  | missing mandatory data values| number of missing data values per year in a given data set |
+  | incomplete subjects |  number of incomplete inpatient records per year in a given data set |
+  | orphacodes |  number of Orphacodes per year in a given data set |
+  | missing orphacodes |  number of missing Orphacodes per year in a given data set |
+  | outliers | number of detected outliers per year in a given data set |
+  | implausible links | number of implausible code links per year in a given data set |
+  | ambiguous RD cases | number of ambiguous RD cases per year in a given data set |
+  | duplicated RD cases |  number of duplicated RD cases per year in a given data set |
   
 - The following references are required to assess the quality of orphacoding and can be easily updated with new versions: (1) The standard Alpha-ID-SE terminology [1], and (2) a reference for tracer diagnoses such as the list provided in [2].
   
