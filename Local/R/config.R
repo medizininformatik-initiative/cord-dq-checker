@@ -14,26 +14,43 @@ if (exists("organization_name", where = conf) && nchar(conf$organization_name) >
 # v2) check for path configuration
 if (exists("path", where = conf) && nchar(conf$path) >= 2) {
   path= conf$path
+}else stop("No data path found, please set the data path in the config file")
+
+# v3) check for access and proxy configuration
+if (exists("username", where = conf) && !is.null(conf$username)) {
   username =conf$username
   password=conf$password
   token =conf$token
-}else stop("No data path found, please set the data path in the config file")
+}else {
+  username = NULL
+  password = NULL
+  token = NULL
+}
+if (exists("http_proxy", where = conf) &&  !is.null(conf$http_proxy)) {
+  Sys.setenv(http_proxy = conf$http_proxy)
+}
+if (exists("https_proxy", where = conf) && !is.null(conf$https_proxy)) {
+  Sys.setenv(https_proxy = conf$https_proxy)
+}
+if (exists("no_proxy", where = conf) && !is.null(conf$no_proxy)) {
+  Sys.setenv(no_proxy = conf$no_proxy)
+}
 
-# v3) check for inpatientCases_number
+# v4) check for inpatientCases_number
 if (exists("inpatientCases_number", where = conf) && nchar(conf$inpatientCases_number) >= 3) {
   ipatCasesList<- conf$inpatientCases_number
 } else {
   stop("No inpatient case number found, Please set the number of inpatient case for each year in the config file")
 }
 
-# v4) check inpatientEncounter_code
+# v5) check inpatientEncounter_code
 if (exists("inpatientEncounter_code", where = conf) && !is.null(conf$inpatientEncounter_code)) {
   encounterClass_value <- conf$inpatientEncounter_code
 } else {
   encounterClass_value <- NULL
 }
 
-# v5) start and end of the reporting period
+# v6) start and end of the reporting period
 if (exists("startYear", where = conf) && !is.null(conf$startYear)) {
   if (!grepl("[0-9]{4}", conf$startYear)) stop("No date available for the start of reporting period:", reportYearStart)
   else reportYearStart = conf$startYear
@@ -47,7 +64,7 @@ if (exists("endYear", where = conf) && !is.null(conf$endYear)) {
   reportYearEnd = 2022
 }
 
-# v6) data item and date format for diagnosis recorded date
+# v7) data item and date format for diagnosis recorded date
 if (exists("date_format", where = conf) && !is.null(conf$date_format)) {
   dateFormat = conf$date_format
 } else {
@@ -61,7 +78,7 @@ if (exists("diagnosisDate_item", where = conf) && !is.null(conf$diagnosisDate_it
   dateRef = "Diagnosedatum"
 }
 
-# v7) custom parameters of used fhir data
+# v8) custom parameters of used fhir data
 if (exists("encounterClass_item", where = conf) && !is.null(conf$encounterClass_item)) {
   encounterClass_item= conf$encounterClass_item
 } else {
@@ -88,7 +105,7 @@ if (exists("tracer_no", where = conf) && !is.null(conf$tracer_no)) {
   tracerNo= 25
 }
 
-# v8) check for tracer list versions
+# v9) check for tracer list versions
 if (exists("tracerList_version", where = conf) && nchar(conf$tracerList_version) >= 2) {
   if (grepl( "v2", conf$tracerList_version)) {
     tracerPath <-"./Data/refData/CordTracerList_v2.csv"

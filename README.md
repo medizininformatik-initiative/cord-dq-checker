@@ -9,7 +9,7 @@ We would like to note that the developed tool supports HL7 FHIR as well as file 
    - Run the git command: ``` git clone --branch FDPG_study https://github.com/medizininformatik-initiative/cord-dq-checker.git ```
 
 2. Go to the folder `./Local` and edit the file `config.yml` with your local variables
-   - Set your custom variables (v1...v4)
+   - Set your custom variables (v1...v5)
      - Define your organization name (v1) and data input path (v2). This variable specifies which data set should be imported. When importing CSV or Excel data formats,   please define the headers as specified in the examples stored in `Local/Data/medData`. You can, for example, define your path as following:
 	   - ```path="http://141.5.101.1:8080/fhir/" ```
 	  or
@@ -17,12 +17,13 @@ We would like to note that the developed tool supports HL7 FHIR as well as file 
 	  or
 	   - ``` path="./Data/medData/dqTestData.xlsx" ```
 
-     - Set the number of inpatient case for each year (v3) as following:
+     - Set proxy and access configuration (v3) if required 
+     - Set the number of inpatient case for each year (v4) as following:
   ``` inpatientCases_number: !expr list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000) ```
-     - Set the corresponding code for filtering inpatient cases (v4) else default = NULL
-   - Please change the variables v5 - v8 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of tracer diagnoses version 2.0 as a default reference for tracer diagnoses (see tracerPath v8). We additionally provide the list of tracer diagnoses version 1.0 as CSV file if required due to local restrictions. The references for tracer diagnoses are stored in the folder for reference data `"./Local/Data/refData"`. 
+     - Set the corresponding code for filtering inpatient cases (v5) else default = NULL
+   - Please change the variables v6 - v9 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of tracer diagnoses version 2.0 as a default reference for tracer diagnoses (see tracerPath v8). We additionally provide the list of tracer diagnoses version 1.0 as CSV file if required due to local restrictions. The references for tracer diagnoses are stored in the folder for reference data `"./Local/Data/refData"` 
 
-3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running.  The genrated repots are saved in folder `./Local/Data/Export`. 
+3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running.  The genrated repots are saved in folder `./Local/Data/Export`
 
 ## Local Reports
 Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/Data/Export) of data quality reports generated locally using sythetic data.

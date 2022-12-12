@@ -5,39 +5,46 @@ default:
   # v1) Name for your center
   organization_name: "meDIC_StandortName"
   
-  # v2) set the fhir sever variables
+  # v2) set the path to input data 
   # replace this with the URL of your FHIR server
   path: "http://141.5.101.1:8080/fhir/" #Airolo server
+  # CSV and XLSX file formats are also supported
+  #path: "./Data/medData/dqTestData.csv"
+  #path: "./Data/medData/dqTestData.xlsx"
+  
+  # v3) set proxy and access configuration if required
   # set your username and password if you need to authenticate on your fhir server
   username: NULL
   password: NULL	
   # set your token or path to r-script, if your fhir server needs token authentification.
   token: NULL
-  # CSV and XLSX file formats are also supported
-  #path: "./Data/medData/dqTestData.csv"
-  #path: "./Data/medData/dqTestData.xlsx"
+  # set these parameters if you need to use a proxy server (e.G. http://proxy:port )
+  http_proxy: NULL
+  https_proxy: NULL
+  # set the fhir server adress here, if you need to bypass the proxy for accessing it locally
+  no_proxy: NULL
   
-  # v3) set the number of inpatient case for each year
+  # v4) set the number of inpatient case for each year
   inpatientCases_number: !expr list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000)
   
-  # v4) if the standard code for inpatient cases "IMP" is available uncomment the below line or replace it by local code else default = NULL
+  # v5) if the standard code for inpatient cases "IMP" is available uncomment the below line or replace it by local code else default = NULL
   inpatientEncounter_code: NULL
   #inpatientEncounter_code: "IMP"
   
   #--------------------------------------------------------------------------------------------------------------------
   # Please change the variables v5 - v8 only if technical or legal restrictions otherwise prevent successful execution!
   #--------------------------------------------------------------------------------------------------------------------
-  # v5) set the start and end of the reporting period
+  # v6) set the start and end of the reporting period
   startYear: 2015
   endYear: 2022
   
-  # v6) set the date format and the data item for diagnosis recorded date
+  # v7) set the date format and the data item for diagnosis recorded date
   # set the date format
   date_format: "%Y-%m-%d"
   #change default value for diagnosis recorded date if your local fhir server does not have "recordedDate" , e.g.,  "onsetDateTime"
   diagnosisDate_item: "recordedDate"
   
-  # v7) set the fhir data variables
+  # v8) set the fhir data variables
   # fhir path to the data item encounter class, change this path if your local fhir server does not have "class/code", e.g., "class/display"
   encounterClass_item: "class/code"
   # orpha system
@@ -50,7 +57,7 @@ default:
   # set the number of tracer codes per thread
   tracer_no: 25
   
-  # v8) set the version of tracerlist, e.g.,  'v1' or 'v2' default =  'v2'
+  # v9) set the version of tracerlist, e.g.,  'v1' or 'v2' default =  'v2'
   tracerList_version: "v2"
 
 
