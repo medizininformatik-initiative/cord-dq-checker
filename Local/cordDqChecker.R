@@ -144,7 +144,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       {
         while ( length(tracer) > tracerNo) {
           cordTracer.vec <- tail(tracer, tracerNo)
-          cordTracer <- paste0(cordTracer.vec, collapse=", ")
+          cordTracer <- paste0(cordTracer.vec, collapse=",")
           print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
           source("./R/dqFhirInterface.R")
           medData <- base::rbind(medData, instData)
@@ -153,7 +153,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
         if ( length(tracer) <= tracerNo)
         { 
           cordTracer.vec <- tracer
-          cordTracer <- paste0(cordTracer.vec, collapse=", ")
+          cordTracer <- paste0(cordTracer.vec, collapse=",")
           print(paste ("cordTracer:",    cordTracer, "NO:", length(cordTracer.vec)))
           source("./R/dqFhirInterface.R")
           medData <- base::rbind(medData, instData)
@@ -162,7 +162,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
         
       } 
       else { 
-        if(is.null (cordTracerList)) cordTracer= NULL else cordTracer <- paste0(tracer, collapse=", ")
+        if(is.null (cordTracerList)) cordTracer= NULL else cordTracer <- paste0(tracer, collapse=",")
         print(paste ("cordTracer:",    cordTracerList, "NO:", length(tracer)))
         source("./R/dqFhirInterface.R")
         medData<-instData
@@ -257,7 +257,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
     }
     next
   }
-  if (!("Institut_ID" %in% names(medData))) medData$Institut_ID=institut_ID
+  if (!("Institut_ID" %in% names(medData))) medData$Institut_ID=institut_ID else if (all(is.na(medData$Institut_ID))) medData$Institut_ID=institut_ID
   # if ("Orpha_Kode"  %in% names(medData)) medData$Orpha_Kode = NULL
   dItem <-names(medData)
   msg <-cat("\n The following data items are loaded: \n")
@@ -320,23 +320,23 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
   }else{
     msg <- paste ("Institut_ID fehlt")
     stop(msg)
+  }
+    if (iterator ==length(range) & !is.null(allData) ){
+      if (dim(allData)[1] > dim(medData)[1])
+      {
+        setGlobals(allData, repCol, cdata, ddata, tdata)
+        out <-checkCordDQ(instID, reportYear , inpatientCases, refData1, refData2, dqRepCol,repCol, "dq_msg", "basicItem", "Total", oItem, caseItems)
+        dqRep <-out$metric
+        dqRep$report_year <-  paste (reportYearStart,"-",  reportYearEnd,  sep = "")
+        dqRep$dataFormat <- dataFormat
+        endTime <- base::Sys.time()
+        timeTaken <-  round (as.numeric (endTime - executionTime, units = "mins"), 2)
+        dqRep$executionTime_inMin <-timeTaken
+        expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData.csv",  sep = "")
+        write.csv(dqRep, expPath, row.names = FALSE)
+        
+      }
     }
   }
-  if (iterator ==length(range) & !is.null(allData) ){
-    if (dim(allData)[1] > dim(medData)[1])
-    {
-      setGlobals(allData, repCol, cdata, ddata, tdata)
-      out <-checkCordDQ(instID, reportYear , inpatientCases, refData1, refData2, dqRepCol,repCol, "dq_msg", "basicItem", "Total", oItem, caseItems)
-      dqRep <-out$metric
-      dqRep$report_year <-  paste (reportYearStart,"-",  reportYearEnd,  sep = "")
-      dqRep$dataFormat <- dataFormat
-      endTime <- base::Sys.time()
-      timeTaken <-  round (as.numeric (endTime - executionTime, units = "mins"), 2)
-      dqRep$executionTime_inMin <-timeTaken
-      expPath<- paste ("./Data/Export/", exportFile, "_", institut_ID, "_", dataFormat,"_allData.csv",  sep = "")
-      write.csv(dqRep, expPath, row.names = FALSE)
-      
-    }
-   
-  }
+  
 }
