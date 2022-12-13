@@ -27,7 +27,7 @@ if (is.null(cordTracer))
 }
 
 # get fhir bundles
-bundles <- fhir_search(request =searchRequest, username = username, password = password, verbose = 2, max_bundles =max_FHIRbundles) 
+bundles <- fhir_search(request =searchRequest, username = username, token = token, password = password, verbose = 2, max_bundles =max_FHIRbundles) 
 #define the table_description
 ConditionTab <- fhir_table_description(
   resource = "Condition",
