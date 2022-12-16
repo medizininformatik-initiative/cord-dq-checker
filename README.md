@@ -3,7 +3,7 @@
 
 Acknowledgement: This work was done within the “Collaboration on Rare Diseases” of the Medical Informatics Initiative (CORD-MI) funded by the German Federal Ministry of Education and Research (BMBF), under grant number: FKZ-01ZZ1911R.
 
-## Local Execution
+## 1. Local Execution
 We would like to note that the developed tool supports HL7 FHIR as well as file formats such as CSV or Excel. To conduct local DQ assessments, please follow the following instructions. 
 1. clone reposistory and checkout branch FDPG_study
    - Run the git command: ``` git clone --branch FDPG_study https://github.com/medizininformatik-initiative/cord-dq-checker.git ```
@@ -21,14 +21,27 @@ We would like to note that the developed tool supports HL7 FHIR as well as file 
      - Set the number of inpatient case for each year (v4) as following:
   ``` inpatientCases_number: !expr list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000) ```
      - Set the corresponding code for filtering inpatient cases (v5) else default = NULL
-   - Please change the variables v6 - v9 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of tracer diagnoses version 2.0 as a default reference for tracer diagnoses (see tracerPath v8). We additionally provide the list of tracer diagnoses version 1.0 as CSV file if required due to local restrictions. The references for tracer diagnoses are stored in the folder for reference data `"./Local/Data/refData"` 
+   - Please change the variables v6 - v9 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of tracer diagnoses version 2.0 (=v2) as a default reference for tracer diagnoses (see tracerPath v9). We additionally provide the list of tracer diagnoses version 1.0 as CSV file if required due to local restrictions (=v1). The references for tracer diagnoses are stored in the folder for reference data `"./Local/Data/refData"` 
 
-3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running.  The genrated repots are saved in folder `./Local/Data/Export`
+3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running.
 
-## Local Reports
-Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/Data/Export) of data quality reports generated locally using sythetic data.
+4. The script generates two files per year analyzed – the first one is a CSV file that contains the calculated DQ metrics, while the second file is an Excel file that contains a report on DQ violations. To enable users to find the DQ violations and causes of these violations, this report provides sensitive information such as Patient Identifier (ID) or case ID – it is meant for internal use only. The generated reports are saved in the folder "./Local/Data/Export". To share the CSV files about DQ metrics please follow the instruction provided in section 2.
 
-## Data Quality Metrics
+**Note:** To enable cross-site reporting, please share with us the first report of each year (CSV files) that only contains aggregated results on DQ metrics. Please don’t share the reports about DQ violations (Excel files) to meet the data privacy requirements.
+
+### 2. Cross-Site reporting
+To enable cross-site reporting on DQ in CORD-MI we provide an encrypted cloud environment for sharing the locally generated DQ reports with the Data Management Office in Göttingen. Please follow the following instruction to share the local reports on DQ metrics.
+
+1. Go to [`cryptshare`](https://cryptshare.med.uni-goettingen.de)
+2. Click on “Provide” and follow the wizard to share the local DQ reports. The Email address of the recipient is: Kais.Tahar@med.uni-goettingen.de
+3. After having shared the transfer, Kais Tahar will contact you to get the password
+
+**Note:** For more information on cryptshare, see the following [`User Manual`](https://wiki.cryptshare.com/w/CSSCurrent_en:User_Manual).
+
+## 3. Examples of Local Reports
+Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/Data/Export) of data quality reports generated locally using sythetic data.	
+
+## 4. Data Quality Metrics
 - The data quality framework [`dqLib`](https://github.com/KaisTahar/dqLib) has been used as an R package for generating specific reports on DQ related issues and metrics.
 - The following DQ indicators and parameters are configured by default reports:
   | Dimension  | DQ Indicator | 
@@ -64,9 +77,9 @@ Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq
 	[1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: [BfArM](https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html) 
 	
 	[2]   Tahar K, Martin T, Mou Y, et al. Distributed Data Quality Assessment Across CORD-MI Consortia. [doi:10.3205/22gmds116](https://www.egms.de/static/en/meetings/gmds2022/22gmds116.shtml)
-	
 
-## Note
+
+## 5. Note
 
 - Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/R/installPackages.R )
 
