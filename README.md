@@ -23,13 +23,13 @@ We would like to note that the developed tool supports HL7 FHIR as well as file 
      - Set the corresponding code for filtering inpatient cases (v5) else default = NULL
    - Please change the variables v6 - v9 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of tracer diagnoses version 2.0 (=v2) as a default reference for tracer diagnoses (see tracerPath v9). We additionally provide the list of tracer diagnoses version 1.0 as CSV file if required due to local restrictions (=v1). The references for tracer diagnoses are stored in the folder for reference data `"./Local/Data/refData"` 
 
-3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running.
+3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running
 
-4. The script generates two files per year analyzed – the first one is a CSV file that contains the calculated DQ metrics, while the second file is an Excel file that contains a report on DQ violations. To enable users to find the DQ violations and causes of these violations, this report provides sensitive information such as Patient Identifier (ID) or case ID – it is meant for internal use only. The generated reports are saved in the folder "./Local/Data/Export". To share the CSV files about DQ metrics please follow the instruction provided in section 2.
+4. The script generates two files per year analyzed – the first one is a CSV file that contains the calculated DQ metrics, while the second file is an Excel file that contains a report on DQ violations. To enable users to find the DQ violations and causes of these violations, this report provides sensitive information such as Patient Identifier (ID) or case ID – it is meant for internal use only. The generated reports are saved in the folder "./Local/Data/Export". To share the CSV files about DQ metrics please follow the instruction provided in section 2
 
 **Note:** To enable cross-site reporting, please share with us the first report of each year (CSV files) that only contains aggregated results on DQ metrics. Please don’t share the reports about DQ violations (Excel files) to meet the data privacy requirements.
 
-### 2. Cross-Site reporting
+## 2. Cross-Site reporting
 To enable cross-site reporting on DQ in CORD-MI we provide an encrypted cloud environment for sharing the locally generated DQ reports with the Data Management Office in Göttingen. Please follow the following instruction to share the local reports on DQ metrics.
 
 1. Go to [`cryptshare`](https://cryptshare.med.uni-goettingen.de)
@@ -81,10 +81,9 @@ Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq
 
 ## 5. Note
 
-- Before starting `cordDqChecker.R` you need to install required libraries using this script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/R/installPackages.R )
+-  You can also run `cordDqChecker` using Rstudio or Dockerfile. When using Rstudio, all required packages should be installed automatically using the script [`installPackages.R`]( https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/R/installPackages.R ). We would like to note that the `fhircrackr` package is only required to run local DQ assessments on FHIR data. To avoid local dependency issues go to folder `./Local` and just run the command `sudo docker-compose up` to get `cordDqChecker` running
 
-- To avoid local dependency issues go to folder `./Local` and just run the command `sudo docker-compose up` to get `cordDqChecker` running.
-- The missing item rate will be calculated based on FHIR [implementation guidlines of the MII core data set](https://www.medizininformatik-initiative.de/en/basic-modules-mii-core-data-set). Hence, mandatory items of the basic modules Person, Case and Diagnosis are required.
+- The missing item rate will be calculated based on FHIR [implementation guidlines of the MII core data set](https://www.medizininformatik-initiative.de/en/basic-modules-mii-core-data-set). Hence, mandatory items of the basic modules Person, Case and Diagnosis are required
 
 - To cite `cordDqChecker`, please use the following **BibTeX** entry: 
   ```
