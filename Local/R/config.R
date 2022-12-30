@@ -107,13 +107,18 @@ if (exists("tracer_no", where = conf) && !is.null(conf$tracer_no)) {
 
 # v9) check for tracer list versions
 if (exists("tracerList_version", where = conf) && nchar(conf$tracerList_version) >= 2) {
+  tracerVersion <- conf$tracerList_version
   if (grepl( "v2", conf$tracerList_version)) {
     tracerPath <-"./Data/refData/CordTracerList_v2.csv"
   }
   else if  (grepl( "v1", conf$tracerList_version)) {
     tracerPath <-"./Data/refData/CordTracerList_v1.csv"
+  }
+  else{
+    stop("Tracer version not found, Please set the variable tracerList_version in the config file")
   } 
 }else {
-  tracerPath <-"./Data/refData/CordTracerList_v2.csv"
+  tracerVersion <-conf$tracerList_version
+  stop("Tracer version not found, Please set the variable tracerList_version in the config file")
 }
 

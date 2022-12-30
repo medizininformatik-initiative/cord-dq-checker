@@ -283,6 +283,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
       dqRep$executionTime_inMin <-timeTaken
       if (!is.null (encounterClass_value)) dqRep$encounterClass <-  encounterClass_value else dqRep$encounterClass <- NA
       dqRep$dateRef <- dateRef
+      dqRep$diagnosesList <-tracerVersion
     }
     
     ################################################### DQ Reports ########################################################
