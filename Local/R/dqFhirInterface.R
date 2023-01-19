@@ -22,7 +22,7 @@ if (is.null(cordTracer))
     'code=', cordTracer,
     '&recorded-date=',reportYear,
     "&_include=Condition:encounter",
-    '&_include=Condition:subject:Patient'
+    '&_include=Condition:subject'
   )
 }
 
