@@ -84,6 +84,11 @@ if (exists("encounterClass_item", where = conf) && !is.null(conf$encounterClass_
 } else {
   encounterClass_item= "class/code"
 }
+if (exists("diagnosisUse_item", where = conf) && !is.null(conf$diagnosisUse_item)) {
+  diagnosisUse_item= conf$diagnosisUse_item
+} else {
+  diagnosisUse_item= "diagnosis/use/coding/code"
+}
 if (exists("icdCode_system", where = conf) && !is.null(conf$icdCode_system)) {
   icdSystem= conf$icdCode_system
 } else {

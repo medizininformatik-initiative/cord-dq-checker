@@ -74,7 +74,7 @@ EncounterTab <- fhir_table_description(
     class = encounterClass_item,
     status ="status",
     admitCode ="hospitalization/admitSource/coding/code",  # Aufnahmeanlass
-    diagnosisUse ="diagnosis/use" # admission, billing or discharge
+    diagnosisUse = diagnosisUse_item # admission, billing or discharge
   ),
   style = fhir_style(
     rm_empty_cols = FALSE

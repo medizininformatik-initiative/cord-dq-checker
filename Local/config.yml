@@ -47,6 +47,8 @@ default:
   # v8) set the fhir data variables
   # fhir path to the data item encounter class, change this path if your local fhir server does not have "class/code", e.g., "class/display"
   encounterClass_item: "class/code"
+  #diagnosisUse_item
+  diagnosisUse_item: "diagnosis/use/coding/code"
   # orpha system
   orphaCode_system: "http://www.orpha.net"
   # custom parameters for conditions resources on local fhir server
