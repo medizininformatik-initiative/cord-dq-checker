@@ -7,9 +7,9 @@ default:
   
   # v2) set the path to input data 
   # replace this with the URL of your FHIR server
-  path: "http://141.5.101.1:8080/fhir/" #Airolo server
+  #path: "http://141.5.101.1:8080/fhir/" #Airolo server
   # CSV and XLSX file formats are also supported
-  #path: "./Data/medData/dqTestData.csv"
+  path: "./Data/medData/dqTestData.csv"
   #path: "./Data/medData/dqTestData.xlsx"
   
   # v3) set proxy and access configuration if required
@@ -32,7 +32,7 @@ default:
   #inpatientEncounter_code: "IMP"
   
   #--------------------------------------------------------------------------------------------------------------------
-  # Please change the variables v5 - v8 only if technical or legal restrictions otherwise prevent successful execution!
+  # Please change the variables v5 - v10 only if technical or legal restrictions otherwise prevent successful execution!
   #--------------------------------------------------------------------------------------------------------------------
   # v6) set the start and end of the reporting period
   startYear: 2015
@@ -56,11 +56,16 @@ default:
   icdCode_system: "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
   # define the maximal bundles for fhir_search (), default value = Inf
   fhirBundles_max: "inf"
-  # set the number of tracer codes per thread
-  tracer_no: 25
+  # set the number of diagnosis codes per thread
+  diagnosis_no: 25
   
-  # v9) set the version of tracerlist, e.g.,  'v1' or 'v2' default =  'v2'
-  tracerList_version: "v2"
+  # v9) set the version of diagnosisList, e.g.,  'v1' or 'v2' default =  'v2'
+  diagnosisList_version: "v2"
+  
+  # v10) set rules and references for data quality checks
+  ageMax: 115
+  alphaIdSe_reference: "./Data/refData/icd10gm2022_alphaidse_edvtxt.txt"
+  tracerDiagnoses_refrence: "./Data/refData/Tracerdiagnosen_AlphaID-SE-2022.csv"
 
 
 

@@ -53,13 +53,13 @@ tdata <- data.frame(
   pt_no =NA, case_no =NA
 )
 caseItems <- c("PatientIdentifikator","Aufnahmenummer","Kontakt_Klasse", "Fall_Status","ICD_Primaerkode", "Aufnahmedatum", "Entlassungsdatum", "Diagnosedatum","DiagnoseRolle")
-refData1 <- read.table("./Data/refData/Tracerdiagnosen_AlphaID-SE-2022.csv", sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)
-refData2 <- read.table("./Data/refData/icd10gm2022_alphaidse_edvtxt.txt", sep="|", dec= "," , quote ="", na.strings=c("","NA"), encoding = "UTF-8")
+refData1 <- read.table(tracerDiagnoses_ref, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)
+refData2 <- read.table(alphaIdSe_ref, sep="|", dec= "," , quote ="", na.strings=c("","NA"), encoding = "UTF-8")
 headerRef1<- c ("IcdCode", "Complete_SE", "Unique_SE")
 headerRef2<- c ("Gueltigkeit", "Alpha_ID", "ICD_Primaerkode1", "ICD_Manifestation", "ICD_Zusatz","ICD_Primaerkode2", "Orpha_Kode", "Label")
 names(refData1)<-headerRef1
 names(refData2)<-headerRef2
-cordTracerList <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
+cordDiagnosisList <- read.table(tracerPath, sep=",",  dec=",", na.strings=c("","NA"), encoding = "UTF-8",header=TRUE)$IcdCode
 # meta data for DQ report
 repMeta= c("inst_id", "report_year")
 bItemCl <-"basicItem"
@@ -134,7 +134,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
     dataFormat =""
     dqRep <-NULL
     inpatientCases = 0
-    tracer <- cordTracerList
+    tracer <- cordDiagnosisList
     if (toString(reportYear)  %in%  names(ipatCasesList))inpatientCases = ipatCasesList[[toString(reportYear)]]
     if (grepl("fhir", path))
     {
@@ -162,8 +162,8 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
         
       } 
       else { 
-        if(is.null (cordTracerList)) cordTracer= NULL else cordTracer <- paste0(tracer, collapse=",")
-        print(paste ("cordTracer:",    cordTracerList, "NO:", length(tracer)))
+        if(is.null (cordDiagnosisList)) cordTracer= NULL else cordTracer <- paste0(tracer, collapse=",")
+        print(paste ("cordTracer:",    cordDiagnosisList, "NO:", length(tracer)))
         source("./R/dqFhirInterface.R")
         medData<-instData
       }
@@ -184,7 +184,7 @@ if (is.null(path) | path=="" | is.na(path)) stop("No path to data") else {
         
       } else stop("No data path found, please set the data path in the config file")
       # filter for tracer diagnoses
-      medData<- subset(medData, medData$ICD_Primaerkode %in% cordTracerList)
+      medData<- subset(medData, medData$ICD_Primaerkode %in% cordDiagnosisList)
       # filter for report year and inpatient cases
       if (dateRef %in% names(medData)){
         if (!all(is.na(medData[[dateRef]]))) medData<- medData[format(as.Date(medData[[dateRef]], format=dateFormat),"%Y")==reportYear, ] else stop("No date values available for data selection")

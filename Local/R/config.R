@@ -104,26 +104,43 @@ if (exists("fhirBundles_max", where = conf) && !is.null(conf$fhirBundles_max)) {
 } else {
   max_FHIRbundles = "inf"
 }
-if (exists("tracer_no", where = conf) && !is.null(conf$tracer_no)) {
-  tracerNo= conf$tracer_no
+if (exists("diagnosis_no", where = conf) && !is.null(conf$diagnosis_no)) {
+  tracerNo= conf$diagnosis_no
 } else {
   tracerNo= 25
 }
 
-# v9) check for tracer list versions
-if (exists("tracerList_version", where = conf) && nchar(conf$tracerList_version) >= 2) {
-  tracerVersion <- conf$tracerList_version
-  if (grepl( "v2", conf$tracerList_version)) {
-    tracerPath <-"./Data/refData/CordTracerList_v2.csv"
+# v9) check for used diagnosis list
+if (exists("diagnosisList_version", where = conf) && nchar(conf$diagnosisList_version) >= 2) {
+  tracerVersion <- conf$diagnosisList_version
+  if (grepl( "v2", conf$diagnosisList_version)) {
+    tracerPath <-"./Data/refData/CordDiagnosisList_v2.csv"
   }
-  else if  (grepl( "v1", conf$tracerList_version)) {
-    tracerPath <-"./Data/refData/CordTracerList_v1.csv"
+  else if  (grepl( "v1", conf$diagnosisList_version)) {
+    tracerPath <-"./Data/refData/CordDiagnosisList_v1.csv"
   }
   else{
-    stop("Tracer version not found, Please set the variable tracerList_version in the config file")
+    stop("Version not found, Please set the variable diagnosisList_version in the config file")
   } 
 }else {
-  tracerVersion <-conf$tracerList_version
-  stop("Tracer version not found, Please set the variable tracerList_version in the config file")
+  tracerVersion <-conf$diagnosisList_version
+  stop("Version not found, Please set the variable diagnosisList_version in the config file")
+}
+
+# v10) check for DQ variables
+if (exists("ageMax", where = conf) && !is.null(conf$ageMax)) {
+  ageMax= conf$ageMax
+} else {
+  ageMax= 130
+}
+if (exists("alphaIdSe_reference", where = conf) && nchar(conf$alphaIdSe_reference) >= 3) {
+  alphaIdSe_ref <-conf$alphaIdSe_reference
+}else {
+  alphaIdSe_ref <-"./Data/refData/icd10gm2022_alphaidse_edvtxt"
+}
+if (exists("tracerDiagnoses_reference", where = conf) && nchar(conf$tracerDiagnoses_reference) >= 3) {
+  tracerDiagnoses_ref <-conf$tracerDiagnoses_reference
+}else {
+  tracerDiagnoses_ref <-"./Data/refData/Tracerdiagnosen_AlphaID-SE-2022.csv"
 }
 
