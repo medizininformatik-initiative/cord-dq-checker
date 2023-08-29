@@ -400,18 +400,19 @@ checkOutlier<-function (ddata, item, cl) {
         env$dq[,cl][i] <- paste( "Implausible", name , item.vec[i], "date in the future.")
       }
     }   else ddata <- addOutlier(item, ddata, 0,length(item.vec))
-
+    
     if(item == "Geburtsdatum")
     {
       item1.vec <-  as.Date(ISOdate(env$medData[["Geburtsdatum"]], 1, 1))
       now<- as.Date(Sys.Date())
-      out<-getAgeMaxOutlier(item1.vec,  now, 105)
+      out<-getAgeMaxOutlier(item1.vec,  now, ageMax)
       if (!is.empty(out)) {
         ddata<- addOutlier (item, ddata, length(out), length(item1.vec) )
-        for(i in out) env$dq[,cl][i] <- paste( "Implausible birthdate", item1.vec[i] , "maximal age 105.",  env$dq[,cl][i])
+        maxAge <-paste( "maximal age ", ageMax, ".", sep = "")
+        for(i in out) env$dq[,cl][i] <- paste( "Implausible birthdate", item1.vec[i] , maxAge,  env$dq[,cl][i])
       }
     }
-
+    
   }
   else if (item!="Total"){
     ddata <- addOutlier(item, ddata, 0,0)
@@ -893,12 +894,21 @@ getReport <- function (repCol, cl, td, path) {
   repCol = append (repCol, cl)
   repData <-subset(env$dq, select= repCol)
   dfq <-repData[ which(env$dq[,cl]!="")  ,]
+  if (!is.empty (env$dup)){
+    dupRd <-env$dup[which(env$dup$dupRdCase=="yes"),]
+    if (!is.empty(dupRd) & nrow(dupRd)!=0)
+    {
+      dupRd$dq_msg <- "Duplicated RD case "
+      dupRep <-subset(dupRd, select=repCol)
+      dupRep<- dupRep[which(!duplicated(dupRep$Aufnahmenummer)),]
+      dfq <- rbind (dfq,dupRep) 
+    }
+  }
   dfq[nrow(dfq)+1,] <- NA
   dfq[nrow(dfq)+1,1] <- env$mItem
   sheets <- list("DQ_Report"=dfq, "DQ_Metrics" = td)
   write.xlsx(sheets, paste (path,".xlsx", sep =""))
   write.csv(td, paste (path,".csv", sep =""), row.names = FALSE)
-  # env <-NULL
 }
 
 #' @title getExtendedReport
