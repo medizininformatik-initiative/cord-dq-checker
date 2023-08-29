@@ -21,7 +21,7 @@ We would like to note that the developed tool supports HL7 FHIR as well as file 
      - Set the number of inpatient case for each year (v4) as following:
   ``` inpatientCases_number: !expr list ("2015"=800, "2016"=900, "2017"=940, "2018"=950, "2019"=990,  "2020"=997, "2021"=999, "2022"=1000) ```
      - Set the corresponding code for filtering inpatient cases (v5) else default = NULL
-   - Please change the variables v6 - v9 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of tracer diagnoses version 2.0 (=v2) as a default reference for tracer diagnoses (see tracerPath v9). We additionally provide the list of tracer diagnoses version 1.0 as CSV file if required due to local restrictions (=v1). The references for tracer diagnoses are stored in the folder for reference data `./Local/Data/refData` 
+   - Please change the variables v6 - v10 only if technical or legal restrictions otherwise prevent successful execution! In this context we would like to note that we use the CORD-MI list of diagnoses version 2.0 (=v2) as a default reference for required diagnoses (see v9). We additionally provide the list of diagnoses version 1.0 as CSV file if required due to local restrictions (=v1). The reference Lists for required diagnoses are stored in the folder `./Local/Data/refData` 
 
 3. Once the source data path and local variables are defined, start the script using this command: ```Rscript cordDqChecker.R ``` to assess the quality of your data. You can also run this script using Rstudio or Dockerfile. To avoid local dependency issues just run the command ```sudo docker-compose up``` in the folder `./Local` to get the script running
 
@@ -42,7 +42,7 @@ To enable cross-site reporting on DQ in CORD-MI we provide an encrypted cloud en
 Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq-checker/tree/FDPG_study/Local/Data/Export) of data quality reports generated locally using sythetic data.	
 
 ## 4. Data Quality Metrics
-- The data quality framework [`dqLib`](https://github.com/KaisTahar/dqLib) has been used as an R package for generating specific reports on DQ related issues and metrics.
+- The data quality framework [`dqLib`](https://github.com/KaisTahar/dqLib) has been used as an R package for generating specific reports on DQ related issues and metrics. The used version of `dqLib` is availabe in the folder `./Local/R`.
 - The following DQ indicators and parameters are configured by default reports:
   | Dimension  | DQ Indicator | 
   | ------------- | ------------- |
@@ -72,7 +72,7 @@ Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq
   | ambiguous RD cases | number of ambiguous RD cases per year in a given data set |
   | duplicated RD cases |  number of duplicated RD cases per year in a given data set |
   
-- The following references are required to assess the quality of orphacoding and can be easily updated with new versions: (1) The standard Alpha-ID-SE terminology [1], and (2) a reference for tracer diagnoses such as the list provided in [2].
+- The following references are required to assess the quality of orphacoding and can be easily updated with new versions: (1) The standard Alpha-ID-SE terminology [1], and (2) a reference for tracer diagnoses such as the list provided in [2]. The used version of Alpha-ID-SE and Tracer diagnoses (see `config.yml`) are also stored in the folder for references `./Local/Data/refData` 
   
 	[1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: [BfArM](https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html) 
 	
