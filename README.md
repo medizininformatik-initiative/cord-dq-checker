@@ -1,5 +1,5 @@
 # cordDqChecker
-`CordDqChecker` is a tool for data quality (DQ) assessment and reporting in [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD).
+`CordDqChecker` contains the code version and all instructions used for conducting a German-wide study on distribued data quality (DQ) assessments in [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD). This repository provides a set of metrics and tools for local as well as distributed DQ assessment and reporting on rare diseases (RD) data.
 
 Acknowledgement: This work was done within the “Collaboration on Rare Diseases” of the Medical Informatics Initiative (CORD-MI) funded by the German Federal Ministry of Education and Research (BMBF), under grant number: FKZ-01ZZ1911R.
 
@@ -72,7 +72,7 @@ Here are some [examples](https://github.com/medizininformatik-initiative/cord-dq
   | ambiguous RD cases | number of ambiguous RD cases per year in a given data set |
   | duplicated RD cases |  number of duplicated RD cases per year in a given data set |
   
-- The following references are required to assess the quality of orphacoding and can be easily updated with new versions: (1) The standard Alpha-ID-SE terminology [1], and (2) a reference for tracer diagnoses such as the list provided in [2]. The used version of Alpha-ID-SE and Tracer diagnoses (see `config.yml`) are also stored in the folder for references `./Local/Data/refData` 
+- The following references are required to assess the quality of orphacoding and can be easily updated with new versions: (1) The standard Alpha-ID-SE terminology [1], and (2) a reference for tracer diagnoses such as the list provided in [2]. The used version of Alpha-ID-SE and tracer diagnoses (see `config.yml`) are also stored in the folder for references `./Local/Data/refData` 
   
 	[1]   BfArM - Alpha-ID-SE [Internet]. [cited 2022 May 23]. Available from: [BfArM](https://www.bfarm.de/EN/Code-systems/Terminologies/Alpha-ID-SE/_node.html) 
 	
