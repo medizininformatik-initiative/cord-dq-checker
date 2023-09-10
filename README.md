@@ -1,6 +1,8 @@
-# cordDqChecker
-`CordDqChecker` contains the code version and all instructions used for conducting a German-wide study on distribued data quality (DQ) assessments in [`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD). This repository provides a set of metrics and tools for local as well as distributed DQ assessment and reporting on rare diseases (RD) data.
+# <p align="center"> cordDqChecker </p>
+## <p align="center"> Rare Diseases in German Health Information Systems – A set of Metrics and Tools for a German-wide Study on Distributed Data Quality Assessments </p>
 
+To make sufficient data available for clinical research in rare diseases (RD), the research network “Collaboration on Rare Diseases” ([`CORD-MI`](https://www.medizininformatik-initiative.de/de/CORD)) of the Medical Informatics Initiative  ([`MII`](https://www.medizininformatik-initiative.de/en/start)) connects twenty four university hospitals in Germany. `CordDqChecker` contains the code version and all instructions used for conducting a German-wide study on distribued data quality (DQ) assessments within the CORD-MI research network. This repository therefore provides a set of metrics and tools for local as well as distributed DQ assessment and reporting on RDs.
+ 
 Acknowledgement: This work was done within the “Collaboration on Rare Diseases” of the Medical Informatics Initiative (CORD-MI) funded by the German Federal Ministry of Education and Research (BMBF), under grant number: FKZ-01ZZ1911R.
 
 ## 1. Local Execution
